@@ -1,32 +1,18 @@
 <div class="courses-panel">
-  <h3>Svi Courses</h3>
+
+  <h3>All Courses</h3>
+
   <mat-tab-group>
-    <mat-tab label="Početno">
-      <!-- Saljem podatke u app-card-list -->
-      <app-datafile [coursesFile]="beginnerCourses"></app-datafile >
+
+    <mat-tab label="Beginners">
+      <app-card-list [courses]="beginnerCourses$ | async"></app-card-list>
+
     </mat-tab>
 
-    <mat-tab label="Napredno">
-         <!-- Saljem podatke u app-card-list -->
-      <app-datafile [coursesFile]="advancedCourses"></app-datafile>
+    <mat-tab label="Advanced">
+      <app-card-list [courses]="advancedCourses$ | async"></app-card-list>
     </mat-tab>
+
   </mat-tab-group>
-</div>
 
-
-<hr>
-
-<div class="courses-panel">
-  <h3>Svi Courses HTTP</h3>
-  <mat-tab-group>
-    <mat-tab label="Početno HTTP">
-      <!-- Saljem podatke u app-card-list -->
-      <app-card-list [courses]="beginnerCourses"></app-card-list >
-    </mat-tab>
-
-    <mat-tab label="Napredno HTTP">
-         <!-- Saljem podatke u app-card-list -->
-      <app-card-list [courses]="advancedCourses"></app-card-list>
-    </mat-tab>
-  </mat-tab-group>
 </div>

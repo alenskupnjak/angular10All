@@ -1,37 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Course } from '../model/course';
-import { COURSES, LESSONS } from '../model/db-data';
+import { Observable } from 'rxjs';
+import { CoursesService } from '../services/courses.service';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  // Preko datoteka
-  beginnerCourses: Course[];
-  advancedCourses: Course[];
-
   beginnerCourses$: Observable<Course[]>;
 
   advancedCourses$: Observable<Course[]>;
 
-  constructor() {}
+  constructor(private coursesService: CoursesService) {}
 
-  ngOnInit(): void {
-    //  izvor podataka datoteka
-    const courses = <any>Object.values(COURSES);
-    const lessons = <any>Object.values(LESSONS);
-    console.log(courses, lessons);
-    this.beginnerCourses = courses.filter(
-      (course) => course.category === 'BEGINNER'
-    );
-    this.advancedCourses = courses.filter(
-      (course) => course.category === 'ADVANCED'
+  ngOnInit() {
+    const courses$ = this.coursesService.findAllCourses();
+
+    this.beginnerCourses$ = courses$.pipe(
+      map((courses) =>
+        courses.filter((course) => course.category === 'BEGINNER')
+      )
     );
 
-
-    
+    this.advancedCourses$ = courses$.pipe(
+      map((courses) =>
+        courses.filter((course) => course.category === 'ADVANCED')
+      )
+    );
   }
 }

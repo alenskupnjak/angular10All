@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 // za mobile frendly
 import 'hammerjs';
@@ -15,15 +16,28 @@ import { CardListComponent } from './card-list/card-list.component';
 import { DatafileComponent } from './datafile/datafile.component';
 import { HomefileComponent } from './homefile/homefile.component';
 
+// servisi
+import { CoursesService } from './services/courses.service';
+import { CourseResolver } from './services/course.resolver';
+
 @NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent, TopMenuComponent, CardListComponent, DatafileComponent, HomefileComponent],
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    HomeComponent,
+    TopMenuComponent,
+    CardListComponent,
+    DatafileComponent,
+    HomefileComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [CoursesService, CourseResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
