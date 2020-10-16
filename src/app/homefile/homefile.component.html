@@ -1,0 +1,14 @@
+<div class="courses-panel">
+  <h3>Svi Courses</h3>
+  <mat-tab-group>
+    <mat-tab label="Početno File">
+      <!-- Saljem podatke u app-card-list -->
+      <app-datafile [coursesFile]="beginnerCourses"></app-datafile>
+    </mat-tab>
+
+    <mat-tab label="Napredno File">
+      <!-- Saljem podatke u app-card-list -->
+      <app-datafile [coursesFile]="advancedCourses"></app-datafile>
+    </mat-tab>
+  </mat-tab-group>
+</div>

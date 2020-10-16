@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start3000": "ng serve --port 3000 --open",
+    "server": "ts-node -P ./server/server.tsconfig.json ./server/server.ts",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

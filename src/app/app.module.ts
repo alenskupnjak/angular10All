@@ -12,9 +12,11 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { CardListComponent } from './card-list/card-list.component';
+import { DatafileComponent } from './datafile/datafile.component';
+import { HomefileComponent } from './homefile/homefile.component';
 
 @NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent, TopMenuComponent, CardListComponent],
+  declarations: [AppComponent, AboutComponent, HomeComponent, TopMenuComponent, CardListComponent, DatafileComponent, HomefileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

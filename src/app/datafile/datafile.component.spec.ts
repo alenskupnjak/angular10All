@@ -1,19 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardListComponent } from './card-list.component';
+import { DatafileComponent } from './datafile.component';
 
-describe('CardListComponent', () => {
-  let component: CardListComponent;
-  let fixture: ComponentFixture<CardListComponent>;
+describe('DatafileComponent', () => {
+  let component: DatafileComponent;
+  let fixture: ComponentFixture<DatafileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CardListComponent],
-    }).compileComponents();
+      declarations: [ DatafileComponent ]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CardListComponent);
+    fixture = TestBed.createComponent(DatafileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
