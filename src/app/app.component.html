@@ -1,6 +1,41 @@
+<mat-sidenav-container fullscreen>
 
-<app-top-menu></app-top-menu>
+  <!-- MENU sa strane -->
+  <mat-sidenav #menuSide color="warn">
+    <mat-nav-list>
 
-<main>
+      <a mat-list-item routerLink="/">
+        <mat-icon>library_books</mat-icon>
+        <span>Courses</span>
+      </a>
+
+      <a mat-list-item routerLink="about">
+        <!-- Material icons  -->
+        <mat-icon>question_answer</mat-icon>
+        <span>About</span>
+      </a>
+
+      <a mat-list-item>
+        <mat-icon>person_add</mat-icon>
+        <span>Register</span>
+      </a>
+
+      <a mat-list-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Login</span>
+      </a>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <!--  END MENU sa strane -->
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="menuSide.open('mouse')">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+
   <router-outlet></router-outlet>
-</main>
+
+</mat-sidenav-container>
