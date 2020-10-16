@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import { COURSES } from './db-data';
+const colors = require('colors');
 
 export function getAllCourses(req: Request, res: Response) {
-  console.log('stigao sam xxx vv');
+
+  console.log('Object.values(COURSES)',colors.green(Object.values(COURSES)));
   res.status(200).json({ payload: Object.values(COURSES) });
 }
 

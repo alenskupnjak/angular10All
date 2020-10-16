@@ -35,15 +35,8 @@ export class CoursesService {
       .pipe(map((res) => res['payload']));
   }
 
-  findLessons(
-    courseId: number,
-    filter = '',
-    sortOrder = 'asc',
-    pageNumber = 0,
-    pageSize = 3
-  ): Observable<Lesson[]> {
-    return this.http
-      .get('/api/lessons', {
+  findLessons( courseId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3): Observable<Lesson[]> {
+    return this.http.get('/api/lessons', {
         params: new HttpParams()
           .set('courseId', courseId.toString())
           .set('filter', filter)

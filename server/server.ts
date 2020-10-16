@@ -4,6 +4,8 @@ import { Application } from 'express';
 import { getAllCourses, getCourseById } from './get-courses.route';
 import { searchLessons } from './search-lessons.route';
 
+const colors = require('colors');
+
 const app: Application = express();
 
 app.use(morgan('dev'));

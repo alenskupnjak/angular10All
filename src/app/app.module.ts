@@ -19,6 +19,7 @@ import { HomefileComponent } from './homefile/homefile.component';
 // servisi
 import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CourseResolver } from './services/course.resolver';
     CardListComponent,
     DatafileComponent,
     HomefileComponent,
+    CourseComponent,
   ],
   imports: [
     BrowserModule,
