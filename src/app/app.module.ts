@@ -20,6 +20,7 @@ import { HomefileComponent } from './homefile/homefile.component';
 import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
 import { CourseComponent } from './course/course.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CourseComponent } from './course/course.component';
     DatafileComponent,
     HomefileComponent,
     CourseComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

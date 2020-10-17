@@ -35,9 +35,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
   displayedColumns = ['seqNo', 'description', 'duration'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
   @ViewChild(MatSort) sort: MatSort;
-
   @ViewChild('input') input: ElementRef;
 
   constructor(
@@ -47,15 +45,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.course = this.route.snapshot.data['course'];
-
     this.dataSource = new LessonsDataSource(this.coursesService);
-
-    // this.coursesService
-    //   .findAllCourseLessons(this.course.id)
-    //   .subscribe((data) => {
-    //     this.dataSource.data = data;
-    //   });
-
     this.dataSource.loadLessons(this.course.id, '', 'asc', 0, 3);
   }
 

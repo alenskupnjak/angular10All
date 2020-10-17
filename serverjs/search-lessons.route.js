@@ -1,9 +1,11 @@
-import { Request, Response } from 'express';
-import { LESSONS } from './db-data';
-import { setTimeout } from 'timers';
+// import { Request, Response } from 'express';
+const LESSONS = require('./db-data')
+// import { LESSONS } from './db-data';
+const setTimeout = require('timers')
+// import { setTimeout } from 'timers';
 const colors = require('colors');
 
-export function searchLessons(req: Request, res: Response) {
+exports.searchLessons = (req, res)=> {
   const queryParams = req.query;
   console.log(queryParams);
 
@@ -51,8 +53,6 @@ export function searchLessons(req: Request, res: Response) {
 
 
   setTimeout(() => {
-    res.status(200).json({
-      payload: lessonsPage,
-      mojdata:'moj data' });
+    res.status(200).json({ payload: lessonsPage });
   }, 1000);
 }

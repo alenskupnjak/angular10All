@@ -8,15 +8,12 @@ export class LessonsDataSource implements DataSource<Lesson> {
   private lessonsSubject = new BehaviorSubject<Lesson[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
-
   public loading$ = this.loadingSubject.asObservable();
 
   constructor(private coursesService: CoursesService) {}
 
   loadLessons( courseId: number, filter: string, sortDirection: string, pageIndex: number, pageSize: number) {
-    
     this.loadingSubject.next(true);
-
     this.coursesService
       .findLessons(courseId, filter, sortDirection, pageIndex, pageSize)
       .pipe(

@@ -1,6 +1,6 @@
 
 
-export const COURSES: any = {
+exports.COURSES = {
 
     1: {
         id: 1,
@@ -71,7 +71,7 @@ export const COURSES: any = {
 };
 
 
-export const LESSONS = {
+exports.LESSONS = {
 
     1: {
         id: 1,
@@ -291,23 +291,11 @@ export const LESSONS = {
 
 };
 
-export const POKUS = {
-
-  1: {
-      id: 1,
-      "description": "Angular Tutorial For Beginners - Build Your First App - Hello World Step By Step",
-      "duration": "4:17",
-      "seqNo": 1,
-      courseId: 1
-  },
-}
-
-
-export function findCourseById(courseId:number) {
+exports.findCourseById = (courseId) => {
     return COURSES[courseId];
 }
 
-export function findLessonsForCourse(courseId:number) {
+exports.findLessonsForCourse = (courseId)=> {
     return Object.values(LESSONS).filter(lesson => lesson.courseId == courseId);
 }
 
