@@ -10,17 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 // za mobile frendly
 import 'hammerjs';
 import { AboutComponent } from './about/about.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './universitycourse/home.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
-import { CardListComponent } from './card-list/card-list.component';
-import { DatafileComponent } from './datafile/datafile.component';
-import { HomefileComponent } from './homefile/homefile.component';
+import { CardListComponent } from './universitycourse/card-list/card-list.component';
+import { DatafileComponent } from './universitycourse/datafile/datafile.component';
+import { HomefileComponent } from './universitycourse/homefile/homefile.component';
+import { CourseComponent } from './universitycourse/course/course.component';
+import { FooterComponent } from './footer/footer.component';
 
 // servisi
 import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
-import { CourseComponent } from './course/course.component';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [

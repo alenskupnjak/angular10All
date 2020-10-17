@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Course } from '../model/course';
-import { CoursesService } from '../services/courses.service';
+import { Course } from '../../model/course';
+import { CoursesService } from '../..//services/courses.service';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -19,7 +19,7 @@ import {
   delay,
 } from 'rxjs/operators';
 import { merge, fromEvent } from 'rxjs';
-import { LessonsDataSource } from '../services/lessons.datasource';
+import { LessonsDataSource } from '../../services/lessons.datasource';
 
 @Component({
   selector: 'course',
