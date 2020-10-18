@@ -11,13 +11,12 @@ export class CardListComponent implements OnInit {
   // primam podatke iz <app-card-list>
   @Input() courses: Course[];
 
-  constructor( public coursesService:CoursesService) {}
+  constructor(public courseService: CoursesService) {}
 
   ngOnInit(): void {
-    this.coursesService.footerData.subscribe(data=> {
+    this.courseService.footerData.subscribe((data) => {
       console.log('CardListComponent');
-
-    })
+    });
     console.log(this.courses);
   }
 }

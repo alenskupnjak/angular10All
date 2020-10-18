@@ -36,6 +36,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  // ElementRef daje referencu na DOM element
   @ViewChild('input') input: ElementRef;
 
   constructor(
@@ -50,19 +51,27 @@ export class CourseComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+    this.sort.sortChange.subscribe(() => {
+      console.log('vvv');
+      return (this.paginator.pageIndex = 0);
+    });
+
+    // prati input iz DOM-a
     fromEvent(this.input.nativeElement, 'keyup')
       .pipe(
-        debounceTime(150),
+        debounceTime(200),
         distinctUntilChanged(),
         tap(() => {
+          console.log('xx');
+
           this.paginator.pageIndex = 0;
           this.loadLessonsPage();
         })
       )
       .subscribe();
 
-    merge(this.paginator.page)
+      // https://rxjs-dev.firebaseapp.com/api/index/function/merge
+    merge(this.sort.sortChange, this.paginator.page)
       .pipe(tap(() => this.loadLessonsPage()))
       .subscribe();
   }
@@ -77,9 +86,4 @@ export class CourseComponent implements OnInit, AfterViewInit {
     );
   }
 
-  // searchLess(inputdata) {
-  //   console.log(inputdata);
-
-  //   this.dataSource.filter = inputdata.toLowerCase().trim();
-  // }
 }

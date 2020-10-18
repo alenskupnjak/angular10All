@@ -49,7 +49,7 @@ console.log('START START START');
 app.use('/courses', appRouter);
 
 // definiranje porta
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 const httpServer = app.listen(PORT, () => {
   console.log('port=', httpServer.address().port);
