@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Course } from '../../model/course';
+import { Course } from '../../../model/course';
 
 @Component({
   selector: 'app-datafile',

@@ -15,7 +15,7 @@ import { HomeComponent } from './home.component';
 import { TecajComponent } from './tecaj/tecaj.component';
 import { TecajListaComponent } from './tecaj/tecaj-lista/tecaj-lista.component';
 import { CardListComponent } from './course-list/card-list.component';
-import { DatafileComponent } from './datafile/datafile.component';
+import { DatafileComponent } from './homefile/datafile/datafile.component';
 import { HomefileComponent } from './homefile/homefile.component';
 import { CourseComponent } from './course/course.component';
 

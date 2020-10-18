@@ -6,6 +6,7 @@ import { CourseComponent } from './universitycourse/course/course.component';
 import { HomeComponent } from './universitycourse/home.component';
 import { HomefileComponent } from './universitycourse/homefile/homefile.component';
 import { CourseResolver } from './services/course.resolver';
+import { TecajListaComponent } from './universitycourse/tecaj/tecaj-lista/tecaj-lista.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,13 @@ const routes: Routes = [
   {
     path: 'courses/:id',
     component: CourseComponent,
+    resolve: {
+      course: CourseResolver,
+    },
+  },
+  {
+    path: 'tecaj/:id',
+    component: TecajListaComponent,
     resolve: {
       course: CourseResolver,
     },
