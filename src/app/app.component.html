@@ -4,34 +4,34 @@
   <mat-sidenav #menuSide class="sidenav" [opened]="isShowing">
     <mat-nav-list>
       <!-- Aplikacija Course -->
-      <a mat-list-item routerLink="/app-university" class="matlist">
+      <a mat-list-item routerLink="/app-university" class="matlist" (click)="toggleSidenav()">
         <mat-icon>library_books</mat-icon>
         <span>Baza Course Aplikacija</span>
       </a>
 
-      <a mat-list-item routerLink="/app-university/homefile" class="matlist">
+      <a mat-list-item routerLink="/app-university/homefile" class="matlist" (click)="toggleSidenav()">
         <mat-icon>bookmarks</mat-icon>
         <span>File Courses Aplikacija</span>
       </a>
 
       <!-- Aplikacija Invoice -->
-      <a mat-list-item routerLink="/invoice" class="matlist">
+      <a mat-list-item routerLink="/invoice" class="matlist" (click)="toggleSidenav()">
         <mat-icon>source</mat-icon>
         <span>Invoice Aplikacija</span>
       </a>
 
-      <a mat-list-item routerLink="about" class="matlist">
+      <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
         <!-- Material icons  -->
         <mat-icon>question_answer</mat-icon>
         <span>About</span>
       </a>
 
-      <a mat-list-item routerLink="about" class="matlist">
+      <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
         <mat-icon>person_add</mat-icon>
         <span>Register</span>
       </a>
 
-      <a mat-list-item routerLink="about" class="matlist">
+      <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
         <mat-icon>account_circle</mat-icon>
         <span>Login</span>
       </a>
