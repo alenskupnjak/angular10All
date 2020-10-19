@@ -15,6 +15,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatMomentDateModule} from "@angular/material-moment-adapter";
+//  moment.js ili ovo...
+// import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -34,6 +40,11 @@ import { MatDividerModule } from '@angular/material/divider';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatMomentDateModule
+    // MatNativeDateModule
   ],
   exports: [
     MatButtonModule,
@@ -51,6 +62,11 @@ import { MatDividerModule } from '@angular/material/divider';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatMomentDateModule
+    // MatNativeDateModule
   ],
 })
 export class MaterialModule {}

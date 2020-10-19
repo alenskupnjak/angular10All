@@ -24,7 +24,7 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
   // veza sa datatable, nužno
   dataSource = new MatTableDataSource([]);
 
-  //  kolone koje se prikazuju, mora biti
+  //  kolone koje se prikazuju u tabeli , raspored važan
   displayedColumns = ['seqNo', 'description', 'duration'];
 
   // @ViewChild nam omogučije pristup u DOM
@@ -40,7 +40,7 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.spinnerKojiSeVrti = true;
+    this.spinnerKojiSeVrti = true;  // spiner START
     // povlačenje id iz routera
     let id = this.route.snapshot.params['id'];
 
@@ -52,7 +52,7 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
     // povlačenje detaljnih podataka iz lesson
     this.coursesService.findAllCourseLessons(id).subscribe((lessons) => {
       this.dataSource.data = lessons;
-      this.spinnerKojiSeVrti = false;
+      this.spinnerKojiSeVrti = false; // spiner END
     });
   }
 
@@ -60,7 +60,6 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
     // definiranje paginatora i sortiranja
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
   }
 
   // filtriranje podataka
