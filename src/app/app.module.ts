@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // MODULI
 import { UniversitycourseModule } from './app-universitycourse/universitycourse.module';
+import { AppInvoiceModule } from './app-invoice/app-invoice.module';
 
 // SERVISI
 import { CoursesService } from './services/courses.service';
@@ -38,6 +39,7 @@ import { CourseResolver } from './services/course.resolver';
     MaterialModule,
     HttpClientModule,
     UniversitycourseModule,
+    AppInvoiceModule 
   ],
   providers: [CoursesService, CourseResolver],
   bootstrap: [AppComponent],

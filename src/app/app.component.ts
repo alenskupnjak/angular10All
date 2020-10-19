@@ -16,13 +16,13 @@ import { Location } from '@angular/common';
 })
 export class AppComponent
   implements OnDestroy, OnChanges, OnInit, AfterViewInit {
-  title = 'angular10All';
+  izborAplikacije = 'course';
   // pocetna vrijednost za sidemenu, zatvoren je
   isShowing: boolean = false;
 
   @ViewChild('menuSide') menuSide;
 
-  constructor() {}
+  constructor(public router: Router) {}
 
   toggleSidenav() {
     this.isShowing = !this.isShowing;
@@ -43,5 +43,11 @@ export class AppComponent
 
   ngAfterViewInit() {
     console.log(this.menuSide);
+  }
+
+  // izbor aplikacije
+  aplikacija(aplikacija) {
+    this.izborAplikacije = aplikacija;
+    this.router.navigate([aplikacija])
   }
 }

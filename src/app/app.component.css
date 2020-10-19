@@ -6,3 +6,8 @@
 .matlist {
   border-bottom: 2px solid blueviolet;
 }
+
+.aplikacija {
+  color: blue;
+  text-transform: uppercase;
+}
