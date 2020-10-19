@@ -1,32 +1,45 @@
-import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from "@angular/common";
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnDestroy, OnChanges, OnInit {
+export class AppComponent implements OnDestroy, OnChanges, OnInit, AfterViewInit {
   title = 'angular10All';
-  menu;
+  // pocetna vrijednost za sidemenu, zatvoren je
+  isShowing: boolean = false;
 
-  constructor(router: Router) {
+
+  @ViewChild('menuSide') menuSide;
+
+  constructor(location: Location,router: Router) {
     router.events.subscribe((e) => {
-      console.log(e);
+      // console.log(location.path());
+      this.isShowing = false;
     });
   }
 
-  ngOnInit() {
-    // console.log(menuSide);
+  toggleSidenav() {
+    this.isShowing = true;
+ }
 
-    // this.menu = menuSide;
+  ngOnInit() {
+    console.log(this.menuSide);
   }
 
   ngOnDestroy() {
-    console.log('da vidimo');
+    console.log('ngOnDestroy()');
   }
 
   ngOnChanges() {
-    console.log('promjena');
+    console.log('ngOnChanges()');
+  }
+
+  ngAfterViewInit() {
+
   }
 }

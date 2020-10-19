@@ -1,7 +1,7 @@
 <mat-sidenav-container fullscreen>
 
   <!-- MENU sa strane -->
-  <mat-sidenav #menuSide class="sidenav">
+  <mat-sidenav #menuSide class="sidenav" [opened]="isShowing">
     <mat-nav-list>
       <!-- Aplikacija Course -->
       <a mat-list-item routerLink="/app-university" class="matlist">
@@ -26,12 +26,12 @@
         <span>About</span>
       </a>
 
-      <a mat-list-item class="matlist">
+      <a mat-list-item routerLink="about" class="matlist">
         <mat-icon>person_add</mat-icon>
         <span>Register</span>
       </a>
 
-      <a mat-list-item class="matlist">
+      <a mat-list-item routerLink="about" class="matlist">
         <mat-icon>account_circle</mat-icon>
         <span>Login</span>
       </a>
@@ -42,7 +42,7 @@
   <!--  END MENU sa strane -->
 
   <mat-toolbar color="primary">
-    <button mat-icon-button (click)="menuSide.open('mouse')">
+    <button mat-icon-button (click)="toggleSidenav()">
       <mat-icon>menu</mat-icon>
     </button>
   </mat-toolbar>
@@ -51,4 +51,3 @@
 
   <app-footer>Footer</app-footer>
 </mat-sidenav-container>
-
