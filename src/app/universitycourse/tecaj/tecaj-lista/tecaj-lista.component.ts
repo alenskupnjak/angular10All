@@ -11,15 +11,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Course } from '../../../model/course';
 import { CoursesService } from '../../../services/courses.service';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  startWith,
-  tap,
-  delay,
-} from 'rxjs/operators';
-import { merge, fromEvent } from 'rxjs';
-import { LessonsDataSource } from '../../../services/lessons.datasource';
 
 @Component({
   selector: 'app-tecaj-lista',
@@ -28,13 +19,18 @@ import { LessonsDataSource } from '../../../services/lessons.datasource';
 })
 export class TecajListaComponent implements OnInit, AfterViewInit {
   course: Course;
+  spinnerKojiSeVrti: boolean;
 
+  // veza sa datatable, nužno
   dataSource = new MatTableDataSource([]);
 
+  //  kolone koje se prikazuju, mora biti
   displayedColumns = ['seqNo', 'description', 'duration'];
 
+  // @ViewChild nam omogučije pristup u DOM
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   // ElementRef daje referencu na DOM element
   @ViewChild('input') input: ElementRef;
 
@@ -44,22 +40,31 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.course = this.route.snapshot.data['course'];
-    console.log(this.course);
+    this.spinnerKojiSeVrti = true;
+    // povlačenje id iz routera
+    let id = this.route.snapshot.params['id'];
 
-    this.coursesService
-      .findAllCourseLessons(this.course.id)
-      .subscribe((lessons) => {
-        return (this.dataSource.data = lessons);
-      });
+    // povlačenje podataka za Lessson
+    this.coursesService.findCourseById(id).subscribe((data) => {
+      this.course = data;
+    });
+
+    // povlačenje detaljnih podataka iz lesson
+    this.coursesService.findAllCourseLessons(id).subscribe((lessons) => {
+      this.dataSource.data = lessons;
+      this.spinnerKojiSeVrti = false;
+    });
   }
 
   ngAfterViewInit() {
+    // definiranje paginatora i sortiranja
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
   }
 
-  searchLessons(search){
+  // filtriranje podataka
+  searchLessons(search) {
     this.dataSource.filter = search.toLowerCase().trim();
   }
 }

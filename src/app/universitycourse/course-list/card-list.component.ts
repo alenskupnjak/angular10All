@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Course } from '../../model/course';
 import { CoursesService } from '../../services/courses.service';
 
@@ -7,7 +7,7 @@ import { CoursesService } from '../../services/courses.service';
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css'],
 })
-export class CardListComponent implements OnInit {
+export class CardListComponent implements OnInit, AfterViewInit {
   // primam podatke iz <app-card-list>
   @Input() courses: Course[];
 
@@ -17,6 +17,7 @@ export class CardListComponent implements OnInit {
     this.courseService.footerData.subscribe((data) => {
       console.log('CardListComponent');
     });
-    console.log(this.courses);
   }
+
+  ngAfterViewInit() {}
 }

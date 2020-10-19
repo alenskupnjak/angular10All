@@ -230,7 +230,6 @@ export const LESSONS = {
 
 
     // PWA course
-
     22: {
         id: 22,
         "description": "Course Kick-Off - Install Node, NPM, IDE And Service Workers Section Code",
@@ -288,6 +287,8 @@ export const LESSONS = {
         "seqNo": 8,
         courseId: 3
     }
+
+    
 
 };
 

@@ -4,19 +4,22 @@
   <!-- <img class="course-thumbnail" [src]="course?.iconUrl"> -->
 
   <mat-form-field>
-    <input matInput placeholder="Search lessons" #input (keyup)="searchLessons(input.value)">
+    <input matInput placeholder="Traži lekcije" #input (keyup)="searchLessons(input.value)">
   </mat-form-field>
 
 
-  <!-- <div class="spinner-container" *ngIf="dataSource">
+  <div class="spinner-container" *ngIf="spinnerKojiSeVrti">
     <mat-spinner></mat-spinner>
-  </div> -->
+  </div>
 
   <!-- TABLE -->
   <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" matSort>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
     <ng-container matColumnDef="seqNo">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="description">
@@ -29,13 +32,8 @@
       <mat-cell class="duration-cell" *matCellDef="let lesson">{{lesson.duration}}</mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
   </mat-table>
 
 
-  <mat-paginator  [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
-  <!-- <mat-paginator [length]="25" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator> -->
+  <mat-paginator [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
 </div>
-

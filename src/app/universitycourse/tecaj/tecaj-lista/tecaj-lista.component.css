@@ -4,6 +4,10 @@
   margin: 0 auto;
 }
 
+.course h2 {
+  color: blue;
+}
+
 .course-thumbnail {
   width: 150px;
   margin: 20px auto 0 auto;

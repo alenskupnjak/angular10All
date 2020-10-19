@@ -8,7 +8,6 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { Course } from '../../../model/course';
 import { CoursesService } from '../../..//services/courses.service';
 import {
@@ -30,7 +29,6 @@ export class CourseComponent implements OnInit, AfterViewInit {
   course: Course;
 
   dataSource: LessonsDataSource;
-  // dataSource = new MatTableDataSource([]);
 
   displayedColumns = ['seqNo', 'description', 'duration'];
 

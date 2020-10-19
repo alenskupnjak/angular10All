@@ -31,9 +31,6 @@ const routes: Routes = [
   {
     path: 'tecaj/:id',
     component: TecajListaComponent,
-    resolve: {
-      course: CourseResolver,
-    },
   },
   {
     path: '**',
