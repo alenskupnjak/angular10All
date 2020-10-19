@@ -16,7 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 
 // MODULI
-import { UniversitycourseModule } from './universitycourse/universitycourse.module';
+import { UniversitycourseModule } from './app-universitycourse/universitycourse.module';
 
 // SERVISI
 import { CoursesService } from './services/courses.service';

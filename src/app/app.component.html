@@ -3,15 +3,21 @@
   <!-- MENU sa strane -->
   <mat-sidenav #menuSide class="sidenav">
     <mat-nav-list>
-
-      <a mat-list-item routerLink="/" class="matlist">
+      <!-- Aplikacija Course -->
+      <a mat-list-item routerLink="/app-university" class="matlist">
         <mat-icon>library_books</mat-icon>
-        <span>Baza Course</span>
+        <span>Baza Course Aplikacija</span>
       </a>
 
-      <a mat-list-item routerLink="/homefile" class="matlist">
+      <a mat-list-item routerLink="/app-university/homefile" class="matlist">
         <mat-icon>bookmarks</mat-icon>
-        <span>File Courses</span>
+        <span>File Courses Aplikacija</span>
+      </a>
+
+      <!-- Aplikacija Invoice -->
+      <a mat-list-item routerLink="/invoice" class="matlist">
+        <mat-icon>source</mat-icon>
+        <span>Invoice Aplikacija</span>
       </a>
 
       <a mat-list-item routerLink="about" class="matlist">

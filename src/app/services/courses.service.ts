@@ -63,7 +63,13 @@ export class CoursesService {
       );
   }
 
-  findLessons(courseId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3 ): Observable<Lesson[]> {
+  findLessons(
+    courseId: number,
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber = 0,
+    pageSize = 3
+  ): Observable<Lesson[]> {
     return this.http
       .get('/api/lessons', {
         params: new HttpParams()
