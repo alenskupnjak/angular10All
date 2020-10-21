@@ -81,11 +81,15 @@ main > *:not(router-outlet) {
   flex: 1 1 auto;
 }
 
-.sticky {
-  /* background: red; */
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 45px;
+}
+
+/* .sticky {
   position: fixed;
   top: 0;
   overflow: hidden;
   z-index: 10;
   width: 100%;
-}
+} */

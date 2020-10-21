@@ -1,0 +1,15 @@
+.polozaj {
+  /* margin-top: 30px; */
+  margin: 25px auto;
+}
+
+
+
+.mat-header-cell,
+.mat-cell {
+  width: 170px;
+  text-align: center;
+}
+
+
+
