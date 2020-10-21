@@ -18,7 +18,9 @@ import { Location } from '@angular/common';
 })
 export class AppComponent
   implements OnDestroy, OnChanges, OnInit, AfterViewInit {
-  izborAplikacije = 'app-university';
+    // Početna aplikacija
+  izborAplikacije = 'app-invoice';
+  
   // pocetna vrijednost za sidemenu, zatvoren je
   isShowing: boolean = false;
 

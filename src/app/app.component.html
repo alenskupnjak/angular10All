@@ -70,16 +70,16 @@
 
         <!-- Aplikacija Course -->
         <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
-          routerLink="/app-university" class="btn"><span>Course from Base</span>
+          routerLink="/app-university" class="btn"><mat-icon>library_books</mat-icon><span>Course from Base</span>
         </button>
         <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
-          routerLink="/app-university/homefile" class="btn"><span>Course from File</span>
+          routerLink="/app-university/homefile" class="btn"><mat-icon>bookmarks</mat-icon><span>Course from File</span>
         </button>
 
 
         <!-- Aplikacija Invoice -->
         <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
-          routerLink="/app-invoice/inv" class="btn"><span>Invoices</span>
+          routerLink="/app-invoice/invoice" class="btn"><span>Invoices</span>
         </button>
         <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
           routerLink="/app-invoice/clients" class="btn"><span>Clients</span>
