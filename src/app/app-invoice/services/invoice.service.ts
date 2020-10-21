@@ -12,13 +12,18 @@ export class InvoiceService {
   constructor(private httpClient: HttpClient) {}
 
   fetchAllInvoices() {
-    console.log('BASE_URL=', BASE_URL + '/invoices');
     return fetch(BASE_URL + '/invoices')
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
         return data;
       });
+  }
+
+  async fetchAllInvoicesAsync() {
+    const response = await fetch(BASE_URL + '/invoices');
+    const responseData = await response.json();
+    return responseData;
   }
 
   getInvoices(): // {

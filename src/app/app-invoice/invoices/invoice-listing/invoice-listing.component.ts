@@ -20,5 +20,14 @@ export class InvoiceListingComponent implements OnInit {
       console.log('ajmooo');
       console.log(data);
     });
+
+    this.invoiceService
+      .fetchAllInvoicesAsync()
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
