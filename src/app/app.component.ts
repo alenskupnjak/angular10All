@@ -1,6 +1,8 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
+  HostListener,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -19,6 +21,13 @@ export class AppComponent
   izborAplikacije = 'course';
   // pocetna vrijednost za sidemenu, zatvoren je
   isShowing: boolean = false;
+
+  // Sticky START
+  @ViewChild('stickyMenu') menuElement: ElementRef;
+  sticky: boolean = false;
+  elementPosition: any;
+  // sticky END
+
 
   @ViewChild('menuSide') menuSide;
 
@@ -43,6 +52,9 @@ export class AppComponent
 
   ngAfterViewInit() {
     console.log(this.menuSide);
+
+    // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
+    this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 
   // izbor aplikacije
@@ -50,4 +62,20 @@ export class AppComponent
     this.izborAplikacije = aplikacija;
     this.router.navigate([aplikacija])
   }
+
+  // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
+  @HostListener('window:scroll', ['$event'])
+  handleScroll(){
+    const windowScroll = window.pageYOffset;
+    if(windowScroll >= this.elementPosition){
+      console.log('----');
+
+      this.sticky = true;
+    } else {
+      console.log('++++');
+      this.sticky = false;
+    }
+  }
+  // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
+
 }

@@ -1,7 +1,43 @@
-.sidenav {
- width: 250px;
+.naslovna-stranica {
+  /* margin-top: 150px; */
+  min-height: 100vh; /* same height as browser window height */
 }
 
+/* .moj-toolbar {
+  height: 2rem;
+} */
+
+
+
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* same height as browser window height */
+  width: 250px;
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /*same height as browser window height */
+}
+
+.content {
+  flex: 1; /* child will set to an equal size inside the container */
+  height: 200vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Select all direct descendants only of the <main> element */
+/* that are not <router-outlet> elements: */
+main > *:not(router-outlet) {
+  flex: 1; /* child will set to an equal size inside the container */
+  display: block;
+}
 
 .matlist {
   border-bottom: 2px solid blueviolet;
@@ -11,3 +47,50 @@
   color: blue;
   text-transform: uppercase;
 }
+
+.content-moj {
+  height: 200vh;
+}
+
+
+/* fiksiran menu */
+.fixed-header {
+  width:100%;
+  height: 1rem;
+  position: fixed;
+  top:0;
+  z-index: 2;
+
+}
+
+
+/* Fiksiran footer na dnu ekrana */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  z-index: 2;
+}
+
+
+.fill-space {
+  /* This fills the remaining space, by using flexbox.  */
+  /* Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+
+
+.sticky {
+  background: red;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 10;
+  width: 100%;
+}
+
+
+
+
+

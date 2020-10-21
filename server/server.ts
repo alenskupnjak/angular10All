@@ -33,7 +33,7 @@ app.route('/api/courses/:id').get(getCourseById);
 
 app.route('/api/lessons').get(searchLessons);
 
-const httpServer: any = app.listen(3001, () => {
+const httpServer: any = app.listen(3002, () => {
   console.log('port=', httpServer.address().port);
 
   console.log(

@@ -1,5 +1,20 @@
-<mat-sidenav-container fullscreen>
+<!-- this is the sticky menu -->
+<!-- <div class="tabs is-centered is-fullwidth" #stickyMenu [class.sticky]="sticky">
+  <ul>
+    <li class="is-active"><a>Pictures</a></li>
+    <li><a>Music</a></li>
+    <li><a>Videos</a></li>
+    <li><a>Documents</a></li>
+  </ul>
+</div> -->
+<!-- this is a fake long content; we need it so we can scroll down -->
+<!-- <div class="content-moj"></div> -->
 
+
+
+
+
+<mat-sidenav-container fullscreen class="naslovna-stranica">
   <!-- MENU sa strane -->
   <mat-sidenav #menuSide class="sidenav" [opened]="isShowing">
     <h1>Naziv</h1>
@@ -39,72 +54,80 @@
         <mat-icon>account_circle</mat-icon>
         <span>Login</span>
       </a>
-
     </mat-nav-list>
-
   </mat-sidenav>
   <!--  END MENU sa strane -->
 
-  <mat-toolbar color="primary">
-    <!-- Ikona CLOSE/OPEN -->
-    <button mat-icon-button (click)="toggleSidenav()">
-      <mat-icon>menu</mat-icon>
-    </button>
+  <mat-sidenav-content class="page-wrap">
+    <div class="fixed-header">
+      <mat-toolbar color="primary">
+        <!-- Ikona CLOSE/OPEN -->
+        <button mat-icon-button (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- Popunjavanje prostora -->
+        <span class="fill-space"></span>
 
-    <!-- Aplikacija Invoice -->
-
-
-    <mat-menu #aboveMenu="matMenu" yPosition="above">
-      <button mat-menu-item (click)="aplikacija('course')">Course</button>
-      <button mat-menu-item (click)="aplikacija('invoice')">Invoice</button>
-    </mat-menu>
-
-
-    <button mat-button
-    *ngIf="izborAplikacije ==='invoice' ? true: false"
-    routerLink="/invoice/inv"><span>Invoices</span>
-    </button>
-    <button mat-button
-    *ngIf="izborAplikacije ==='invoice' ? true: false"
-    routerLink="/invoice/clients"><span>Clients</span>
-    </button>
+        <!-- Aplikacija Invoice -->
+        <mat-menu #aboveMenu="matMenu" yPosition="above">
+          <button mat-menu-item (click)="aplikacija('course')">Course</button>
+          <button mat-menu-item (click)="aplikacija('invoice')">Invoice</button>
+        </mat-menu>
 
 
-    <button mat-button [matMenuTriggerFor]="aboveMenu">Odaberi Aplikaciju:</button>
-    <mat-menu #aboveMenu="matMenu" yPosition="above">
-      <button mat-menu-item (click)="aplikacija('course')">Course</button>
-      <button mat-menu-item (click)="aplikacija('invoice')">Invoice</button>
-    </mat-menu>
-    <button mat-button class="aplikacija"><span>{{izborAplikacije}}</span></button>
+        <button mat-button *ngIf="izborAplikacije ==='invoice' ? true: false"
+          routerLink="/invoice/inv"><span>Invoices</span>
+        </button>
+        <button mat-button *ngIf="izborAplikacije ==='invoice' ? true: false"
+          routerLink="/invoice/clients"><span>Clients</span>
+        </button>
 
 
-    <button mat-button routerLink="/invoice/inv"><mat-icon>account_circle</mat-icon>Login</button>
+        <button mat-button [matMenuTriggerFor]="aboveMenu">Odaberi Aplikaciju:</button>
+        <mat-menu #aboveMenu="matMenu" yPosition="above">
+          <button mat-menu-item (click)="aplikacija('course')">Course</button>
+          <button mat-menu-item (click)="aplikacija('invoice')">Invoice</button>
+        </mat-menu>
+        <button mat-button class="aplikacija"><span>{{izborAplikacije}}</span></button>
 
 
-    <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
-    <mat-menu #belowMenu="matMenu" yPosition="below">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu> -->
-
-    <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-    <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu> -->
+        <button mat-button routerLink="/about">
+          <mat-icon>account_circle</mat-icon>Login
+        </button>
+        <!-- this is a fake long content; we need it so we can scroll down -->
+        <div class="content-moj"></div>
 
 
-    <!-- <button mat-button [matMenuTriggerFor]="afterMenu">After</button>
-    <mat-menu #afterMenu="matMenu" xPosition="after">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu> -->
+        <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu> -->
+
+        <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu> -->
 
 
+        <!-- <button mat-button [matMenuTriggerFor]="afterMenu">After</button>
+      <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu> -->
+      </mat-toolbar>
+    </div>
 
-  </mat-toolbar>
 
-  <router-outlet></router-outlet>
+    <!-- GLAVNI SADRŽAJ -->
+    <!-- <main class="content"> -->
+      <router-outlet></router-outlet>
+    <!-- </main> -->
 
-  <app-footer>Footer</app-footer>
+    <!-- FOOTER -->
+    <div class="footer">
+      <app-footer></app-footer>
+    </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>

@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start3000": "ng serve --port 3000 --open --proxy-config ./proxy.json",
-    "serverdev3001": "ts-node-dev -P ./server/server.tsconfig.json ./server/server.ts",
-    "serverjs3002": "nodemon ./serverjs/app.js",
+    "serverdev3002": "ts-node-dev -P ./server/server.tsconfig.json ./server/server.ts",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
