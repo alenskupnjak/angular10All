@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../shared/material.module';
+// import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppInvoiceRoutingModule } from './app-invoice-routing.module';
@@ -21,7 +22,7 @@ import { InvoiceService } from './services/invoice.service';
     HttpClientModule,
     MaterialModule,
     InvoicesModule,
-    ClientsModule
+    ClientsModule,
   ],
   providers: [InvoiceService]
 })

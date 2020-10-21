@@ -18,7 +18,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatMomentDateModule} from "@angular/material-moment-adapter";
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
 //  moment.js ili ovo...
 // import { MatNativeDateModule } from '@angular/material/core';
 
@@ -43,8 +44,9 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
     // MatNativeDateModule
+
   ],
   exports: [
     MatButtonModule,
@@ -65,7 +67,7 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
     // MatNativeDateModule
   ],
 })

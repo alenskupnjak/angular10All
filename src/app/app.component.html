@@ -33,7 +33,7 @@
       </a>
 
       <!-- Aplikacija Invoice -->
-      <a mat-list-item *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice" class="matlist"
+      <a mat-list-item *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice" class="matlist"
         (click)="toggleSidenav()">
         <mat-icon>source</mat-icon>
         <span>Invoice Aplikacija</span>
@@ -97,11 +97,8 @@
         <button mat-button routerLink="/about">
           <mat-icon>account_circle</mat-icon>Login
         </button>
-
-
       </mat-toolbar>
     </div>
-
 
     <!-- GLAVNI SADRŽAJ -->
     <main class="content">

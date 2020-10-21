@@ -33,7 +33,7 @@ export class InvoiceService {
   // sortDir,
   // filter,
   // }
-  Observable<InvoicePaginationRsp> {
+  Observable<any> {
     // let queryString = `${BASE_URL}/invoices?page=${
     //   page + 1
     // }&perPage=${perPage}`;
