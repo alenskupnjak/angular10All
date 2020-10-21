@@ -10,6 +10,12 @@ import { TecajListaComponent } from './app-universitycourse/tecaj/tecaj-lista/te
 
 
 const routes: Routes = [
+  // Početna stranica
+  {
+    path: 'about',
+    component: AboutComponent,
+  },
+
     // Aplikacija University
   {
     path: 'app-university',
@@ -17,34 +23,34 @@ const routes: Routes = [
     import('./app-universitycourse/universitycourse.module').then((m) => m.UniversitycourseModule),
     // component: HomeComponent,
   },
-  {
-    path: 'app-university/homefile',
-    loadChildren: () =>
-    import('./app-universitycourse/universitycourse.module').then((m) => m.UniversitycourseModule),
-    // component: HomefileComponent,
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
-  },
-  {
-    path: 'courses/:id',
-    component: CourseComponent,
-    resolve: {
-      course: CourseResolver,
-    },
-  },
-  {
-    path: 'tecaj/:id',
-    component: TecajListaComponent,
-  },
+
   // Aplikacija Invoice
   {
-    path: 'invoice',
+    path: 'app-invoice',
         // loadChildren:'./app-invoice/app-invoice.module#AppInvoiceModule',
         loadChildren: () =>
         import('./app-invoice/app-invoice.module').then((m) => m.AppInvoiceModule),
   },
+
+  // {
+  //   path: 'app-university/homefile',
+  //   loadChildren: () =>
+  //   import('./app-universitycourse/universitycourse.module').then((m) => m.UniversitycourseModule),
+  //   // component: HomefileComponent,
+  // },
+  // {
+  //   path: 'app-university/courses/:id',
+  //   component: CourseComponent,
+  //   resolve: {
+  //     course: CourseResolver,
+  //   },
+  // },
+  // {
+  //   path: 'app-university/tecaj/:id',
+  //   component: TecajListaComponent,
+  // },
+
+  //  Nepoznati LINK
   {
     path: '**',
     redirectTo: '/about',

@@ -40,6 +40,9 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+
+    console.log('kaj se desava');
+
     this.spinnerKojiSeVrti = true;  // spiner START
     // povlačenje id iz routera
     let id = this.route.snapshot.params['id'];

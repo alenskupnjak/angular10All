@@ -1,19 +1,7 @@
-.naslovna-stranica {
+/*  https://www.thecodecampus.de/blog/material-2-sticky-footer-mat-sidenav/ */
+.all-wrap {
   /* margin-top: 150px; */
   min-height: 100vh; /* same height as browser window height */
-}
-
-/* .moj-toolbar {
-  height: 2rem;
-} */
-
-
-
-.sidenav {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* same height as browser window height */
-  width: 250px;
 }
 
 .page-wrap {
@@ -24,7 +12,8 @@
 
 .content {
   flex: 1; /* child will set to an equal size inside the container */
-  height: 200vh;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 main {
@@ -37,6 +26,20 @@ main {
 main > *:not(router-outlet) {
   flex: 1; /* child will set to an equal size inside the container */
   display: block;
+}
+
+/* Definicija  side nav */
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* same height as browser window height */
+  width: 250px;
+}
+
+/* *************************************** */
+
+.moj-toolbar {
+  height: 1rem;
 }
 
 .matlist {
@@ -52,26 +55,24 @@ main > *:not(router-outlet) {
   height: 200vh;
 }
 
-
 /* fiksiran menu */
 .fixed-header {
-  width:100%;
+  width: 100%;
   height: 1rem;
   position: fixed;
-  top:0;
+  top: 0;
   z-index: 2;
-
+  margin-bottom: 2rem;
 }
-
 
 /* Fiksiran footer na dnu ekrana */
 .footer {
   position: fixed;
+  margin-top: 1.5rem;
   bottom: 0;
-  width:100%;
+  width: 100%;
   z-index: 2;
 }
-
 
 .fill-space {
   /* This fills the remaining space, by using flexbox.  */
@@ -79,18 +80,11 @@ main > *:not(router-outlet) {
   flex: 1 1 auto;
 }
 
-
-
 .sticky {
-  background: red;
+  /* background: red; */
   position: fixed;
   top: 0;
   overflow: hidden;
   z-index: 10;
   width: 100%;
 }
-
-
-
-
-

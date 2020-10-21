@@ -3,13 +3,6 @@
 
 /* /indigo-pink.css", */
 
-
-$primarna-boja:red;
-
-.course {
-  background: $primarna-boja;
-}
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -26,7 +19,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/ Light Green
-$candy-app-primary: mat-palette($mat-light-green);
+$candy-app-primary: mat-palette($mat-green);
 $candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).

@@ -14,26 +14,26 @@
 
 
 
-<mat-sidenav-container fullscreen class="naslovna-stranica">
+<mat-sidenav-container fullscreen class="all-wrap">
   <!-- MENU sa strane -->
   <mat-sidenav #menuSide class="sidenav" [opened]="isShowing">
     <h1>Naziv</h1>
     <mat-nav-list>
       <!-- Aplikacija Course -->
-      <a mat-list-item *ngIf="izborAplikacije ==='course' ? true: false" routerLink="/app-university" class="matlist"
-        (click)="toggleSidenav()">
+      <a mat-list-item *ngIf="izborAplikacije ==='app-university' ? true: false" routerLink="/app-university"
+        class="matlist" (click)="toggleSidenav()">
         <mat-icon>library_books</mat-icon>
         <span>Baza Course Aplikacija</span>
       </a>
 
-      <a mat-list-item *ngIf="izborAplikacije ==='course' ? true: false" routerLink="/app-university/homefile"
+      <a mat-list-item *ngIf="izborAplikacije ==='app-university' ? true: false" routerLink="/app-university/homefile"
         class="matlist" (click)="toggleSidenav()">
         <mat-icon>bookmarks</mat-icon>
         <span>File Courses Aplikacija</span>
       </a>
 
       <!-- Aplikacija Invoice -->
-      <a mat-list-item *ngIf="izborAplikacije ==='invoice' ? true: false" routerLink="/invoice" class="matlist"
+      <a mat-list-item *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice" class="matlist"
         (click)="toggleSidenav()">
         <mat-icon>source</mat-icon>
         <span>Invoice Aplikacija</span>
@@ -70,23 +70,21 @@
 
         <!-- Aplikacija Invoice -->
         <mat-menu #aboveMenu="matMenu" yPosition="above">
-          <button mat-menu-item (click)="aplikacija('course')">Course</button>
-          <button mat-menu-item (click)="aplikacija('invoice')">Invoice</button>
+          <button mat-menu-item (click)="toggleAplikacija('app-university')">Course</button>
+          <button mat-menu-item (click)="toggleAplikacija('app-invoice')">Invoice</button>
         </mat-menu>
 
-
-        <button mat-button *ngIf="izborAplikacije ==='invoice' ? true: false"
-          routerLink="/invoice/inv"><span>Invoices</span>
+        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/inv"><span>Invoices</span>
         </button>
-        <button mat-button *ngIf="izborAplikacije ==='invoice' ? true: false"
-          routerLink="/invoice/clients"><span>Clients</span>
+        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/clients"><span>Clients</span>
         </button>
-
 
         <button mat-button [matMenuTriggerFor]="aboveMenu">Odaberi Aplikaciju:</button>
         <mat-menu #aboveMenu="matMenu" yPosition="above">
-          <button mat-menu-item (click)="aplikacija('course')">Course</button>
-          <button mat-menu-item (click)="aplikacija('invoice')">Invoice</button>
+          <button mat-menu-item (click)="toggleAplikacija('app-university')">Course</button>
+          <button mat-menu-item (click)="toggleAplikacija('app-invoice')">Invoice</button>
         </mat-menu>
         <button mat-button class="aplikacija"><span>{{izborAplikacije}}</span></button>
 
@@ -97,33 +95,14 @@
         <!-- this is a fake long content; we need it so we can scroll down -->
         <div class="content-moj"></div>
 
-
-        <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
-      <mat-menu #belowMenu="matMenu" yPosition="below">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-      </mat-menu> -->
-
-        <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-      <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-      </mat-menu> -->
-
-
-        <!-- <button mat-button [matMenuTriggerFor]="afterMenu">After</button>
-      <mat-menu #afterMenu="matMenu" xPosition="after">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-      </mat-menu> -->
       </mat-toolbar>
     </div>
 
 
     <!-- GLAVNI SADRŽAJ -->
-    <!-- <main class="content"> -->
+    <main class="content">
       <router-outlet></router-outlet>
-    <!-- </main> -->
+    </main>
 
     <!-- FOOTER -->
     <div class="footer">

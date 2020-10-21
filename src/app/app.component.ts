@@ -54,11 +54,11 @@ export class AppComponent
     console.log(this.menuSide);
 
     // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
-    this.elementPosition = this.menuElement.nativeElement.offsetTop;
+    // this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 
   // izbor aplikacije
-  aplikacija(aplikacija) {
+  toggleAplikacija(aplikacija) {
     this.izborAplikacije = aplikacija;
     this.router.navigate([aplikacija])
   }
