@@ -10,7 +10,7 @@ import { InvoiceService } from '../../services/invoice.service';
 
 
 export class InvoiceListingComponent implements OnInit {
-  displayedColumns: string[] = ['item','qty', 'date', 'rate', 'tax'];
+  displayedColumns: string[] = ['item','qty', 'date', 'due','rate', 'tax', 'action'];
   dataSource;
   constructor(public invoiceService: InvoiceService) {}
 
