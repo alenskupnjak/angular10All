@@ -40,20 +40,19 @@
       </a>
 
       <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
-        <!-- Material icons  -->
         <mat-icon>question_answer</mat-icon>
         <span>About</span>
       </a>
 
-      <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
+      <!-- <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
         <mat-icon>person_add</mat-icon>
         <span>Register</span>
-      </a>
+      </a> -->
 
-      <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
+      <!-- <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
         <mat-icon>account_circle</mat-icon>
         <span>Login</span>
-      </a>
+      </a> -->
     </mat-nav-list>
   </mat-sidenav>
   <!--  END MENU sa strane -->
@@ -65,22 +64,31 @@
         <button mat-icon-button (click)="toggleSidenav()">
           <mat-icon>menu</mat-icon>
         </button>
+
+
+
+
+        <!-- Aplikacija Course -->
+        <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
+          routerLink="/app-university" class="btn"><span>Course from Base</span>
+        </button>
+        <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
+          routerLink="/app-university/homefile" class="btn"><span>Course from File</span>
+        </button>
+
+
+        <!-- Aplikacija Invoice -->
+        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/app-invoice/inv" class="btn"><span>Invoices</span>
+        </button>
+        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/app-invoice/clients" class="btn"><span>Clients</span>
+        </button>
+
         <!-- Popunjavanje prostora -->
         <span class="fill-space"></span>
 
-        <!-- Aplikacija Invoice -->
-        <mat-menu #aboveMenu="matMenu" yPosition="above">
-          <button mat-menu-item (click)="toggleAplikacija('app-university')">Course</button>
-          <button mat-menu-item (click)="toggleAplikacija('app-invoice')">Invoice</button>
-        </mat-menu>
-
-        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
-          routerLink="/inv"><span>Invoices</span>
-        </button>
-        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
-          routerLink="/clients"><span>Clients</span>
-        </button>
-
+        <!-- Odabir aplikacije -->
         <button mat-button [matMenuTriggerFor]="aboveMenu">Odaberi Aplikaciju:</button>
         <mat-menu #aboveMenu="matMenu" yPosition="above">
           <button mat-menu-item (click)="toggleAplikacija('app-university')">Course</button>
@@ -92,8 +100,7 @@
         <button mat-button routerLink="/about">
           <mat-icon>account_circle</mat-icon>Login
         </button>
-        <!-- this is a fake long content; we need it so we can scroll down -->
-        <div class="content-moj"></div>
+
 
       </mat-toolbar>
     </div>

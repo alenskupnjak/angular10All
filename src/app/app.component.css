@@ -38,8 +38,9 @@ main > *:not(router-outlet) {
 
 /* *************************************** */
 
-.moj-toolbar {
-  height: 1rem;
+.btn:hover {
+  color: #cfd8dc;
+  border-bottom: solid 2px #cfd8dc;
 }
 
 .matlist {
