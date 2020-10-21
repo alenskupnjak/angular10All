@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { InvoiceService } from '../../services/invoice.service';
 import { InvoicePaginationRsp } from '../../models/invoice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-listing',
@@ -21,7 +22,7 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     'action',
   ];
   // dataSource;
-  constructor(public invoiceService: InvoiceService) {}
+  constructor(public invoiceService: InvoiceService, private router: Router) {}
 
   // veza sa datatable, nužno
   dataSource = new MatTableDataSource([]);
@@ -30,21 +31,26 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
+
+    // Dohvacenje podataka ne tri razlicita nacina!!!!!
+    // 1 način
     this.invoiceService.getInvoices().subscribe((data) => {
       this.dataSource.data = data;
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
-      console.log('vvv', data);
     });
 
+    // Dohvacenje podataka ne tri razlicita nacina!!!!!
+    // 2 način
     this.invoiceService.fetchAllInvoices().then((data) => {
+      return data
       console.log(data);
     });
 
+    // Dohvacenje podataka ne tri razlicita nacina!!!!!
+    // 3 način
     this.invoiceService
       .fetchAllInvoicesAsync()
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         return data;
       })
       .catch((err) => {
@@ -60,9 +66,14 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
 
   obrisiVise() {}
 
-  saveForm() {}
+  saveForm() {
+    this.router.navigate(['app-invoice','new']);
+  }
 
   filterText(filterdata) {
     console.log(filterdata);
   }
+
+
+
 }

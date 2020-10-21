@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material.module';
 
 // za mobile frendly
@@ -39,7 +40,9 @@ import { CourseResolver } from './services/course.resolver';
     MaterialModule,
     HttpClientModule,
     UniversitycourseModule,
-    AppInvoiceModule 
+    AppInvoiceModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [CoursesService, CourseResolver],
   bootstrap: [AppComponent],

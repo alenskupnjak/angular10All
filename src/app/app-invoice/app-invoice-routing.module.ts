@@ -10,11 +10,12 @@ const routes: Routes = [
     path: '',
     component: AppInvoiceComponent,
     children: [
-      // { path: 'inv', component: InvoiceFormComponent },
+      // { path: 'new', component:  InvoiceFormComponent },
       // { path: 'invoices', component: InvoicesComponent },
       // {path : 'invoices/:id',  component: InvoiceFormComponent},
     ],
   },
+  { path: 'new', component:  InvoiceFormComponent },
   { path: 'invoice', component: InvoiceListingComponent },
   { path: 'clients', component: ClientListingComponent },
 ];

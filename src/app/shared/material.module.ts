@@ -19,6 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //  moment.js ili ovo...
 // import { MatNativeDateModule } from '@angular/material/core';
@@ -46,7 +48,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatDatepickerModule,
     MatMomentDateModule,
     // MatNativeDateModule
-
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   exports: [
     MatButtonModule,
@@ -69,6 +73,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatDatepickerModule,
     MatMomentDateModule,
     // MatNativeDateModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
 })
 export class MaterialModule {}

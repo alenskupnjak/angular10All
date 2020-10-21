@@ -15,7 +15,7 @@ export class InvoiceService {
     return fetch(BASE_URL + '/invoices')
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         return data;
       });
   }
@@ -50,18 +50,50 @@ export class InvoiceService {
     return this.httpClient.get<InvoicePaginationRsp>(BASE_URL + '/invoices');
   }
 
+  // ****************************************
+  // EDIT
   editInvoice(id: string): Observable<Invoice> {
     return this.httpClient.get<Invoice>(`${BASE_URL}/invoices/${id}`);
   }
 
+  // *****************************************************
+  // CREATE INVOICE
   createInvoice(body: Invoice): Observable<Invoice> {
+    console.log(body);
     return this.httpClient.post<Invoice>(`${BASE_URL}/invoices`, body);
   }
 
+  createfetchInvoice(body: Invoice) {
+    console.log('xx', body);
+    // return this.httpClient.post<Invoice>(`${BASE_URL}/invoices`, body);
+    return fetch(`${BASE_URL}/invoices`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        item: body.item,
+        qty: body.qty,
+        date: body.date,
+        due: body.due,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log('----', data);
+        return data
+      });
+  }
+
+
+  // ***************************************
+  // DELETE
   deleteInvoice(id: string): Observable<Invoice> {
     return this.httpClient.delete<Invoice>(`${BASE_URL}/invoices/${id}`);
   }
 
+  // *******************************************************************************
+  // UPDATE
   updateInvoice(id: string, body: Invoice): Observable<Invoice> {
     return this.httpClient.put<Invoice>(`${BASE_URL}/invoices/${id}`, body);
   }
