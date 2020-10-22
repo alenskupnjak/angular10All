@@ -24,7 +24,6 @@ import { AppInvoiceModule } from './app-invoice/app-invoice.module';
 import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,10 +41,9 @@ import { CourseResolver } from './services/course.resolver';
     UniversitycourseModule,
     AppInvoiceModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [CoursesService, CourseResolver],
   bootstrap: [AppComponent],
-
 })
 export class AppModule {}

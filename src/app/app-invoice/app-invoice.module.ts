@@ -12,6 +12,7 @@ import { InvoicesModule } from './invoices/invoices.module';
 import { ClientsModule } from './clients/clients.module';
 
 import { InvoiceService } from './services/invoice.service';
+import { ClientService } from './services/client.service';
 
 @NgModule({
   declarations: [AppInvoiceComponent],
@@ -23,8 +24,8 @@ import { InvoiceService } from './services/invoice.service';
     InvoicesModule,
     ClientsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [InvoiceService]
+  providers: [InvoiceService, ClientService],
 })
 export class AppInvoiceModule {}

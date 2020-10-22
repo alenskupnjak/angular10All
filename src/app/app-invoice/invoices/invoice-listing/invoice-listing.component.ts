@@ -55,7 +55,6 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     // Dohvacenje podataka ne tri razlicita nacina!!!!!
     // 2 način
     this.invoiceService.fetchAllInvoices().then((data) => {
-
       return data;
       console.log(data);
     });
