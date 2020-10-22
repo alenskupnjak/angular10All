@@ -31,11 +31,11 @@
     </mat-form-field>
 
     <mat-form-field color="accent">
-      <input matInput placeholder="Tax" type="number" formControlName="tax">
+      <input matInput placeholder="Tax" type="number" formControlName="tax" required>
     </mat-form-field>
 
     <mat-form-field color="accent">
-      <input matInput placeholder="Rate" type="number" formControlName="rate">
+      <input matInput placeholder="Rate" type="number" formControlName="rate" required>
     </mat-form-field>
     <div>
       <button mat-raised-button type="submit" color="accent" class="btn" [disabled]="invoiceForm.invalid">Snimi</button>

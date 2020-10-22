@@ -11,6 +11,8 @@ const BASE_URL = 'http://localhost:3001' + '/appinvoice';
 export class InvoiceService {
   constructor(private httpClient: HttpClient) {}
 
+
+  // Dohvati sve Invoices
   fetchAllInvoices() {
     return fetch(BASE_URL + '/invoices')
       .then((resp) => resp.json())
@@ -50,11 +52,15 @@ export class InvoiceService {
     return this.httpClient.get<InvoicePaginationRsp>(BASE_URL + '/invoices');
   }
 
+
+
+
   // ****************************************
   // EDIT
-  editInvoice(id: string): Observable<Invoice> {
+  getInvoice(id: string): Observable<Invoice> {
     return this.httpClient.get<Invoice>(`${BASE_URL}/invoices/${id}`);
   }
+
 
   // *****************************************************
   // CREATE INVOICE
@@ -64,8 +70,6 @@ export class InvoiceService {
   }
 
   createfetchInvoice(body: Invoice) {
-    console.log('xx', body);
-    // return this.httpClient.post<Invoice>(`${BASE_URL}/invoices`, body);
     return fetch(`${BASE_URL}/invoices`, {
       method: 'POST',
       headers: {
@@ -76,33 +80,62 @@ export class InvoiceService {
         qty: body.qty,
         date: body.date,
         due: body.due,
+        rate: body.rate,
+        tax: body.tax,
       }),
     })
       .then((resp) => resp.json())
       .then((data) => {
         console.log('----', data);
-        return data
+        return data;
       });
   }
 
-
-  
-
   // ***************************************
-  // DELETE
+  // DELETE DELETE DELETE DELETE
   deleteInvoice(id: string): Observable<Invoice> {
     return this.httpClient.delete<Invoice>(`${BASE_URL}/invoices/${id}`);
   }
 
-
-
-
+  // FETCH metoda
+  deleteInvoiceFetch(id: string) {
+    return fetch(`${BASE_URL}/invoices/${id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Invoice obrisan.');
+      });
+  }
 
 
 
   // *******************************************************************************
-  // UPDATE
+  // UPDATE UPDATE UPDATE UPDATE
   updateInvoice(id: string, body: Invoice): Observable<Invoice> {
     return this.httpClient.put<Invoice>(`${BASE_URL}/invoices/${id}`, body);
+  }
+
+  updateInvoiceFetch(id: string, body: Invoice) {
+    return fetch(`${BASE_URL}/invoices/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        item: body.item,
+        qty: body.qty,
+        date: body.date,
+        due: body.due,
+        rate: body.rate,
+        tax: body.tax,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log('kiki riki', data);
+        return data;
+      });
+
   }
 }

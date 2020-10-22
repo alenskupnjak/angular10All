@@ -67,8 +67,6 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
         return data;
       })
       .catch((err) => {
-        console.log('----');
-
         console.error(err);
       });
   }
@@ -93,6 +91,10 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     // jedan zapis je obrisan radimo refresh tablice
     this.dataSource = new MatTableDataSource(this.dataSource.data);
 
+    this.invoiceService.deleteInvoiceFetch(id).then((data) => {
+      console.log('Zapis obrisan Fetch metodom.');
+    });
+
     this.invoiceService.deleteInvoice(id).subscribe(
       (data) => {
         this.snackBar.open('Zapis obrisan.', 'Success', {
@@ -101,9 +103,14 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
         });
       },
       (err) => {
-        this.errorHandler(err, 'Neuspješno brisanje zapisa.');
+        this.errorHandler(err, 'Neuspješno brisanje zapisa. (obrisan je vec fetch metodom)');
       }
     );
+  }
+
+  editirajFormu(id) {
+    console.log(id);
+    this.router.navigate(['app-invoice', 'invoice', id]);
   }
 
   saveForm() {

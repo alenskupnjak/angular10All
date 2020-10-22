@@ -5,6 +5,7 @@ import { InvoiceFormComponent } from './invoices/invoice-form/invoice-form.compo
 import { InvoiceListingComponent } from './invoices/invoice-listing/invoice-listing.component';
 import { ClientListingComponent } from './clients/client-listing/client-listing.component';
 
+// PATH: 'app-invoice',
 const routes: Routes = [
   {
     path: '',
@@ -15,8 +16,9 @@ const routes: Routes = [
       // {path : 'invoices/:id',  component: InvoiceFormComponent},
     ],
   },
-  { path: 'new', component:  InvoiceFormComponent },
+  { path: 'new', component: InvoiceFormComponent },
   { path: 'invoice', component: InvoiceListingComponent },
+  { path: 'invoice/:id', component: InvoiceFormComponent },
   { path: 'clients', component: ClientListingComponent },
 ];
 
