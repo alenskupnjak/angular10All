@@ -40,9 +40,6 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-
-    console.log('kaj se desava');
-
     this.spinnerKojiSeVrti = true;  // spiner START
     // povlačenje id iz routera
     let id = this.route.snapshot.params['id'];
@@ -55,7 +52,7 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
     // povlačenje detaljnih podataka iz lesson
     this.coursesService.findAllCourseLessons(id).subscribe((lessons) => {
       this.dataSource.data = lessons;
-      this.spinnerKojiSeVrti = false; // spiner END
+      this.spinnerKojiSeVrti = false; // spinner END
     });
   }
 

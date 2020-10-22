@@ -20,6 +20,7 @@ import { Subject } from 'rxjs';
 })
 export class InvoiceListingComponent implements OnInit, AfterViewInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  spinnerLoad: boolean = false;
   displayedColumns: string[] = [
     'item',
     'qty',
@@ -43,17 +44,18 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
+    this.spinnerLoad = true;
     // Dohvacenje podataka ne tri razlicita nacina!!!!!
     // 1 način
     this.invoiceService.getInvoices().subscribe((data) => {
-      console.log(data);
-
+      this.spinnerLoad = false;
       return (this.dataSource.data = data);
     });
 
     // Dohvacenje podataka ne tri razlicita nacina!!!!!
     // 2 način
     this.invoiceService.fetchAllInvoices().then((data) => {
+
       return data;
       console.log(data);
     });
@@ -103,7 +105,10 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
         });
       },
       (err) => {
-        this.errorHandler(err, 'Neuspješno brisanje zapisa. (obrisan je vec fetch metodom)');
+        this.errorHandler(
+          err,
+          'Neuspješno brisanje zapisa. (obrisan je vec fetch metodom)'
+        );
       }
     );
   }
@@ -117,8 +122,8 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     this.router.navigate(['app-invoice', 'new']);
   }
 
-  filterText(filterdata) {
-    console.log(filterdata);
+  filterTextZaSvaPolja(filterdata) {
+    this.dataSource.filter = filterdata.toLowerCase().trim();
   }
 
   //  Error handler

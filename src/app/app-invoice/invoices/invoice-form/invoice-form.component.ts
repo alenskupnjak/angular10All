@@ -108,8 +108,6 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
         .updateInvoice(this.invoice._id, this.invoiceForm.value)
         .subscribe(
           (data) => {
-            console.log('----nn');
-
             console.log(data);
           },
           (err) => {

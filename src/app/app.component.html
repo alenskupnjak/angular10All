@@ -33,8 +33,8 @@
       </a>
 
       <!-- Aplikacija Invoice -->
-      <a mat-list-item *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice" class="matlist"
-        (click)="toggleSidenav()">
+      <a mat-list-item *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice"
+        class="matlist" (click)="toggleSidenav()">
         <mat-icon>source</mat-icon>
         <span>Invoice Aplikacija</span>
       </a>
@@ -66,20 +66,22 @@
         </button>
 
         <!-- Aplikacija Course -->
-        <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
-          routerLink="/app-university" class="btn"><mat-icon>library_books</mat-icon><span>Course from Base</span>
+        <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false" routerLink="/app-university"
+          class="btn">
+          <mat-icon>library_books</mat-icon><span>Course from Base</span>
         </button>
         <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
-          routerLink="/app-university/homefile" class="btn"><mat-icon>bookmarks</mat-icon><span>Course from File</span>
+          routerLink="/app-university/homefile" class="btn">
+          <mat-icon>bookmarks</mat-icon><span>Course from File</span>
         </button>
 
 
         <!-- Aplikacija Invoice -->
-        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
-          routerLink="/app-invoice/invoice" class="btn"><span>Invoices</span>
+        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice"
+          class="btn"><span>Invoices</span>
         </button>
-        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false"
-          routerLink="/app-invoice/clients" class="btn"><span>Clients</span>
+        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/clients"
+          class="btn"><span>Clients</span>
         </button>
 
         <!-- Popunjavanje prostora -->

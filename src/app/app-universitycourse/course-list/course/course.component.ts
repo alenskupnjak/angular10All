@@ -27,9 +27,7 @@ import { LessonsDataSource } from '../../../services/lessons.datasource';
 })
 export class CourseComponent implements OnInit, AfterViewInit {
   course: Course;
-
   dataSource: LessonsDataSource;
-
   displayedColumns = ['seqNo', 'description', 'duration'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -50,7 +48,6 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => {
-      console.log('vvv');
       return (this.paginator.pageIndex = 0);
     });
 
@@ -60,8 +57,6 @@ export class CourseComponent implements OnInit, AfterViewInit {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => {
-          console.log('xx');
-
           this.paginator.pageIndex = 0;
           this.loadLessonsPage();
         })
