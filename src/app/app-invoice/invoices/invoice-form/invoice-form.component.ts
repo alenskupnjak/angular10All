@@ -15,6 +15,7 @@ import { InvoiceService } from '../../services/invoice.service';
 })
 export class InvoiceFormComponent implements OnInit, AfterViewInit {
   invoiceForm: FormGroup;
+  // Pozicija za snackBar
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
@@ -98,6 +99,6 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
     });
   }
 
-  
+
   ngAfterViewInit() {}
 }

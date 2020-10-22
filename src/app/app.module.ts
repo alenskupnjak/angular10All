@@ -14,7 +14,7 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import { FooterComponent } from './footer/footer.component';
 
 // ROUTING
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './router';
 
 // MODULI
 import { UniversitycourseModule } from './app-universitycourse/universitycourse.module';

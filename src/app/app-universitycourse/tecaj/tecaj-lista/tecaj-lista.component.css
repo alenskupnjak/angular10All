@@ -1,14 +1,11 @@
 .course {
   text-align: center;
   max-width: 390px;
-  margin: 0 auto;
+  margin: 40px auto;
   /* background: greenyellow; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* .course h2 {
-  color: blue;
-} */
 
 .course-thumbnail {
   width: 150px;

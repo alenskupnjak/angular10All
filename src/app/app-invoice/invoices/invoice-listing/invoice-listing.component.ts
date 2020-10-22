@@ -1,10 +1,17 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { InvoiceService } from '../../services/invoice.service';
-import { InvoicePaginationRsp } from '../../models/invoice';
 import { Router } from '@angular/router';
+import { InvoiceService } from '../../services/invoice.service';
+import { Invoice } from '../../models/invoice';
+
+import { InvoicePaginationRsp } from '../../models/invoice';
+import {
+  MatSnackBar,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-invoice-listing',
@@ -12,6 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./invoice-listing.component.css'],
 })
 export class InvoiceListingComponent implements OnInit, AfterViewInit {
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   displayedColumns: string[] = [
     'item',
     'qty',
@@ -22,26 +30,31 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     'action',
   ];
   // dataSource;
-  constructor(public invoiceService: InvoiceService, private router: Router) {}
+  constructor(
+    public invoiceService: InvoiceService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   // veza sa datatable, nužno
-  dataSource = new MatTableDataSource([]);
+  dataSource = new MatTableDataSource<Invoice>([]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
-
     // Dohvacenje podataka ne tri razlicita nacina!!!!!
     // 1 način
     this.invoiceService.getInvoices().subscribe((data) => {
-      this.dataSource.data = data;
+      console.log(data);
+
+      return (this.dataSource.data = data);
     });
 
     // Dohvacenje podataka ne tri razlicita nacina!!!!!
     // 2 način
     this.invoiceService.fetchAllInvoices().then((data) => {
-      return data
+      return data;
       console.log(data);
     });
 
@@ -54,7 +67,9 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
         return data;
       })
       .catch((err) => {
-        console.log(err);
+        console.log('----');
+
+        console.error(err);
       });
   }
 
@@ -66,14 +81,45 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
 
   obrisiVise() {}
 
+  // Brisanje jednog zapisa
+  obrisiJedanInvoice(id) {
+    this.dataSource.data.find((data, index) => {
+      if (data._id === id) {
+        this.dataSource.data.splice(index, 1);
+        return this.dataSource;
+      }
+    });
+
+    // jedan zapis je obrisan radimo refresh tablice
+    this.dataSource = new MatTableDataSource(this.dataSource.data);
+
+    this.invoiceService.deleteInvoice(id).subscribe(
+      (data) => {
+        this.snackBar.open('Zapis obrisan.', 'Success', {
+          duration: 2000,
+          verticalPosition: this.verticalPosition,
+        });
+      },
+      (err) => {
+        this.errorHandler(err, 'Neuspješno brisanje zapisa.');
+      }
+    );
+  }
+
   saveForm() {
-    this.router.navigate(['app-invoice','new']);
+    this.router.navigate(['app-invoice', 'new']);
   }
 
   filterText(filterdata) {
     console.log(filterdata);
   }
 
-
-
+  //  Error handler
+  private errorHandler(err, message) {
+    console.error(err);
+    this.snackBar.open(message, 'Error', {
+      duration: 2000,
+      verticalPosition: this.verticalPosition,
+    });
+  }
 }

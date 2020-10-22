@@ -9,7 +9,7 @@ import { CardListComponent } from './course-list/card-list.component';
 import { DatafileComponent } from './homefile/datafile/datafile.component';
 import { HomefileComponent } from './homefile/homefile.component';
 import { CourseComponent } from './course-list/course/course.component';
-import { UniversitycourseRoutingModule } from './universitycourse-routing.module';
+import { UniversitycourseRoutingModule } from './router';
 import { CourseTecajDialogComponent } from './course-tecaj-dialog/course-tecaj-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 

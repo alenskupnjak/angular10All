@@ -86,11 +86,19 @@ export class InvoiceService {
   }
 
 
+  
+
   // ***************************************
   // DELETE
   deleteInvoice(id: string): Observable<Invoice> {
     return this.httpClient.delete<Invoice>(`${BASE_URL}/invoices/${id}`);
   }
+
+
+
+
+
+
 
   // *******************************************************************************
   // UPDATE

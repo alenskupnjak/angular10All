@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppInvoiceRoutingModule } from './app-invoice-routing.module';
+import { AppInvoiceRoutingModule } from './router';
 import { AppInvoiceComponent } from './app-invoice.component';
 
 // Moduli

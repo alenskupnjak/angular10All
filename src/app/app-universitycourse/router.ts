@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from '../app-universitycourse/home.component';
-import { HomefileComponent } from '../app-universitycourse/homefile/homefile.component';
-import { TecajListaComponent } from '../app-universitycourse/tecaj/tecaj-lista/tecaj-lista.component';
+import { HomeComponent } from './home.component';
+import { HomefileComponent } from './homefile/homefile.component';
+import { TecajListaComponent } from './tecaj/tecaj-lista/tecaj-lista.component';
 import { CourseResolver } from '../services/course.resolver';
 import { CourseComponent } from './course-list/course/course.component';
 
