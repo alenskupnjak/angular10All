@@ -10,9 +10,9 @@ import { MaterialModule } from './shared/material.module';
 
 // za mobile frendly
 import 'hammerjs';
-import { AboutComponent } from './about/about.component';
+import { AboutComponent } from './menu/about/about.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './menu/footer/footer.component';
 
 // ROUTING
 import { AppRoutingModule } from './router';
@@ -24,7 +24,7 @@ import { AppInvoiceModule } from './app-invoice/app-invoice.module';
 // SERVISI
 import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [

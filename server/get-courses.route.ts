@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { COURSES } from './db-data';
+import { COURSES } from './db-data_brisi';
 const colors = require('colors');
 
 export function getAllCourses(req: Request, res: Response) {

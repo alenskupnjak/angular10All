@@ -5,7 +5,7 @@ import { InvoiceFormComponent } from './invoices/invoice-form/invoice-form.compo
 import { InvoiceListingComponent } from './invoices/invoice-listing/invoice-listing.component';
 import { ClientListingComponent } from './clients/client-listing/client-listing.component';
 
-// PATH: 'app-invoice',
+// PATH: '/app-invoice',
 const routes: Routes = [
   {
     path: '',

@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AboutComponent } from './menu/about/about.component';
+import { PokusniComponent } from './app-universitycourse/pokusni/pokusni.component';
+import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     // Početna stranica
     path: '',
     component: AboutComponent,
-    pathMatch: "full"
+    pathMatch: 'full',
   },
-  
+
   {
     // Početna stranica
     path: 'about',
@@ -37,6 +38,11 @@ const routes: Routes = [
   },
 
   {
+    //  Pokusni LINK
+    path: 'pokus',
+    component: PokusniComponent,
+  },
+  {
     //  Nepoznati LINK
     path: '**',
     component: PageNotFoundComponent,
@@ -44,7 +50,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      relativeLinkResolution:"corrected",
+      // useHash: true,
+      // enableTracing:false
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

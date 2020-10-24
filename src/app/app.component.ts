@@ -8,7 +8,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { faCoffee, faTable } from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
 
@@ -26,6 +26,7 @@ export class AppComponent
   faCoffee = faCoffee;
   faTable = faTable;
 
+  // Zamjenjeno opcijom [routerLinkActiveOptions]="{exact:true}" 
   URLroute:string;
 
   // pocetna vrijednost za sidemenu, zatvoren je
@@ -49,14 +50,20 @@ export class AppComponent
 
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
+        console.log('**********************', this.router);
+        console.log('0-', this.router.config[0])
+
         this.URLroute = this.router.url
         console.log('this.URLroute=', this.URLroute);
       }
+
+      if (e instanceof NavigationStart) {
+        this.URLroute = this.router.url
+        console.log('NavigationStart=', this.URLroute );
+      }
     });
 
-    let ruta = this.aktivnaRouta.params.subscribe((e) => {
-      console.log(e);
-    });
+
   }
 
   ngOnDestroy() {
@@ -68,7 +75,7 @@ export class AppComponent
   }
 
   ngAfterViewInit() {
-    console.log(this.menuSide);
+    // console.log(this.menuSide);
 
     // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
     // this.elementPosition = this.menuElement.nativeElement.offsetTop;

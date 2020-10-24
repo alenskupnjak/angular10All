@@ -37,7 +37,7 @@
       <a mat-list-item *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice"
         class="matlist" (click)="toggleSidenav()">
         <fa-icon [icon]="faTable"></fa-icon>
-        <span> Invoice</span>
+        <span> Invoice </span>
       </a>
       <!-- CLIENT -->
       <a mat-list-item
@@ -45,7 +45,7 @@
         routerLink="/app-invoice/clients"
         class="matlist" (click)="toggleSidenav()">
         <mat-icon>groups</mat-icon>
-        <span> Clients</span>
+        <span> Clients </span>
         <fa-icon [icon]="faCoffee"></fa-icon>
       </a>
 
@@ -77,15 +77,25 @@
         </button>
 
         <!-- Aplikacija Course -->
+        <!-- [ngClass]="{'menu-item-active': URLroute==='/app-university'}"  -->
         <!-- Coures data from base -->
-        <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false" routerLink="/app-university"
-          [ngClass]="{'menu-item-active': URLroute==='/app-university'}" routerLinkActive="menu-item-active"
+        <!-- [routerLinkActiveOptions]="{exact:true}" znaci link aktivas samo ako je tocan! -->
+        <button mat-button
+         *ngIf="izborAplikacije ==='app-university' ? true: false"
+          routerLink="/app-university"
+          routerLinkActive="menu-item-active"
+          [routerLinkActiveOptions]="{exact:true}"
           class="btn menu-item">
           <mat-icon>library_books</mat-icon><span>Course from Base</span>
         </button>
+
         <!-- Course from file -->
-        <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
-          routerLink="/app-university/homefile" routerLinkActive="menu-item-active" class="btn menu-item">
+        <button mat-button
+        *ngIf="izborAplikacije ==='app-university' ? true: false"
+          routerLink="/app-university/homefile"
+          routerLinkActive="menu-item-active"
+          [routerLinkActiveOptions]="{exact:true}"
+          class="btn menu-item">
           <mat-icon>bookmarks</mat-icon><span>Course from File</span>
         </button>
 
@@ -103,16 +113,18 @@
         <span class="fill-space"></span>
 
         <!-- Odabir aplikacije -->
-        <button mat-button [matMenuTriggerFor]="aboveMenu">Odaberi Aplikaciju:</button>
+        <button mat-button [matMenuTriggerFor]="aboveMenu" class="aplikacija">Apl: {{izborAplikacije}}</button>
         <mat-menu #aboveMenu="matMenu" yPosition="above">
           <button mat-menu-item (click)="toggleAplikacija('app-university')">Course</button>
           <button mat-menu-item (click)="toggleAplikacija('app-invoice')">Invoice</button>
         </mat-menu>
-        <button mat-button class="aplikacija"><span>{{izborAplikacije}}</span></button>
-
+        <!-- <button mat-button class="aplikacija"><span>{{izborAplikacije}}</span></button> -->
 
         <button mat-button routerLink="/about">
           <mat-icon>account_circle</mat-icon>Login
+        </button>
+        <button mat-button>
+          <mat-icon>help_outline</mat-icon>
         </button>
       </mat-toolbar>
     </div>
@@ -122,9 +134,12 @@
       <router-outlet></router-outlet>
     </main>
 
+
     <!-- FOOTER -->
     <div class="footer">
       <app-footer></app-footer>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+

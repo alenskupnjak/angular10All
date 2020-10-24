@@ -52,11 +52,12 @@ main > *:not(router-outlet) {
   border-bottom: 2px solid blueviolet;
 }
 
-
 .aplikacija {
-  color: blue;
+  background-color: #fff;
+  color: #28a746;
   text-transform: uppercase;
 }
+
 
 .content-moj {
   height: 200vh;

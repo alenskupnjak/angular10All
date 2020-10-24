@@ -13,10 +13,11 @@
 
   <mat-card-actions class="course-actions">
     <button mat-button class="mat-raised-button mat-primary" routerLink="/app-university/homefile/pokus" >
-      VIEW COURSE (pokus)
+      VIEW COURSE (dodaj link pokus)
     </button>
-    <button mat-button class="mat-raised-button mat-primary" routerLink="/app-university/homefile/" >
-      VIEW COURSE (nazad)
+    <!-- vracam relativmo jedan korak unazad -->
+    <button mat-button class="mat-raised-button mat-primary" [routerLink]="['.']" >
+      VIEW COURSE (oduzmi link pokkus)
     </button>
   </mat-card-actions>
 

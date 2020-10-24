@@ -7,12 +7,13 @@ import { CourseResolver } from '../services/course.resolver';
 import { CourseComponent } from './course-list/course/course.component';
 import { PokusniComponent } from './pokusni/pokusni.component';
 
+
+// PATH: '/app-university,
 const routes: Routes = [
   {
-    // Main PATH 'app-university',
     path: '',
     component: HomeComponent,
-    // childern ide u nastavku Homecomponent
+    // childern se dodaje na HomeComponent nastavku Homecomponent
     children: [{ path: 'pokus', component: PokusniComponent }],
   },
   {
