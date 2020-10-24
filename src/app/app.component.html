@@ -67,21 +67,21 @@
 
         <!-- Aplikacija Course -->
         <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false" routerLink="/app-university"
-          class="btn">
+          routerLinkActive="menu-item-active" class="btn menu-item">
           <mat-icon>library_books</mat-icon><span>Course from Base</span>
         </button>
         <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
-          routerLink="/app-university/homefile" class="btn">
+          routerLink="/app-university/homefile" routerLinkActive="menu-item-active" class="btn menu-item">
           <mat-icon>bookmarks</mat-icon><span>Course from File</span>
         </button>
 
 
         <!-- Aplikacija Invoice -->
         <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice"
-          class="btn"><span>Invoices</span>
+          routerLinkActive="menu-item-active" class="btn menu-item"><span>Invoices</span>
         </button>
         <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/clients"
-          class="btn"><span>Clients</span>
+          routerLinkActive="menu-item-active" class="btn menu-item"><span>Clients</span>
         </button>
 
         <!-- Popunjavanje prostora -->

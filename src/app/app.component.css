@@ -38,6 +38,11 @@ main > *:not(router-outlet) {
 
 /* *************************************** */
 
+.menu-item.menu-item-active {
+  /* text-decoration: underline; */
+  border-bottom: 2px solid #444;
+}
+
 .btn:hover {
   color: #cfd8dc;
   border-bottom: solid 2px #cfd8dc;
@@ -46,6 +51,7 @@ main > *:not(router-outlet) {
 .matlist {
   border-bottom: 2px solid blueviolet;
 }
+
 
 .aplikacija {
   color: blue;

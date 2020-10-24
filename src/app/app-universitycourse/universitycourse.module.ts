@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
 
 import { HomeComponent } from './home.component';
@@ -11,7 +12,7 @@ import { HomefileComponent } from './homefile/homefile.component';
 import { CourseComponent } from './course-list/course/course.component';
 import { UniversitycourseRoutingModule } from './router';
 import { CourseTecajDialogComponent } from './course-tecaj-dialog/course-tecaj-dialog.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PokusniComponent } from './pokusni/pokusni.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     CourseComponent,
     CourseTecajDialogComponent,
+    PokusniComponent,
   ],
   imports: [
     CommonModule,

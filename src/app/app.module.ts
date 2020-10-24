@@ -23,6 +23,7 @@ import { AppInvoiceModule } from './app-invoice/app-invoice.module';
 // SERVISI
 import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CourseResolver } from './services/course.resolver';
     AboutComponent,
     TopMenuComponent,
     FooterComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,
