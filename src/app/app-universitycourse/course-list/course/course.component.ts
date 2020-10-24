@@ -78,4 +78,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
       this.paginator.pageSize
     );
   }
+
+  pokaziPodatke(data, lesson) {
+    console.log(data);
+    console.log(lesson);
+  }
 }

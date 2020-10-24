@@ -14,8 +14,8 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this.footerService.footerData.subscribe((data) => {
       this.podaciKrozProgram = data
-      // this.podaciKrozProgram = data;
-      console.log( 'this.podaciKrozProgram=', this.podaciKrozProgram);
+      this.podaciKrozProgram = data;
+      // console.log( 'this.podaciKrozProgram=', this.podaciKrozProgram);
     });
   }
 }

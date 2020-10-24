@@ -27,7 +27,6 @@ export class CoursesService {
     return this.http
       .get('/api/courses')
       .pipe((data) => {
-        console.log('bbbb', data);
         return data;
       })
       .pipe(

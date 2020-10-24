@@ -21,7 +21,7 @@
 
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
-      <mat-cell class="description-cell" *matCellDef="let lesson">{{lesson.description}}</mat-cell>
+      <mat-cell class="description-cell" *matCellDef="let lesson"  (click)="pokaziPodatke($event, lesson)">{{lesson.description}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="duration">
@@ -36,5 +36,4 @@
 
 
   <mat-paginator [length]="course?.lessonsCount" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
-  <!-- <mat-paginator [length]="25" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator> -->
 </div>

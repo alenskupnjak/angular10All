@@ -33,16 +33,22 @@
       </a>
 
       <!-- Aplikacija Invoice -->
+      <!-- INVOICE -->
       <a mat-list-item *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice"
         class="matlist" (click)="toggleSidenav()">
-        <mat-icon>source</mat-icon>
-        <span>Invoice Aplikacija</span>
+        <fa-icon [icon]="faTable"></fa-icon>
+        <span> Invoice</span>
+      </a>
+      <!-- CLIENT -->
+      <a mat-list-item
+        *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+        routerLink="/app-invoice/clients"
+        class="matlist" (click)="toggleSidenav()">
+        <mat-icon>groups</mat-icon>
+        <span> Clients</span>
+        <fa-icon [icon]="faCoffee"></fa-icon>
       </a>
 
-      <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
-        <mat-icon>question_answer</mat-icon>
-        <span>About</span>
-      </a>
 
       <!-- <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
         <mat-icon>person_add</mat-icon>
@@ -53,6 +59,11 @@
         <mat-icon>account_circle</mat-icon>
         <span>Login</span>
       </a> -->
+
+      <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
+        <mat-icon>question_answer</mat-icon>
+        <span>About</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <!--  END MENU sa strane -->
@@ -66,10 +77,13 @@
         </button>
 
         <!-- Aplikacija Course -->
+        <!-- Coures data from base -->
         <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false" routerLink="/app-university"
-          routerLinkActive="menu-item-active" class="btn menu-item">
+          [ngClass]="{'menu-item-active': URLroute==='/app-university'}" routerLinkActive="menu-item-active"
+          class="btn menu-item">
           <mat-icon>library_books</mat-icon><span>Course from Base</span>
         </button>
+        <!-- Course from file -->
         <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
           routerLink="/app-university/homefile" routerLinkActive="menu-item-active" class="btn menu-item">
           <mat-icon>bookmarks</mat-icon><span>Course from File</span>
@@ -78,7 +92,8 @@
 
         <!-- Aplikacija Invoice -->
         <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice"
-          routerLinkActive="menu-item-active" class="btn menu-item"><span>Invoices</span>
+          [ngClass]="{'menu-item-active': URLroute==='/app-invoice'}" routerLinkActive="menu-item-active"
+          class="btn menu-item"><span>Invoices</span>
         </button>
         <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/clients"
           routerLinkActive="menu-item-active" class="btn menu-item"><span>Clients</span>

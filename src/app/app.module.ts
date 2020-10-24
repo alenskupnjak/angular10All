@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './shared/material.module';
 
 // za mobile frendly
@@ -44,6 +45,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppInvoiceModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [CoursesService, CourseResolver],
   bootstrap: [AppComponent],

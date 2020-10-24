@@ -11,13 +11,13 @@ const routes: Routes = [
     path: '',
     component: AppInvoiceComponent,
     children: [
-      // { path: 'new', component:  InvoiceFormComponent },
-      // { path: 'invoices', component: InvoicesComponent },
-      // {path : 'invoices/:id',  component: InvoiceFormComponent},
+      // preusmjeravam na Invoice Listing
+      { path: '', component:  InvoiceListingComponent },
+      { path: 'invoice', component: InvoiceListingComponent },
     ],
   },
   { path: 'new', component: InvoiceFormComponent },
-  { path: 'invoice', component: InvoiceListingComponent },
+  // { path: 'invoice', component: InvoiceListingComponent },
   { path: 'invoice/:id', component: InvoiceFormComponent },
   { path: 'clients', component: ClientListingComponent },
 ];

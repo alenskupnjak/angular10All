@@ -13,16 +13,12 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     // childern ide u nastavku Homecomponent
-    children: [
-      { path: 'pokus1', component: PokusniComponent },
-    ],
+    children: [{ path: 'pokus', component: PokusniComponent }],
   },
   {
     path: 'homefile',
     component: HomefileComponent,
-    children: [
-      { path: 'pokus2', component: PokusniComponent },
-    ],
+    children: [{ path: 'pokus', component: PokusniComponent }],
   },
   // { path: 'courses/:id', component: HomefileComponent },
   { path: 'tecaj/:id', component: TecajListaComponent },

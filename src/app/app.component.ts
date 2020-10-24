@@ -8,7 +8,8 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { faCoffee, faTable } from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
 
 @Component({
@@ -18,9 +19,15 @@ import { Location } from '@angular/common';
 })
 export class AppComponent
   implements OnDestroy, OnChanges, OnInit, AfterViewInit {
-    // Početna aplikacija
+  // Početna aplikacija
   izborAplikacije = 'app-invoice';
-  
+
+  // Font Awesome Icons
+  faCoffee = faCoffee;
+  faTable = faTable;
+
+  URLroute:string;
+
   // pocetna vrijednost za sidemenu, zatvoren je
   isShowing: boolean = false;
 
@@ -30,18 +37,26 @@ export class AppComponent
   elementPosition: any;
   // sticky END
 
-
   @ViewChild('menuSide') menuSide;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private aktivnaRouta: ActivatedRoute) {}
 
   toggleSidenav() {
     this.isShowing = !this.isShowing;
   }
 
   ngOnInit() {
-    // this.isShowing = false;
-    // console.log(this.menuSide);
+
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        this.URLroute = this.router.url
+        console.log('this.URLroute=', this.URLroute);
+      }
+    });
+
+    let ruta = this.aktivnaRouta.params.subscribe((e) => {
+      console.log(e);
+    });
   }
 
   ngOnDestroy() {
@@ -62,14 +77,14 @@ export class AppComponent
   // izbor aplikacije
   toggleAplikacija(aplikacija) {
     this.izborAplikacije = aplikacija;
-    this.router.navigate([aplikacija])
+    this.router.navigate([aplikacija]);
   }
 
   // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
   @HostListener('window:scroll', ['$event'])
-  handleScroll(){
+  handleScroll() {
     const windowScroll = window.pageYOffset;
-    if(windowScroll >= this.elementPosition){
+    if (windowScroll >= this.elementPosition) {
       console.log('----');
 
       this.sticky = true;
@@ -79,5 +94,4 @@ export class AppComponent
     }
   }
   // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
-
 }
