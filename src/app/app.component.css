@@ -11,9 +11,10 @@
 }
 
 .content {
-  flex: 1; /* child will set to an equal size inside the container */
-  /* margin-top: 1rem; */
-  /* margin-bottom: 1rem; */
+  display: flex;
+  /* flex: 1; child will set to an equal size inside the container */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 main {
@@ -52,9 +53,6 @@ main > *:not(router-outlet) {
   border-bottom: 2px solid blueviolet;
 }
 
-
-
-
 .aplikacija {
   background-color: #fff;
   color: #28a746;
@@ -63,8 +61,8 @@ main > *:not(router-outlet) {
   border-radius: 3px;
   cursor: pointer;
   border-bottom: red;
+  /* width: 70%; */
 }
-
 
 .content-moj {
   height: 200vh;
@@ -100,9 +98,9 @@ main > *:not(router-outlet) {
   height: 45px;
 }
 
-.drugistupac {
+/* .drugistupac {
   background-color: #28a746;
-}
+} */
 
 /* .sticky {
   position: fixed;
@@ -112,4 +110,32 @@ main > *:not(router-outlet) {
   width: 100%;
 } */
 
+.slozi {
+  width: 70% !important;
+  justify-content: center;
+  text-align: center;
+  margin: 20px auto;
+}
 
+.aktivno {
+  box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green;
+}
+
+.pomakni {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #28a746;
+  width: 20%;
+  height: 200vh;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .pomakni {
+    display: none;
+  }
+  .slozi {
+    width: 100% !important;
+  }
+}

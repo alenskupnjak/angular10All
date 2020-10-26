@@ -1,12 +1,13 @@
+<div>
+  <button mat-raised-button color="primary" class="btn menu-bar" (click)="obrisiVise()">Obriši više</button>
+  <button mat-raised-button color="accent" class="btn" (click)="saveForm()">New Invoice</button>
+</div>
+
 <mat-toolbar class="filter">
   <mat-form-field color="accent">
     <input matInput (keyup)="filterTextZaSvaPolja($event.target.value)" placeholder="Filter">
     <!-- <input matInput  placeholder="Filter"> -->
   </mat-form-field>
-  <div class="menu-bar">
-    <button mat-raised-button color="primary" class="btn" (click)="obrisiVise()">Obriši više</button>
-    <button mat-raised-button color="accent" class="btn" (click)="saveForm()">New Invoice</button>
-  </div>
 </mat-toolbar>
 
 <div>
