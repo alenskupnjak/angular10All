@@ -20,6 +20,7 @@ import { Subject } from 'rxjs';
 })
 export class InvoiceListingComponent implements OnInit, AfterViewInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  poljezaBrisanje = [];
   spinnerLoad: boolean = false;
   displayedColumns: string[] = [
     'item',
@@ -28,7 +29,9 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     'due',
     'rate',
     'tax',
+    'client',
     'action',
+    'delete',
   ];
   // dataSource;
   constructor(
@@ -48,6 +51,8 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     // Dohvacenje podataka ne tri razlicita nacina!!!!!
     // 1 način
     this.invoiceService.getInvoices().subscribe((data) => {
+      console.log('xx', data);
+
       this.spinnerLoad = false;
       return (this.dataSource.data = data);
     });
@@ -78,38 +83,32 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  obrisiVise() {}
-
   // Brisanje jednog zapisa
   obrisiJedanInvoice(id) {
-    this.dataSource.data.find((data, index) => {
-      if (data._id === id) {
-        this.dataSource.data.splice(index, 1);
-        return this.dataSource;
-      }
-    });
-
-    // jedan zapis je obrisan radimo refresh tablice
-    this.dataSource = new MatTableDataSource(this.dataSource.data);
-
-    this.invoiceService.deleteInvoiceFetch(id).then((data) => {
-      console.log('Zapis obrisan Fetch metodom.');
-    });
-
-    this.invoiceService.deleteInvoice(id).subscribe(
-      (data) => {
+    this.invoiceService
+      .deleteInvoiceFetch(id)
+      .then((data) => {
+        console.log('Zapis obrisan Fetch metodom.');
         this.snackBar.open('Zapis obrisan.', 'Success', {
           duration: 2000,
           verticalPosition: this.verticalPosition,
         });
-      },
-      (err) => {
-        this.errorHandler(
-          err,
-          'Neuspješno brisanje zapisa. (obrisan je vec fetch metodom)'
-        );
-      }
-    );
+        return data;
+      })
+      .then((e) => {
+        this.dataSource.data.find((data, index) => {
+          if (data._id === id) {
+            this.dataSource.data.splice(index, 1);
+            return this.dataSource;
+          }
+        });
+        console.log(this.dataSource);
+        return e;
+      })
+      .then((e) => {
+        // jedan zapis je obrisan radimo refresh tablice
+        this.dataSource = new MatTableDataSource(this.dataSource.data);
+      });
   }
 
   editirajFormu(id) {
@@ -132,5 +131,37 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
       duration: 2000,
       verticalPosition: this.verticalPosition,
     });
+  }
+
+  obrisiVise() {
+    this.poljezaBrisanje.forEach((id) => {
+      this.invoiceService.deleteInvoiceFetch(id).then((data) => {
+        console.log('Zapis obrisan Fetch metodom.');
+        this.snackBar.open('Zapis obrisan.', 'Success', {
+          duration: 2000,
+          verticalPosition: this.verticalPosition,
+        });
+      });
+      
+      this.dataSource.data.find((data, index) => {
+        if (data._id === id) {
+          this.dataSource.data.splice(index, 1);
+          return this.dataSource;
+        }
+      });
+    });
+    // jedan zapis je obrisan radimo refresh tablice
+    this.dataSource = new MatTableDataSource(this.dataSource.data);
+  }
+
+  // selektiranje više polja za brisanje
+  zaObrisati(id) {
+    let index;
+    index = this.poljezaBrisanje.indexOf(id);
+    if (index < 0) {
+      this.poljezaBrisanje.push(id);
+    } else {
+      this.poljezaBrisanje.splice(index, 1);
+    }
   }
 }

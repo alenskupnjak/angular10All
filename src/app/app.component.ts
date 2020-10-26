@@ -32,11 +32,8 @@ export interface Tile {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent
-  implements OnDestroy, OnChanges, OnInit, AfterViewInit {
-
+export class AppComponent implements OnDestroy, OnChanges, OnInit {
   breakpoint: number;
-
 
   // Početna aplikacija
   title = 'alenq';
@@ -60,7 +57,6 @@ export class AppComponent
 
   @ViewChild('menuSide') menuSide;
 
-
   constructor(
     public router: Router,
     private aktivnaRouta: ActivatedRoute,
@@ -72,16 +68,11 @@ export class AppComponent
   }
 
   ngOnInit() {
-
-    this.router.navigate['app-invoice']
-    // Grid flex
-    this.breakpoint = (window.innerWidth <= 400) ? 5 : 6;
+    this.router.navigate['app-invoice'];
 
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
-        console.log('**********************', this.router);
-        console.log('0-', this.router.config[0]);
-
+        // console.log('0-', this.router.config[0]);
         this.URLroute = this.router.url;
         console.log('this.URLroute=', this.URLroute);
       }
@@ -101,18 +92,11 @@ export class AppComponent
     console.log('ngOnChanges()');
   }
 
-  ngAfterViewInit() {
-    // console.log(this.menuSide);
-    // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
-    // this.elementPosition = this.menuElement.nativeElement.offsetTop;
-  }
-
   // izbor aplikacije
   toggleAplikacija(aplikacija) {
     this.izborAplikacije = aplikacija;
     this.router.navigate([aplikacija]);
   }
-
 
   // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
   @HostListener('window:scroll', ['$event'])
@@ -129,28 +113,8 @@ export class AppComponent
   }
   // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
 
-
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 5 : 6;
+    this.breakpoint = event.target.innerWidth <= 400 ? 5 : 6;
     console.log(this.breakpoint);
-
   }
 }
-
-
-
-
-
-// <mat-grid-list cols="5" rowHeight="100vh">
-
-// <mat-grid-tile colspan="4" rowspan="1" style.background="lightgreen">
-// </mat-grid-tile>
-
-// <mat-grid-tile colspan="1" rowspan="1">
-//   <mat-list role="list">
-//     <mat-list-item role="listitem">AplikaCIJA 1</mat-list-item>
-//     <mat-list-item role="listitem">Item 2</mat-list-item>
-//     <mat-list-item role="listitem">Item 3</mat-list-item>
-//   </mat-list>
-// </mat-grid-tile>>
-// </mat-grid-list>

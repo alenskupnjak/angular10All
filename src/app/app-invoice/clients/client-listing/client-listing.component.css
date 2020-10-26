@@ -1,9 +1,5 @@
 table {
   width: 90%;
-}
-
-.polozaj {
-  /* margin-top: 30px; */
   margin: 25px auto;
 }
 
@@ -17,19 +13,11 @@ table {
   text-align: center;
 }
 
-.filter {
-  margin: 40px 40px 0 40px;
-  /* padding: 10px; */
-}
-
 .menu-bar {
-  position: absolute;
-  right: 60px;
-  margin-right: 15px;
-  padding: 10px;
-  color: rgb(255, 255, 255);
+  /* position: absolute; */
+  /* right: 60px; */
+  margin: 40px 0 0 60px;
+  /* padding: 10px; */
+  /* color: rgb(255, 255, 255); */
   /* background-color: #ff4081; */
 }
-
-
-

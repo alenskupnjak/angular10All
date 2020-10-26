@@ -16,6 +16,12 @@ import { InvoiceService } from '../../services/invoice.service';
   styleUrls: ['./invoice-form.component.css'],
 })
 export class InvoiceFormComponent implements OnInit, AfterViewInit {
+  foods = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
+  ];
+
   private invoice: Invoice;
   invoiceForm: FormGroup;
   // Pozicija za snackBar
@@ -38,6 +44,7 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
       qty: ['', Validators.required],
       rate: '',
       tax: '',
+      client: ['', Validators.required],
     });
   }
 

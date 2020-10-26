@@ -21,7 +21,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -54,7 +55,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
   ],
   exports: [
     MatButtonModule,
@@ -80,7 +82,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
   ],
 })
 export class MaterialModule {}

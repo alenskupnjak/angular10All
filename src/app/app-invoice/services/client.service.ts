@@ -25,10 +25,9 @@ export class ClientService {
     return responseData;
   }
 
-
   // *****************************************************
-  // CREATE INVOICE
-  createfetchInvoice(body: Client) {
+  // CREATE CREATE CREATE CREATE
+  createfetchClient(body: Client) {
     return fetch(`${BASE_URL}/clients`, {
       method: 'POST',
       headers: {
@@ -42,14 +41,37 @@ export class ClientService {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log('----', data);
+        console.log(data);
         return data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
+  }
+
+
+
+
+
+
+  // ***************************************
+  // DELETE DELETE DELETE DELETE
+  getOneClient(id: string) {
+    return fetch(`${BASE_URL}/clients/${id}`, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return data
+        console.log('Invoice obrisan.');
       });
   }
 
   // ***************************************
   // DELETE DELETE DELETE DELETE
-  deleteInvoiceFetch(id: string) {
+  deleteClient(id: string) {
     return fetch(`${BASE_URL}/clients/${id}`, {
       method: 'DELETE',
     })
@@ -61,7 +83,7 @@ export class ClientService {
 
   // **********************************************************
   // UPDATE UPDATE UPDATE UPDATE
-  updateClientFetch(id: string, body: Client) {
+  updateClient(id: string, body: Client) {
     return fetch(`${BASE_URL}/clients/${id}`, {
       method: 'PUT',
       headers: {
