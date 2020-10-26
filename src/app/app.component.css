@@ -37,6 +37,10 @@ main > *:not(router-outlet) {
   width: 250px;
 }
 
+.sidenav h2 {
+ margin-left: 20px;
+}
+
 /* *************************************** */
 
 .menu-item.menu-item-active {
@@ -49,14 +53,20 @@ main > *:not(router-outlet) {
   border-bottom: solid 2px #cfd8dc;
 }
 
-.matlist {
-  border-bottom: 2px solid blueviolet;
+.matlist:after {
+  content: ""; /* This is necessary for the pseudo element to work. */
+  display: block; /* This will put the pseudo element on its own line. */
+  margin: 0 auto; /* This will center the border. */
+  width: 80%; /* Change this to whatever width you want. */
+  padding-top: 0px; /* This creates some space between the element and the border. */
+  border-bottom: 1px solid #444; /* This creates the border. Replace black with whatever color you want. */
 }
 
 .aplikacija {
   background-color: #fff;
   color: #28a746;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
+  font-size: 1rem;
   margin-top: 10px;
   border-radius: 3px;
   cursor: pointer;
@@ -64,9 +74,9 @@ main > *:not(router-outlet) {
   /* width: 70%; */
 }
 
-.content-moj {
+/* .content-moj {
   height: 200vh;
-}
+} */
 
 /* fiksiran menu */
 .fixed-header {
@@ -98,17 +108,6 @@ main > *:not(router-outlet) {
   height: 45px;
 }
 
-/* .drugistupac {
-  background-color: #28a746;
-} */
-
-/* .sticky {
-  position: fixed;
-  top: 0;
-  overflow: hidden;
-  z-index: 10;
-  width: 100%;
-} */
 
 .slozi {
   width: 70% !important;

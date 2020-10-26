@@ -137,5 +137,10 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // Odistajemo od snimanja
+  odustaniOdSnimanja() {
+    this.router.navigate(['app-invoice', 'invoice']);
+  }
+
   ngAfterViewInit() {}
 }

@@ -39,7 +39,7 @@
     </mat-form-field>
     <div>
       <button mat-raised-button type="submit" color="accent" class="btn" [disabled]="invoiceForm.invalid">Snimi</button>
-      <button mat-raised-button type="reset" class="btn">Odustani</button>
+      <button mat-raised-button type="reset" class="btn"(click)="odustaniOdSnimanja()" >Odustani</button>
     </div>
   </form>
 </mat-card>
