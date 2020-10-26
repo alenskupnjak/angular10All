@@ -40,9 +40,7 @@
         <span> Invoice </span>
       </a>
       <!-- CLIENT -->
-      <a mat-list-item
-        *ngIf="izborAplikacije ==='app-invoice' ? true: false"
-        routerLink="/app-invoice/clients"
+      <a mat-list-item *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/clients"
         class="matlist" (click)="toggleSidenav()">
         <mat-icon>groups</mat-icon>
         <span> Clients </span>
@@ -80,37 +78,46 @@
         <!-- [ngClass]="{'menu-item-active': URLroute==='/app-university'}"  -->
         <!-- Coures data from base -->
         <!-- [routerLinkActiveOptions]="{exact:true}" znaci link aktivas samo ako je tocan! -->
-        <button mat-button
-         *ngIf="izborAplikacije ==='app-university' ? true: false"
-          routerLink="/app-university"
-          routerLinkActive="menu-item-active"
-          [routerLinkActiveOptions]="{exact:true}"
-          class="btn menu-item">
+        <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false" routerLink="/app-university"
+          routerLinkActive="menu-item-active" [routerLinkActiveOptions]="{exact:true}" class="btn menu-item">
           <mat-icon>library_books</mat-icon><span>Course from Base</span>
         </button>
 
         <!-- Course from file -->
-        <button mat-button
-        *ngIf="izborAplikacije ==='app-university' ? true: false"
-          routerLink="/app-university/homefile"
-          routerLinkActive="menu-item-active"
-          [routerLinkActiveOptions]="{exact:true}"
-          class="btn menu-item">
+        <button mat-button *ngIf="izborAplikacije ==='app-university' ? true: false"
+          routerLink="/app-university/homefile" routerLinkActive="menu-item-active"
+          [routerLinkActiveOptions]="{exact:true}" class="btn menu-item">
           <mat-icon>bookmarks</mat-icon><span>Course from File</span>
         </button>
 
 
         <!-- Aplikacija Invoice -->
-        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/invoice"
-          [ngClass]="{'menu-item-active': URLroute==='/app-invoice'}" routerLinkActive="menu-item-active"
+        <button mat-button
+          *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/app-invoice/invoice"
+          [ngClass]="{'menu-item-active': URLroute==='/app-invoice'}"
+          routerLinkActive="menu-item-active"
           class="btn menu-item"><span>Invoices</span>
         </button>
-        <button mat-button *ngIf="izborAplikacije ==='app-invoice' ? true: false" routerLink="/app-invoice/clients"
-          routerLinkActive="menu-item-active" class="btn menu-item"><span>Clients</span>
+
+        <button mat-button
+          *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/app-invoice/clients"
+          routerLinkActive="menu-item-active"
+          class="btn menu-item"><span>Clients</span>
         </button>
 
-        <!-- Popunjavanje prostora -->
         <span class="fill-space"></span>
+
+        <button mat-button
+          *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/about"
+          routerLinkActive="menu-item-active">
+          <mat-icon>account_circle</mat-icon>Login
+        </button>
+        <!-- END Aplikacija Invoice -->
+
+
 
         <!-- Odabir aplikacije -->
         <button mat-button [matMenuTriggerFor]="aboveMenu" class="aplikacija">Apl: {{izborAplikacije}}</button>
@@ -120,9 +127,6 @@
         </mat-menu>
         <!-- <button mat-button class="aplikacija"><span>{{izborAplikacije}}</span></button> -->
 
-        <button mat-button routerLink="/about">
-          <mat-icon>account_circle</mat-icon>Login
-        </button>
         <button mat-button>
           <mat-icon>help_outline</mat-icon>
         </button>
@@ -131,7 +135,38 @@
 
     <!-- GLAVNI SADRŽAJ -->
     <main class="content">
-      <router-outlet></router-outlet>
+      <mat-grid-list [cols]="breakpoint" rowHeight="100vh" (window:resize)="onResize($event)">
+        <!-- Galvni dio -->
+        <mat-grid-tile
+        colspan=5
+        rowspan=1>
+          <router-outlet></router-outlet>
+        </mat-grid-tile >
+
+        <!-- Menu d -->
+        <mat-grid-tile
+        class="drugakolona"
+        colspan=1
+        rowspan=1
+        class="drugistupac"
+        [style.visibility]="breakpoint === 6 ? 'visible' : 'hidden'">
+        <mat-list role="list">
+
+          <h2>Odaberi aplikaciju</h2>
+
+          <mat-list-item role="listitem"
+            (click)="toggleAplikacija('app-university')"
+            class="aplikacija">Course
+          </mat-list-item>
+
+          <mat-list-item role="listitem"
+            (click)="toggleAplikacija('app-invoice')"
+            class="aplikacija">Invoice
+          </mat-list-item>
+
+        </mat-list>
+      </mat-grid-tile>
+      </mat-grid-list>
     </main>
 
 
@@ -141,5 +176,3 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-

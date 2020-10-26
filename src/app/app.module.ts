@@ -1,3 +1,4 @@
+"use strict";
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,8 +12,11 @@ import { MaterialModule } from './shared/material.module';
 // za mobile frendly
 import 'hammerjs';
 import { AboutComponent } from './menu/about/about.component';
-import { TopMenuComponent } from './top-menu/top-menu.component';
+import { TopMenuComponent } from './menu/top-menu/top-menu.component';
 import { FooterComponent } from './menu/footer/footer.component';
+
+
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 // ROUTING
 import { AppRoutingModule } from './router';
@@ -25,6 +29,7 @@ import { AppInvoiceModule } from './app-invoice/app-invoice.module';
 import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
 import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -46,8 +51,10 @@ import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.comp
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    MatToolbarModule
   ],
   providers: [CoursesService, CourseResolver],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

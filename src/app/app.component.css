@@ -12,8 +12,8 @@
 
 .content {
   flex: 1; /* child will set to an equal size inside the container */
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  /* margin-top: 1rem; */
+  /* margin-bottom: 1rem; */
 }
 
 main {
@@ -52,10 +52,17 @@ main > *:not(router-outlet) {
   border-bottom: 2px solid blueviolet;
 }
 
+
+
+
 .aplikacija {
   background-color: #fff;
   color: #28a746;
   text-transform: uppercase;
+  margin-top: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  border-bottom: red;
 }
 
 
@@ -93,6 +100,10 @@ main > *:not(router-outlet) {
   height: 45px;
 }
 
+.drugistupac {
+  background-color: #28a746;
+}
+
 /* .sticky {
   position: fixed;
   top: 0;
@@ -100,3 +111,5 @@ main > *:not(router-outlet) {
   z-index: 10;
   width: 100%;
 } */
+
+
