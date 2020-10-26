@@ -21,6 +21,7 @@ import { Subject } from 'rxjs';
 export class InvoiceListingComponent implements OnInit, AfterViewInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   poljezaBrisanje = [];
+  duzinaZapisa;
   spinnerLoad: boolean = false;
   displayedColumns: string[] = [
     'item',
@@ -54,6 +55,9 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
       console.log('xx', data);
 
       this.spinnerLoad = false;
+      this.duzinaZapisa = data.length;
+      console.log(this.duzinaZapisa);
+
       return (this.dataSource.data = data);
     });
 
@@ -87,14 +91,6 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
   obrisiJedanInvoice(id) {
     this.invoiceService
       .deleteInvoiceFetch(id)
-      .then((data) => {
-        console.log('Zapis obrisan Fetch metodom.');
-        this.snackBar.open('Zapis obrisan.', 'Success', {
-          duration: 2000,
-          verticalPosition: this.verticalPosition,
-        });
-        return data;
-      })
       .then((e) => {
         this.dataSource.data.find((data, index) => {
           if (data._id === id) {
@@ -102,13 +98,18 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
             return this.dataSource;
           }
         });
-        console.log(this.dataSource);
-        return e;
       })
       .then((e) => {
-        // jedan zapis je obrisan radimo refresh tablice
         this.dataSource = new MatTableDataSource(this.dataSource.data);
+        this.duzinaZapisa = this.dataSource.data.length;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
+
+    this.snackBar.open('Zapis obrisan.', 'Success', {
+      duration: 2000,
+      verticalPosition: this.verticalPosition,
+    });
   }
 
   editirajFormu(id) {
@@ -135,23 +136,10 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
 
   obrisiVise() {
     this.poljezaBrisanje.forEach((id) => {
-      this.invoiceService.deleteInvoiceFetch(id).then((data) => {
-        console.log('Zapis obrisan Fetch metodom.');
-        this.snackBar.open('Zapis obrisan.', 'Success', {
-          duration: 2000,
-          verticalPosition: this.verticalPosition,
-        });
-      });
-      
-      this.dataSource.data.find((data, index) => {
-        if (data._id === id) {
-          this.dataSource.data.splice(index, 1);
-          return this.dataSource;
-        }
-      });
+      this.obrisiJedanInvoice(id);
     });
     // jedan zapis je obrisan radimo refresh tablice
-    this.dataSource = new MatTableDataSource(this.dataSource.data);
+    this.poljezaBrisanje = [];
   }
 
   // selektiranje više polja za brisanje

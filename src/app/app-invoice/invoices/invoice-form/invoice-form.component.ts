@@ -90,24 +90,22 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
         }
       );
 
-      setTimeout(() => {
-        console.log(this.invoiceForm.value);
+      console.log(this.invoiceForm.value);
 
-        this.invoiceService
-          .createfetchInvoice(this.invoiceForm.value)
-          .then((data) => {
-            this.snackBar.open('Invoice kreiran', 'Uspješno', {
-              duration: 2000,
-              horizontalPosition: this.horizontalPosition,
-              verticalPosition: this.verticalPosition,
-            });
-            this.router.navigate(['app-invoice', 'invoice']);
-            console.log(data);
-          })
-          .catch((err) => {
-            this.errorHandler(err, 'Nisam uspio kreirati podatak sa fetch');
+      this.invoiceService
+        .createfetchInvoice(this.invoiceForm.value)
+        .then((data) => {
+          this.snackBar.open('Invoice kreiran', 'Uspješno', {
+            duration: 2000,
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
           });
-      }, 2200);
+          this.router.navigate(['app-invoice', 'invoice']);
+          console.log(data);
+        })
+        .catch((err) => {
+          this.errorHandler(err, 'Nisam uspio kreirati podatak sa fetch');
+        });
     } else {
       console.log('update');
       // EDITIRAMO
@@ -115,23 +113,26 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
         .updateInvoice(this.invoice._id, this.invoiceForm.value)
         .subscribe(
           (data) => {
-            console.log(data);
+            this.snackBar.open('Invoice UPDATE', 'Uspješno', {
+              duration: 2000,
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            });
           },
           (err) => {
             this.errorHandler(err, 'Nisam uspio UPDATE invoice');
           }
         );
 
-      this.invoiceForm.value.tax = this.invoiceForm.value.tax + 1000;
       // Fetch verzija
-      this.invoiceService
-        .updateInvoiceFetch(this.invoice._id, this.invoiceForm.value)
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((err) => {
-          this.errorHandler(err, 'Nisam uspio UPDATE invoice');
-        });
+      // this.invoiceService
+      //   .updateInvoiceFetch(this.invoice._id, this.invoiceForm.value)
+      //   .then((data) => {
+      //     console.log(data);
+      //   })
+      //   .catch((err) => {
+      //     this.errorHandler(err, 'Nisam uspio UPDATE invoice');
+      //   });
     }
     this.router.navigate(['app-invoice', 'invoice']);
   }
