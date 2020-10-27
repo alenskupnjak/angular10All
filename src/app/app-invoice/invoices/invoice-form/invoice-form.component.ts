@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { stringify } from 'querystring';
 import { Invoice } from '../../models/invoice';
+import { ClientService } from '../../services/client.service';
 import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
@@ -16,6 +17,7 @@ import { InvoiceService } from '../../services/invoice.service';
   styleUrls: ['./invoice-form.component.css'],
 })
 export class InvoiceFormComponent implements OnInit, AfterViewInit {
+  clients;
   foods = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
@@ -31,10 +33,21 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private invoiceService: InvoiceService,
+    private clientServices: ClientService,
     private snackBar: MatSnackBar,
     private router: Router,
     private aktivnaRouta: ActivatedRoute
   ) {}
+
+  ngOnInit() {
+    this.clientServices.fetchAllClientsAsync().then((e) => {
+      this.clients = e
+      console.log('clients', e);
+    });
+    this.createForm();
+    // definiram formu ako je EDIT/New
+    this.setInvoiceForm();
+  }
 
   createForm() {
     this.invoiceForm = this.fb.group({
@@ -44,14 +57,8 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
       qty: ['', Validators.required],
       rate: '',
       tax: '',
-      client: ['', Validators.required],
+      invoiceclient: ['', Validators.required],
     });
-  }
-
-  ngOnInit() {
-    this.createForm();
-    // definiram formu ako je EDIT/New
-    this.setInvoiceForm();
   }
 
   //  NEW / EDIT FORM
@@ -77,6 +84,9 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
   onSubmit() {
     //  Invoice ne postoji kreirati cemo novi
     if (!this.invoice) {
+      console.log('xxx');
+      console.log(this.invoiceForm.value);
+
       this.invoiceService.createInvoice(this.invoiceForm.value).subscribe(
         (data) => {
           this.snackBar.open('Invoice created', 'Success', {

@@ -20,6 +20,7 @@ import { ClietDialogComponent } from '../../clients/cliet-dialog/cliet-dialog.co
 })
 export class ClientListingComponent implements OnInit, AfterViewInit {
   firstName;
+
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   spinnerLoad: boolean = false;
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'actions'];
@@ -37,6 +38,7 @@ export class ClientListingComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
+
     this.spinnerLoad = true;
     this.clientServices.fetchAllClientsAsync().then((data) => {
       this.dataSource.data = data;

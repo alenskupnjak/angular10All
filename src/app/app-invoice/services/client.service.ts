@@ -50,11 +50,6 @@ export class ClientService {
       });
   }
 
-
-
-
-
-
   // ***************************************
   // DELETE DELETE DELETE DELETE
   getOneClient(id: string) {
@@ -64,7 +59,7 @@ export class ClientService {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        return data
+        return data;
         console.log('Invoice obrisan.');
       });
   }

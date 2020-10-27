@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -56,7 +57,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatGridListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatBadgeModule
   ],
   exports: [
     MatButtonModule,
@@ -83,7 +85,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatGridListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatBadgeModule
   ],
 })
 export class MaterialModule {}

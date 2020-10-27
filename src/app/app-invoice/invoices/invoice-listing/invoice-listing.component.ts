@@ -12,6 +12,7 @@ import {
 } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-invoice-listing',
@@ -38,7 +39,8 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
   constructor(
     public invoiceService: InvoiceService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private clientServices: ClientService
   ) {}
 
   // veza sa datatable, nužno
@@ -52,7 +54,16 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     // Dohvacenje podataka ne tri razlicita nacina!!!!!
     // 1 način
     this.invoiceService.getInvoices().subscribe((data) => {
-      console.log('xx', data);
+      console.log('prije', data);
+      data = data.map((e) => {
+        console.log(e);
+        if (e.invoiceclient) {
+          e.invoiceclient = e.invoiceclient._id;
+        }
+        return e;
+      });
+
+      console.log('poslije', data);
 
       this.spinnerLoad = false;
       this.duzinaZapisa = data.length;

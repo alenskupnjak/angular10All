@@ -11,7 +11,6 @@ const BASE_URL = 'http://localhost:3001' + '/appinvoice';
 export class InvoiceService {
   constructor(private httpClient: HttpClient) {}
 
-
   // Dohvati sve Invoices
   fetchAllInvoices() {
     return fetch(BASE_URL + '/invoices')
@@ -52,15 +51,11 @@ export class InvoiceService {
     return this.httpClient.get<InvoicePaginationRsp>(BASE_URL + '/invoices');
   }
 
-
-
-
   // ****************************************
   // EDIT
   getInvoice(id: string): Observable<Invoice> {
     return this.httpClient.get<Invoice>(`${BASE_URL}/invoices/${id}`);
   }
-
 
   // *****************************************************
   // CREATE INVOICE
@@ -82,6 +77,7 @@ export class InvoiceService {
         due: body.due,
         rate: body.rate,
         tax: body.tax,
+        invoiceclient: body.invoiceclient,
       }),
     })
       .then((resp) => resp.json())
@@ -107,8 +103,6 @@ export class InvoiceService {
         console.log('Invoice obrisan.');
       });
   }
-
-
 
   // *******************************************************************************
   // UPDATE UPDATE UPDATE UPDATE
@@ -136,6 +130,5 @@ export class InvoiceService {
         console.log('kiki riki', data);
         return data;
       });
-
   }
 }

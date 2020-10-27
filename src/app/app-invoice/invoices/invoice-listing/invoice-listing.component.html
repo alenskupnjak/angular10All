@@ -65,10 +65,12 @@
           <mat-icon>edit</mat-icon>
           <span>Edit</span>
         </button>
+
         <button mat-menu-item (click)="obrisiJedanInvoice(element._id)">
           <mat-icon>delete</mat-icon>
           <span>Delete</span>
         </button>
+
         <button mat-menu-item disabled>
           <mat-icon>notifications_off</mat-icon>
           <span>Disable alerts</span>
@@ -79,7 +81,7 @@
 
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef>
-      <mat-icon class="example-margin">delete_outline</mat-icon>
+      <mat-icon class="example-margin" [matBadge]="poljezaBrisanje.length" matBadgeColor="warn">delete_outline</mat-icon>
     </th>
     <td mat-cell *matCellDef="let element">
       <mat-checkbox (click)="zaObrisati(element._id)">

@@ -40,14 +40,13 @@
 
     <mat-form-field color="accent">
       <mat-label>Clients</mat-label>
-      <mat-select formControlName="client">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
+      <mat-select formControlName="invoiceclient">
+        <!-- <mat-option *ngFor="let klijent of clients" [value]="client.value"> -->
+        <mat-option *ngFor="let klijent of clients" [value]="klijent._id">
+          {{klijent.firstName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-
 
     <div>
       <button mat-raised-button type="submit" color="accent" class="btn" [disabled]="invoiceForm.invalid">Snimi</button>
