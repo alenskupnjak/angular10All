@@ -111,6 +111,8 @@ export class InvoiceService {
   }
 
   updateInvoiceFetch(id: string, body: Invoice) {
+    console.log('id=', id, 'body=', body);
+
     return fetch(`${BASE_URL}/invoices/${id}`, {
       method: 'PUT',
       headers: {
@@ -123,12 +125,16 @@ export class InvoiceService {
         due: body.due,
         rate: body.rate,
         tax: body.tax,
+        invoiceclient: body.invoiceclient,
       }),
     })
       .then((resp) => resp.json())
       .then((data) => {
         console.log('kiki riki', data);
         return data;
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 }

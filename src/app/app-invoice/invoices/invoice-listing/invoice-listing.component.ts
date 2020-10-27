@@ -54,21 +54,15 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     // Dohvacenje podataka ne tri razlicita nacina!!!!!
     // 1 način
     this.invoiceService.getInvoices().subscribe((data) => {
-      console.log('prije', data);
       data = data.map((e) => {
-        console.log(e);
         if (e.invoiceclient) {
-          e.invoiceclient = e.invoiceclient._id;
+          e.invoiceclient = e.invoiceclient.firstName;
         }
         return e;
       });
 
-      console.log('poslije', data);
-
       this.spinnerLoad = false;
       this.duzinaZapisa = data.length;
-      console.log(this.duzinaZapisa);
-
       return (this.dataSource.data = data);
     });
 

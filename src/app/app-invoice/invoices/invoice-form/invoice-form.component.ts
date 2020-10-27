@@ -41,7 +41,7 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.clientServices.fetchAllClientsAsync().then((e) => {
-      this.clients = e
+      this.clients = e;
       console.log('clients', e);
     });
     this.createForm();
@@ -84,8 +84,10 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
   onSubmit() {
     //  Invoice ne postoji kreirati cemo novi
     if (!this.invoice) {
-      console.log('xxx');
-      console.log(this.invoiceForm.value);
+      console.log(
+        'Invoice ne postoji kreirati cemo novi-',
+        this.invoiceForm.value
+      );
 
       this.invoiceService.createInvoice(this.invoiceForm.value).subscribe(
         (data) => {
@@ -117,22 +119,25 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
           this.errorHandler(err, 'Nisam uspio kreirati podatak sa fetch');
         });
     } else {
-      console.log('update');
+      console.log(
+        'Invoice POSTOJI napraviti cemo update-',
+        this.invoiceForm.value,
+        'Invoice ID=',
+        this.invoice._id
+      );
       // EDITIRAMO
       this.invoiceService
-        .updateInvoice(this.invoice._id, this.invoiceForm.value)
-        .subscribe(
-          (data) => {
-            this.snackBar.open('Invoice UPDATE', 'Uspješno', {
-              duration: 2000,
-              horizontalPosition: this.horizontalPosition,
-              verticalPosition: this.verticalPosition,
-            });
-          },
-          (err) => {
-            this.errorHandler(err, 'Nisam uspio UPDATE invoice');
-          }
-        );
+        .updateInvoiceFetch(this.invoice._id, this.invoiceForm.value)
+        .then((e) => {
+          this.snackBar.open('Invoice UPDATE', 'Uspješno', {
+            duration: 2000,
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+          });
+        })
+        .catch((err) => {
+          this.errorHandler(err, 'Nisam uspio UPDATE invoice');
+        });
 
       // Fetch verzija
       // this.invoiceService
