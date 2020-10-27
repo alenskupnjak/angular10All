@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Invoice } from '../models/invoice';
 import { InvoicePaginationRsp } from '../models/invoice';
-
-const BASE_URL = 'http://localhost:3001' + '/appinvoice';
-// const BASE_URL = "https://skup-crudmongo.herokuapp.com/api";
 
 @Injectable({ providedIn: 'root' })
 export class InvoiceService {
@@ -13,7 +11,7 @@ export class InvoiceService {
 
   // Dohvati sve Invoices
   fetchAllInvoices() {
-    return fetch(BASE_URL + '/invoices')
+    return fetch(environment.URL_Invoice + '/invoices')
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data);
@@ -22,7 +20,7 @@ export class InvoiceService {
   }
 
   async fetchAllInvoicesAsync() {
-    const response = await fetch(BASE_URL + '/invoices');
+    const response = await fetch(environment.URL_Invoice + '/invoices');
     const responseData = await response.json();
     return responseData;
   }
@@ -48,24 +46,31 @@ export class InvoiceService {
     // }
 
     // return this.httpClient.get<InvoicePaginationRsp>(queryString);
-    return this.httpClient.get<InvoicePaginationRsp>(BASE_URL + '/invoices');
+    return this.httpClient.get<InvoicePaginationRsp>(
+      environment.URL_Invoice + '/invoices'
+    );
   }
 
   // ****************************************
   // EDIT
   getInvoice(id: string): Observable<Invoice> {
-    return this.httpClient.get<Invoice>(`${BASE_URL}/invoices/${id}`);
+    return this.httpClient.get<Invoice>(
+      `${environment.URL_Invoice}/invoices/${id}`
+    );
   }
 
   // *****************************************************
   // CREATE INVOICE
   createInvoice(body: Invoice): Observable<Invoice> {
     console.log(body);
-    return this.httpClient.post<Invoice>(`${BASE_URL}/invoices`, body);
+    return this.httpClient.post<Invoice>(
+      `${environment.URL_Invoice}/invoices`,
+      body
+    );
   }
 
   createfetchInvoice(body: Invoice) {
-    return fetch(`${BASE_URL}/invoices`, {
+    return fetch(`${environment.URL_Invoice}/invoices`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,12 +95,14 @@ export class InvoiceService {
   // ***************************************
   // DELETE DELETE DELETE DELETE
   deleteInvoice(id: string): Observable<Invoice> {
-    return this.httpClient.delete<Invoice>(`${BASE_URL}/invoices/${id}`);
+    return this.httpClient.delete<Invoice>(
+      `${environment.URL_Invoice}/invoices/${id}`
+    );
   }
 
   // FETCH metoda
   deleteInvoiceFetch(id: string) {
-    return fetch(`${BASE_URL}/invoices/${id}`, {
+    return fetch(`${environment.URL_Invoice}/invoices/${id}`, {
       method: 'DELETE',
     })
       .then((response) => response.json())
@@ -107,13 +114,16 @@ export class InvoiceService {
   // *******************************************************************************
   // UPDATE UPDATE UPDATE UPDATE
   updateInvoice(id: string, body: Invoice): Observable<Invoice> {
-    return this.httpClient.put<Invoice>(`${BASE_URL}/invoices/${id}`, body);
+    return this.httpClient.put<Invoice>(
+      `${environment.URL_Invoice}/invoices/${id}`,
+      body
+    );
   }
 
   updateInvoiceFetch(id: string, body: Invoice) {
     console.log('id=', id, 'body=', body);
 
-    return fetch(`${BASE_URL}/invoices/${id}`, {
+    return fetch(`${environment.URL_Invoice}/invoices/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

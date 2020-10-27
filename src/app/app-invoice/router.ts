@@ -4,6 +4,7 @@ import { AppInvoiceComponent } from './app-invoice.component';
 import { InvoiceFormComponent } from './invoices/invoice-form/invoice-form.component';
 import { InvoiceListingComponent } from './invoices/invoice-listing/invoice-listing.component';
 import { ClientListingComponent } from './clients/client-listing/client-listing.component';
+import { AuthComponent } from './auth/auth.component';
 
 // PATH: '/app-invoice',
 const routes: Routes = [
@@ -11,8 +12,6 @@ const routes: Routes = [
     path: '',
     component: AppInvoiceComponent,
     children: [
-      // preusmjeravam na Invoice Listing
-      { path: '', component:  InvoiceListingComponent },
       { path: 'invoice', component: InvoiceListingComponent },
     ],
   },
@@ -20,6 +19,8 @@ const routes: Routes = [
   // { path: 'invoice', component: InvoiceListingComponent },
   { path: 'invoice/:id', component: InvoiceFormComponent },
   { path: 'clients', component: ClientListingComponent },
+  { path: 'login', component: AuthComponent },
+  { path: 'signup', component: AuthComponent },
 ];
 
 @NgModule({

@@ -19,7 +19,6 @@
         <span>Invoice </span>
       </a>
 
-
       <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
         <mat-icon>question_answer</mat-icon>
         <span>About</span>
@@ -29,6 +28,8 @@
   <!--  END MENU sa strane -->
 
   <mat-sidenav-content class="page-wrap">
+
+    <!-- MENU HEADER TOP -->
     <div class="fixed-header">
       <mat-toolbar color="primary">
         <!-- Ikona CLOSE/OPEN -->
@@ -77,9 +78,15 @@
 
         <button mat-button
           *ngIf="izborAplikacije ==='app-invoice' ? true: false"
-          routerLink="/about"
+          routerLink="/app-invoice/login"
           routerLinkActive="menu-item-active">
           <mat-icon>account_circle</mat-icon>Login
+        </button>
+        <button mat-button
+          *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/app-invoice/signup"
+          routerLinkActive="menu-item-active">
+          <fa-icon [icon]="faSignInAlt"></fa-icon>Sign in
         </button>
         <!-- END Aplikacija Invoice -->
 
@@ -88,6 +95,7 @@
         </button>
       </mat-toolbar>
     </div>
+    <!-- END MENU HEADER TOP -->
 
     <!-- GLAVNI SADRŽAJ -->
     <main class="content">

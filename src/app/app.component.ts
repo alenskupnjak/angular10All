@@ -14,7 +14,12 @@ import {
   NavigationStart,
   Router,
 } from '@angular/router';
-import { faCoffee, faTable } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCoffee,
+  faTable,
+  faSignOutAlt,
+  faSignInAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { MediaChange } from '@angular/flex-layout';
 import { MediaObserver } from '@angular/flex-layout';
 import { AfterContentInit } from '@angular/core';
@@ -42,6 +47,8 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   // Font Awesome Icons
   faCoffee = faCoffee;
   faTable = faTable;
+  faSignOutAlt = faSignOutAlt;
+  faSignInAlt = faSignInAlt;
 
   // Zamjenjeno opcijom [routerLinkActiveOptions]="{exact:true}"
   URLroute: string;
@@ -74,12 +81,12 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
       if (e instanceof NavigationEnd) {
         // console.log('0-', this.router.config[0]);
         this.URLroute = this.router.url;
-        console.log('this.URLroute=', this.URLroute);
+        // console.log('this.URLroute=', this.URLroute);
       }
 
       if (e instanceof NavigationStart) {
         this.URLroute = this.router.url;
-        console.log('NavigationStart=', this.URLroute);
+        // console.log('NavigationStart=', this.URLroute);
       }
     });
   }

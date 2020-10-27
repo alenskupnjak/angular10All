@@ -24,6 +24,7 @@ import { AppRoutingModule } from './router';
 // MODULI
 import { UniversitycourseModule } from './app-universitycourse/universitycourse.module';
 import { AppInvoiceModule } from './app-invoice/app-invoice.module';
+import { AuthModule } from './app-invoice/auth/auth.module';
 
 // SERVISI
 import { CoursesService } from './services/courses.service';
@@ -51,7 +52,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    MatToolbarModule
+    MatToolbarModule,
+    AuthModule
   ],
   providers: [CoursesService, CourseResolver],
   bootstrap: [AppComponent],

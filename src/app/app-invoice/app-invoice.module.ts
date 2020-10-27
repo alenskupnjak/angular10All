@@ -13,6 +13,7 @@ import { ClientsModule } from './clients/clients.module';
 
 import { InvoiceService } from './services/invoice.service';
 import { ClientService } from './services/client.service';
+import { JwtService } from './services/jwt.service';
 
 @NgModule({
   declarations: [AppInvoiceComponent],
@@ -26,6 +27,6 @@ import { ClientService } from './services/client.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [InvoiceService, ClientService],
+  providers: [InvoiceService, ClientService, JwtService],
 })
 export class AppInvoiceModule {}

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client';
-
-const BASE_URL = 'http://localhost:3001' + '/appinvoice';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ClientService {
@@ -20,7 +19,7 @@ export class ClientService {
   // }
 
   async fetchAllClientsAsync() {
-    const response = await fetch(BASE_URL + '/clients');
+    const response = await fetch(environment.URL_Invoice + '/clients');
     const responseData = await response.json();
     return responseData;
   }
@@ -28,7 +27,7 @@ export class ClientService {
   // *****************************************************
   // CREATE CREATE CREATE CREATE
   createfetchClient(body: Client) {
-    return fetch(`${BASE_URL}/clients`, {
+    return fetch(`${environment.URL_Invoice}/clients`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -53,7 +52,7 @@ export class ClientService {
   // ***************************************
   // DELETE DELETE DELETE DELETE
   getOneClient(id: string) {
-    return fetch(`${BASE_URL}/clients/${id}`, {
+    return fetch(`${environment.URL_Invoice}/clients/${id}`, {
       method: 'GET',
     })
       .then((response) => response.json())
@@ -67,7 +66,7 @@ export class ClientService {
   // ***************************************
   // DELETE DELETE DELETE DELETE
   deleteClient(id: string) {
-    return fetch(`${BASE_URL}/clients/${id}`, {
+    return fetch(`${environment.URL_Invoice}/clients/${id}`, {
       method: 'DELETE',
     })
       .then((response) => response.json())
@@ -79,7 +78,7 @@ export class ClientService {
   // **********************************************************
   // UPDATE UPDATE UPDATE UPDATE
   updateClient(id: string, body: Client) {
-    return fetch(`${BASE_URL}/clients/${id}`, {
+    return fetch(`${environment.URL_Invoice}/clients/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +91,6 @@ export class ClientService {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log('kiki riki', data);
         return data;
       });
   }
