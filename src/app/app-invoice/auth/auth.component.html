@@ -2,6 +2,7 @@
   <div class="container-login">
     <mat-card>
 
+      <!-- SPINNER -->
       <div *ngIf="isResultsLoading" class="mat-elevation-z8">
         <div class="loading-shade">
           <mat-spinner color="accent"></mat-spinner>
@@ -34,12 +35,12 @@
 
       <div class="alternative" *ngIf="title === 'Login'">
         <p>Don't have an account?</p>
-        <button mat-raised-button color="accent" [routerLink]="['/signup']">Signup</button>
+        <button mat-raised-button color="accent" routerLink="/app-invoice/signup">Signup</button>
       </div>
 
       <div class="alternative" *ngIf="title === 'Signup'">
         <p>Have an account?</p>
-        <button mat-raised-button color="accent" [routerLink]="['/login']">Login</button>
+        <button mat-raised-button color="accent" routerLink="/app-invoice/login">Login</button>
       </div>
 
     </mat-card>

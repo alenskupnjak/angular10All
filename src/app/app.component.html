@@ -58,7 +58,7 @@
         </button>
 
 
-        <!-- Aplikacija Invoice -->
+        <!--  ****** APLIKACIJA INVOICE  ************  -->
         <button mat-button
           *ngIf="izborAplikacije ==='app-invoice' ? true: false"
           routerLink="/app-invoice/invoice"
@@ -80,15 +80,23 @@
           *ngIf="izborAplikacije ==='app-invoice' ? true: false"
           routerLink="/app-invoice/login"
           routerLinkActive="menu-item-active">
-          <mat-icon>account_circle</mat-icon>Login
+          <mat-icon>account_circle</mat-icon> Login
         </button>
+
         <button mat-button
           *ngIf="izborAplikacije ==='app-invoice' ? true: false"
           routerLink="/app-invoice/signup"
           routerLinkActive="menu-item-active">
-          <fa-icon [icon]="faSignInAlt"></fa-icon>Sign in
+          <fa-icon [icon]="faSignInAlt"></fa-icon> Sign in
         </button>
-        <!-- END Aplikacija Invoice -->
+
+        <button mat-button
+          *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          routerLink="/app-invoice/signout"
+          routerLinkActive="menu-item-active">
+          <fa-icon [icon]="faSignOutAlt"></fa-icon> Sign out
+        </button>
+        <!-- **** END APLIKACIJA INVOICE *****-->
 
         <button mat-button>
           <mat-icon>help_outline</mat-icon>

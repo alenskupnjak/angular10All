@@ -38,7 +38,6 @@ export class ClientListingComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
-
     this.spinnerLoad = true;
     this.clientServices.fetchAllClientsAsync().then((data) => {
       this.dataSource.data = data;
@@ -56,7 +55,7 @@ export class ClientListingComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  openDialog(): void {
+  noviKlijent(): void {
     const dialogRef = this.dialog.open(ClietDialogComponent, {
       width: '400px',
       height: '350px',
@@ -71,33 +70,31 @@ export class ClientListingComponent implements OnInit, AfterViewInit {
 
       console.log('The dialog was closed');
       // kreiranje klijenta
-      this.clientServices
-        .createfetchClient(result)
-        .then((data) => {
-          // ako se vrati podatak da client nije kreiran baca grešku
-          if (data.error) {
-            throw new Error('Neuspleja kreiranje klijenta');
-          }
+
+      this.clientServices.createClient(result).subscribe(
+        (data) => {
           // Obavijest na ekranu
           this.snackBar.open('Klijent kreiran.', 'Success', {
             duration: 2000,
             verticalPosition: this.verticalPosition,
           });
 
-          // Osvježi tablicu
-          this.clientServices.fetchAllClientsAsync().then((data) => {
-            console.log(data);
-            this.dataSource.data = data;
-          });
-        })
-        .catch((err) => {
+          this.clientServices.getClients().subscribe(
+            (data) => {
+              this.dataSource.data = data;
+            },
+            (err) => {
+              this.snackBar.open('Klijent nije dohvacen.', 'Fail!', {
+                duration: 4000,
+                verticalPosition: this.verticalPosition,
+              });
+            }
+          );
+        },
+        (err) => {
           console.log(err);
-          // Obavijest na ekranu
-          this.snackBar.open('Klijent nije kreiran.', 'Fail!', {
-            duration: 4000,
-            verticalPosition: this.verticalPosition,
-          });
-        });
+        }
+      );
     });
   }
 
@@ -119,40 +116,61 @@ export class ClientListingComponent implements OnInit, AfterViewInit {
         return;
       }
 
-      this.clientServices.updateClient(client._id, result).then((e) => {
-        // Osvježi tablicu
-        this.clientServices
-          .fetchAllClientsAsync()
-          .then((data) => {
-            this.dataSource.data = data;
-            // Obavijest na ekranu
-            this.snackBar.open('Klijent osvježen.', 'Success', {
-              duration: 3000,
-              verticalPosition: this.verticalPosition,
-            });
-          })
-          .catch((err) => {
-            this.errorHandler(err, 'Neuspješno osvježen zapis.');
-          });
-      });
+      this.clientServices.updateClient(client._id, result).subscribe(
+        (data) => {
+          this.clientServices.getClients().subscribe(
+            (data) => {
+              this.dataSource.data = data;
+            },
+            (err) => {
+              this.snackBar.open('Klijent nije osvježen.', 'Fail!', {
+                duration: 4000,
+                verticalPosition: this.verticalPosition,
+              });
+            }
+          );
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     });
   }
 
   onDelete(element) {
-    this.clientServices.deleteClient(element).then((e) => {
-      // Osvježi tablicu
-      this.clientServices.fetchAllClientsAsync().then((data) => {
-        console.log(data);
-        this.dataSource.data = data;
+    this.clientServices.deleteClient(element).subscribe(
+      (e) => {
+        this.clientServices.getClients().subscribe(
+          (data) => {
+            this.dataSource.data = data;
+            this.snackBar.open('Klijent obrisan.', 'Success', {
+              duration: 4000,
+              verticalPosition: this.verticalPosition,
+            });
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
 
-        this.snackBar.open('Klijent obrisan.', 'Success', {
-          duration: 4000,
-          verticalPosition: this.verticalPosition,
-        });
-      });
-      console.log(e);
-    });
-    console.log(element);
+    // this.clientServices.deleteClientfetch(element).then((e) => {
+    //   // Osvježi tablicu
+    //   this.clientServices.fetchAllClientsAsync().then((data) => {
+    //     console.log(data);
+    //     this.dataSource.data = data;
+
+    //     this.snackBar.open('Klijent obrisan.', 'Success', {
+    //       duration: 4000,
+    //       verticalPosition: this.verticalPosition,
+    //     });
+    //   });
+    //   console.log(e);
+    // });
   }
 
   //  Error handler

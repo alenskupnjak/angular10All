@@ -8,15 +8,9 @@ import { environment } from 'src/environments/environment';
 export class ClientService {
   constructor(private httpClient: HttpClient) {}
 
-  // // Dohvati sve Invoices
-  // fetchAllClients() {
-  //   return fetch(BASE_URL + '/clients')
-  //     .then((resp) => resp.json())
-  //     .then((data) => {
-  //       // console.log(data);
-  //       return data;
-  //     });
-  // }
+  getClients(): Observable<Client[]> {
+    return this.httpClient.get<Client[]>(`${environment.URL_Invoice}/clients`);
+  }
 
   async fetchAllClientsAsync() {
     const response = await fetch(environment.URL_Invoice + '/clients');
@@ -26,31 +20,15 @@ export class ClientService {
 
   // *****************************************************
   // CREATE CREATE CREATE CREATE
-  createfetchClient(body: Client) {
-    return fetch(`${environment.URL_Invoice}/clients`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstName: body.firstName,
-        lastName: body.lastName,
-        email: body.email,
-      }),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-        return err;
-      });
+  createClient(body: Client): Observable<Client> {
+    return this.httpClient.post<Client>(
+      `${environment.URL_Invoice}/clients`,
+      body
+    );
   }
 
   // ***************************************
-  // DELETE DELETE DELETE DELETE
+  // GET GET GET GET
   getOneClient(id: string) {
     return fetch(`${environment.URL_Invoice}/clients/${id}`, {
       method: 'GET',
@@ -65,33 +43,18 @@ export class ClientService {
 
   // ***************************************
   // DELETE DELETE DELETE DELETE
-  deleteClient(id: string) {
-    return fetch(`${environment.URL_Invoice}/clients/${id}`, {
-      method: 'DELETE',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Invoice obrisan.');
-      });
+  deleteClient(id: string): Observable<Client> {
+    return this.httpClient.delete<Client>(
+      `${environment.URL_Invoice}/clients/${id}`
+    );
   }
 
   // **********************************************************
   // UPDATE UPDATE UPDATE UPDATE
-  updateClient(id: string, body: Client) {
-    return fetch(`${environment.URL_Invoice}/clients/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstName: body.firstName,
-        lastName: body.lastName,
-        email: body.email,
-      }),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        return data;
-      });
+  updateClient(id: string, body: Client): Observable<Client> {
+    return this.httpClient.put<Client>(
+      `${environment.URL_Invoice}/clients/${id}`,
+      body
+    );
   }
 }

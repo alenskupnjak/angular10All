@@ -69,46 +69,12 @@ export class InvoiceService {
     );
   }
 
-  createfetchInvoice(body: Invoice) {
-    return fetch(`${environment.URL_Invoice}/invoices`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        item: body.item,
-        qty: body.qty,
-        date: body.date,
-        due: body.due,
-        rate: body.rate,
-        tax: body.tax,
-        invoiceclient: body.invoiceclient,
-      }),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log('----', data);
-        return data;
-      });
-  }
-
   // ***************************************
   // DELETE DELETE DELETE DELETE
   deleteInvoice(id: string): Observable<Invoice> {
     return this.httpClient.delete<Invoice>(
       `${environment.URL_Invoice}/invoices/${id}`
     );
-  }
-
-  // FETCH metoda
-  deleteInvoiceFetch(id: string) {
-    return fetch(`${environment.URL_Invoice}/invoices/${id}`, {
-      method: 'DELETE',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Invoice obrisan.');
-      });
   }
 
   // *******************************************************************************

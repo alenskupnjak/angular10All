@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { JwtService } from '../services/jwt.service';
+import { JwtService } from '../services/jwt.localstorege.service';
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +12,7 @@ import { JwtService } from '../services/jwt.service';
 })
 export class AuthComponent implements OnInit {
   authForm: FormGroup;
-  isResultsLoading = false;
+  isResultsLoading = false;  // SPPINER
   // Inicijalno je title prazan
   title = '';
 
@@ -42,21 +42,24 @@ export class AuthComponent implements OnInit {
     // if title === Signup
     // we need to send the request for Signup
     if (this.title === 'Signup') {
-      this.isResultsLoading = true;
+      this.isResultsLoading = true; // SPPINER
       this.authService.signup(this.authForm.value).subscribe(
         (data) => {
+          console.log(data);
           this.snackBar.open('Korisnik kreiran', 'Success', {
             duration: 3000,
           });
-          this.router.navigate(['/app-invoice']);
+          this.router.navigate(['/app-invoice','login']);
         },
         (err) => this.errorHandler(err, 'Opps, something went wrong'),
         () => (this.isResultsLoading = false)
       );
     } else {
-      this.isResultsLoading = true;
+      // LOGIN LOGIN LOGIN LOGIN LOGIN
+      this.isResultsLoading = true; // SPPINER
       this.authService.login(this.authForm.value).subscribe(
         (data) => {
+          console.log('LOGin', data);
           this.snackBar.open('Korisnik se je ulogirao.', 'Success', {
             duration: 3000,
           });

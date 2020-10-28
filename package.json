@@ -4,7 +4,7 @@
   "scripts": {
     "start3000": "ng serve --port 3000 --open --proxy-config ./proxy.json",
     "serverdev3002": "ts-node-dev -P ./server/server.tsconfig.json ./server/server.ts",
-    "build": "ng build",
+    "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

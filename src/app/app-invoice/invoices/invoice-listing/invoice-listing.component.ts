@@ -65,25 +65,6 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
       this.duzinaZapisa = data.length;
       return (this.dataSource.data = data);
     });
-
-    // Dohvacenje podataka ne tri razlicita nacina!!!!!
-    // 2 način
-    this.invoiceService.fetchAllInvoices().then((data) => {
-      return data;
-      console.log(data);
-    });
-
-    // Dohvacenje podataka ne tri razlicita nacina!!!!!
-    // 3 način
-    this.invoiceService
-      .fetchAllInvoicesAsync()
-      .then((data) => {
-        // console.log(data);
-        return data;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
   }
 
   ngAfterViewInit() {
@@ -94,22 +75,24 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
 
   // Brisanje jednog zapisa
   obrisiJedanInvoice(id) {
-    this.invoiceService
-      .deleteInvoiceFetch(id)
-      .then((e) => {
+    this.invoiceService.deleteInvoice(id).subscribe(
+      (data) => {
         this.dataSource.data.find((data, index) => {
           if (data._id === id) {
             this.dataSource.data.splice(index, 1);
             return this.dataSource;
           }
         });
-      })
-      .then((e) => {
+
         this.dataSource = new MatTableDataSource(this.dataSource.data);
         this.duzinaZapisa = this.dataSource.data.length;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-      });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
 
     this.snackBar.open('Zapis obrisan.', 'Success', {
       duration: 2000,

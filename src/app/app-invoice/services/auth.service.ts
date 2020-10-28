@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LoginRsp, SignupRsp, User } from '../models/user';
+import { LoginResponse, User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -10,16 +10,29 @@ import { LoginRsp, SignupRsp, User } from '../models/user';
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  login(body: User): Observable<LoginRsp> {
-    return this.httpClient.post<LoginRsp>(
+
+  // prikaz definicije
+  // LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
+  login(body: User): Observable<LoginResponse> {
+    return this.httpClient.post<LoginResponse>(
       `${environment.URL_Invoice}/login`,
       body
     );
   }
-  signup(body: User): Observable<SignupRsp> {
-    return this.httpClient.post<SignupRsp>(
+
+  // SIGNUP SIGNUP SIGNUP SIGNUP SIGNUP
+  signup(body: User): Observable<{ success: boolean; message: string }> {
+    return this.httpClient.post<{ success: boolean; message: string }>(
       `${environment.URL_Invoice}/signup`,
       body
     );
   }
+
+  //  definicija moze biti  ANY
+  // signup(body: User): Observable<any> {
+  //   return this.httpClient.post<any>(
+  //     `${environment.URL_Invoice}/signup`,
+  //     body
+  //   );
+  // }
 }

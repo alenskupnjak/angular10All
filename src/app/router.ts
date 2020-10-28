@@ -33,8 +33,8 @@ const routes: Routes = [
     path: 'app-invoice',
     // loadChildren:'./app-invoice/app-invoice.module#AppInvoiceModule',
     loadChildren: () =>
-      import('./app-invoice/app-invoice.module').then(
-        (m) => m.AppInvoiceModule
+      import('./app-invoice/invoice.module').then(
+        (m) => m.InvoiceModule
       ),
   },
 

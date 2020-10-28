@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppInvoiceComponent } from './app-invoice.component';
+import { InvoiceComponent } from './invoice.component';
 import { InvoiceFormComponent } from './invoices/invoice-form/invoice-form.component';
 import { InvoiceListingComponent } from './invoices/invoice-listing/invoice-listing.component';
 import { ClientListingComponent } from './clients/client-listing/client-listing.component';
@@ -10,7 +10,7 @@ import { AuthComponent } from './auth/auth.component';
 const routes: Routes = [
   {
     path: '',
-    component: AppInvoiceComponent,
+    component: InvoiceComponent,
     children: [
       { path: 'invoice', component: InvoiceListingComponent },
     ],

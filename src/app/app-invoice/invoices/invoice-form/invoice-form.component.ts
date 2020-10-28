@@ -84,16 +84,13 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
   onSubmit() {
     //  Invoice ne postoji kreirati cemo novi
     if (!this.invoice) {
-      console.log(
-        'Invoice ne postoji kreirati cemo novi-',
-        this.invoiceForm.value
-      );
-
+      console.log('Invoice ne postoji kreirati cemo novi.');
       this.invoiceService.createInvoice(this.invoiceForm.value).subscribe(
         (data) => {
           this.snackBar.open('Invoice created', 'Success', {
-            duration: 2000,
+            duration: 5000,
             horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
           });
           console.log(data);
         },
@@ -101,36 +98,14 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
           this.errorHandler(err, 'Nisam uspio Kreirati podatak');
         }
       );
-
-      console.log(this.invoiceForm.value);
-
-      this.invoiceService
-        .createfetchInvoice(this.invoiceForm.value)
-        .then((data) => {
-          this.snackBar.open('Invoice kreiran', 'Uspješno', {
-            duration: 2000,
-            horizontalPosition: this.horizontalPosition,
-            verticalPosition: this.verticalPosition,
-          });
-          this.router.navigate(['app-invoice', 'invoice']);
-          console.log(data);
-        })
-        .catch((err) => {
-          this.errorHandler(err, 'Nisam uspio kreirati podatak sa fetch');
-        });
     } else {
-      console.log(
-        'Invoice POSTOJI napraviti cemo update-',
-        this.invoiceForm.value,
-        'Invoice ID=',
-        this.invoice._id
-      );
+      console.log('Invoice POSTOJI napraviti cemo update');
       // EDITIRAMO
       this.invoiceService
         .updateInvoiceFetch(this.invoice._id, this.invoiceForm.value)
         .then((e) => {
           this.snackBar.open('Invoice UPDATE', 'Uspješno', {
-            duration: 2000,
+            duration: 5000,
             horizontalPosition: this.horizontalPosition,
             verticalPosition: this.verticalPosition,
           });

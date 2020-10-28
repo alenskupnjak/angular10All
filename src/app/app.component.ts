@@ -118,10 +118,9 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
       this.sticky = false;
     }
   }
-  // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
+
 
   onResize(event) {
     this.breakpoint = event.target.innerWidth <= 400 ? 5 : 6;
-    console.log(this.breakpoint);
   }
 }
