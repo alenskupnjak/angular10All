@@ -51,66 +51,23 @@ export class InvoiceService {
     );
   }
 
-  // ****************************************
   // EDIT
   getInvoice(id: string): Observable<Invoice> {
-    return this.httpClient.get<Invoice>(
-      `${environment.URL_Invoice}/invoices/${id}`
-    );
+    return this.httpClient.get<Invoice>(`${environment.URL_Invoice}/invoices/${id}`);
   }
 
-  // *****************************************************
   // CREATE INVOICE
   createInvoice(body: Invoice): Observable<Invoice> {
-    console.log(body);
-    return this.httpClient.post<Invoice>(
-      `${environment.URL_Invoice}/invoices`,
-      body
-    );
+    return this.httpClient.post<Invoice>(`${environment.URL_Invoice}/invoices`,body);
   }
 
-  // ***************************************
   // DELETE DELETE DELETE DELETE
   deleteInvoice(id: string): Observable<Invoice> {
-    return this.httpClient.delete<Invoice>(
-      `${environment.URL_Invoice}/invoices/${id}`
-    );
+    return this.httpClient.delete<Invoice>(`${environment.URL_Invoice}/invoices/${id}`);
   }
 
-  // *******************************************************************************
   // UPDATE UPDATE UPDATE UPDATE
   updateInvoice(id: string, body: Invoice): Observable<Invoice> {
-    return this.httpClient.put<Invoice>(
-      `${environment.URL_Invoice}/invoices/${id}`,
-      body
-    );
-  }
-
-  updateInvoiceFetch(id: string, body: Invoice) {
-    console.log('id=', id, 'body=', body);
-
-    return fetch(`${environment.URL_Invoice}/invoices/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        item: body.item,
-        qty: body.qty,
-        date: body.date,
-        due: body.due,
-        rate: body.rate,
-        tax: body.tax,
-        invoiceclient: body.invoiceclient,
-      }),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log('kiki riki', data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return this.httpClient.put<Invoice>(`${environment.URL_Invoice}/invoices/${id}`,body);
   }
 }

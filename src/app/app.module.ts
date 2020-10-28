@@ -30,7 +30,6 @@ import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
 import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.component';
 // import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TokenInvoiceInterceptorService } from './app-invoice/services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -55,12 +54,11 @@ import { TokenInvoiceInterceptorService } from './app-invoice/services/token-int
     MatToolbarModule,
     AuthModule,
   ],
-  providers: [
-    CoursesService,
-    CourseResolver,
-    // { provide: HTTP_INTERCEPTORS, useClass: TokenInvoiceInterceptorService, multi: true },
-  ],
+  providers: [CoursesService, CourseResolver],
   bootstrap: [AppComponent],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
+
+
+

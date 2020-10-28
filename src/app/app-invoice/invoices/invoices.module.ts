@@ -8,12 +8,8 @@ import { TokenInvoiceInterceptorService } from '../services/token-interceptor.se
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
-  declarations: [
-    InvoiceFormComponent,
-    InvoiceListingComponent,
-    // TokenInvoiceInterceptorService,
-  ],
+  declarations: [InvoiceFormComponent, InvoiceListingComponent],
   exports: [InvoiceFormComponent, InvoiceListingComponent],
-  providers: [TokenInvoiceInterceptorService]
+  providers: [TokenInvoiceInterceptorService],
 })
 export class InvoicesModule {}

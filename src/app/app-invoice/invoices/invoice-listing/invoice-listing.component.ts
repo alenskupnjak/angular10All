@@ -51,8 +51,7 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.spinnerLoad = true;
-    // Dohvacenje podataka ne tri razlicita nacina!!!!!
-    // 1 način
+
     this.invoiceService.getInvoices().subscribe((data) => {
       data = data.map((e) => {
         if (e.invoiceclient) {
@@ -83,13 +82,13 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
             return this.dataSource;
           }
         });
-
         this.dataSource = new MatTableDataSource(this.dataSource.data);
         this.duzinaZapisa = this.dataSource.data.length;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
       (err) => {
+        this.errorHandler(err,'Invoice nije obrisan')
         console.log(err);
       }
     );
@@ -101,7 +100,6 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
   }
 
   editirajFormu(id) {
-    console.log(id);
     this.router.navigate(['app-invoice', 'invoice', id]);
   }
 

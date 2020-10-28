@@ -6,11 +6,7 @@ import { ClietDialogComponent } from './cliet-dialog/cliet-dialog.component';
 import { TokenInvoiceInterceptorService } from '../services/token-interceptor.service';
 
 @NgModule({
-  declarations: [
-    ClientListingComponent,
-    ClietDialogComponent,
-    // TokenInvoiceInterceptorService,
-  ],
+  declarations: [ClientListingComponent, ClietDialogComponent],
   imports: [CommonModule, MaterialModule],
   providers: [TokenInvoiceInterceptorService],
   entryComponents: [ClietDialogComponent],

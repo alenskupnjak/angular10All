@@ -17,6 +17,8 @@ import { ClientService } from './services/client.service';
 import { JwtService } from './services/jwt.localstorege.service';
 import { AuthService } from './services/auth.service';
 import { TokenInvoiceInterceptorService } from './services/token-interceptor.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { EditInvoiceResolverService } from './services/edit-invoice-resolver.service';
 
 @NgModule({
   declarations: [InvoiceComponent],
@@ -35,6 +37,8 @@ import { TokenInvoiceInterceptorService } from './services/token-interceptor.ser
     ClientService,
     JwtService,
     AuthService,
+    AuthGuardService,
+    EditInvoiceResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInvoiceInterceptorService,

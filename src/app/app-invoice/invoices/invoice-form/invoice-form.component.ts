@@ -18,12 +18,7 @@ import { InvoiceService } from '../../services/invoice.service';
 })
 export class InvoiceFormComponent implements OnInit, AfterViewInit {
   clients;
-  foods = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-  ];
-
+  title: string;
   private invoice: Invoice;
   invoiceForm: FormGroup;
   // Pozicija za snackBar
@@ -42,7 +37,6 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.clientServices.fetchAllClientsAsync().then((e) => {
       this.clients = e;
-      console.log('clients', e);
     });
     this.createForm();
     // definiram formu ako je EDIT/New
@@ -67,16 +61,26 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
       const id = data['id'];
       //  Nema id u route, znaci nova je zapis
       if (!id) {
+        this.title ='Nova forma'
         return;
       }
-      this.invoiceService.getInvoice(id).subscribe(
-        (sviPodaciForme) => {
-          console.log(sviPodaciForme);
-          this.invoice = sviPodaciForme;
-          this.invoiceForm.patchValue(this.invoice);
-        },
-        (err) => this.errorHandler(err, 'Nisam nasao zapis')
-      );
+      this.title ='Editirana forma'
+
+          // // OPCIJA BEZ sesolvera
+          // this.invoiceService.getInvoice(id).subscribe(
+          //   (sviPodaciForme) => {
+          //     console.log(sviPodaciForme);
+          //     this.invoice = sviPodaciForme;
+          //     this.invoiceForm.patchValue(this.invoice);
+          //   },
+          //   (err) => this.errorHandler(err, 'Nisam nasao zapis')
+          // );
+
+      // Ovo je opsija SA!!! RESOLVEROM
+      this.aktivnaRouta.data.subscribe((data: { invoice: Invoice }) => {
+        this.invoice = data.invoice;
+        this.invoiceForm.patchValue(this.invoice);
+      })
     });
   }
 
@@ -100,29 +104,20 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
       );
     } else {
       console.log('Invoice POSTOJI napraviti cemo update');
-      // EDITIRAMO
       this.invoiceService
-        .updateInvoiceFetch(this.invoice._id, this.invoiceForm.value)
-        .then((e) => {
-          this.snackBar.open('Invoice UPDATE', 'Uspješno', {
-            duration: 5000,
-            horizontalPosition: this.horizontalPosition,
-            verticalPosition: this.verticalPosition,
-          });
-        })
-        .catch((err) => {
-          this.errorHandler(err, 'Nisam uspio UPDATE invoice');
-        });
-
-      // Fetch verzija
-      // this.invoiceService
-      //   .updateInvoiceFetch(this.invoice._id, this.invoiceForm.value)
-      //   .then((data) => {
-      //     console.log(data);
-      //   })
-      //   .catch((err) => {
-      //     this.errorHandler(err, 'Nisam uspio UPDATE invoice');
-      //   });
+        .updateInvoice(this.invoice._id, this.invoiceForm.value)
+        .subscribe(
+          (data) => {
+            this.snackBar.open('Invoice UPDATE', 'Uspješno', {
+              duration: 5000,
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            });
+          },
+          (err) => {
+            this.errorHandler(err, 'Nisam uspio UPDATE invoice');
+          }
+        );
     }
     this.router.navigate(['app-invoice', 'invoice']);
   }

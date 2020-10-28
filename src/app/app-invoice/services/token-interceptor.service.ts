@@ -12,27 +12,25 @@ import { JwtService } from './jwt.localstorege.service';
 export class TokenInvoiceInterceptorService implements HttpInterceptor {
   constructor(private jwtService: JwtService) {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept( req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     const headersConfig = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     };
-    console.log('prosao kroz interceptor..');
+
+    console.log('Prosao kroz interceptor..');
 
     const token = this.jwtService.getToken();
-    console.log('token=', token);
+    if(!token) {
+      console.log('nema tokena!');
+    }
 
-    // if (token) {
-    //   console.log('token token token');
+    if (token) {
+      headersConfig['Authorization'] = `Bearer ${token}`;
+    }
 
-    headersConfig['Authorization'] = `Bearer ${token}`;
-    // }
-    // debugger;
     const authRequest = req.clone({ setHeaders: headersConfig });
-
     return next.handle(authRequest);
   }
 }

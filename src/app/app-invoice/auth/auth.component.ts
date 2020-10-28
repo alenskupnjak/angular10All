@@ -12,7 +12,7 @@ import { JwtService } from '../services/jwt.localstorege.service';
 })
 export class AuthComponent implements OnInit {
   authForm: FormGroup;
-  isResultsLoading = false;  // SPPINER
+  isResultsLoading = false; // SPPINER
   // Inicijalno je title prazan
   title = '';
 
@@ -31,6 +31,7 @@ export class AuthComponent implements OnInit {
       password: ['', Validators.required],
     });
 
+    // Definiram dale se logiram ili Kreiram klijenta
     if (this.router.url === '/app-invoice/login') {
       this.title = 'Login';
     } else {
@@ -49,10 +50,12 @@ export class AuthComponent implements OnInit {
           this.snackBar.open('Korisnik kreiran', 'Success', {
             duration: 3000,
           });
-          this.router.navigate(['/app-invoice','login']);
+          this.router.navigate(['/app-invoice', 'login']);
         },
-        (err) => this.errorHandler(err, 'Opps, something went wrong'),
-        () => (this.isResultsLoading = false)
+        (err) => {
+          this.errorHandler(err, 'Opps, something went wrong');
+          this.isResultsLoading = false;
+        }
       );
     } else {
       // LOGIN LOGIN LOGIN LOGIN LOGIN
@@ -72,7 +75,7 @@ export class AuthComponent implements OnInit {
     }
   }
 
-
+  // Javljanje greške na ekranu
   private errorHandler(error, message) {
     this.isResultsLoading = false;
     console.error(error);

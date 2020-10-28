@@ -92,8 +92,9 @@
 
         <button mat-button
           *ngIf="izborAplikacije ==='app-invoice' ? true: false"
-          routerLink="/app-invoice/signout"
-          routerLinkActive="menu-item-active">
+          (click)="logoutInvoiceAplication()"
+          routerLink="/"
+          >
           <fa-icon [icon]="faSignOutAlt"></fa-icon> Sign out
         </button>
         <!-- **** END APLIKACIJA INVOICE *****-->

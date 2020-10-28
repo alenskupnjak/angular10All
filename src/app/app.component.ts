@@ -25,6 +25,8 @@ import { MediaObserver } from '@angular/flex-layout';
 import { AfterContentInit } from '@angular/core';
 import { MatGridList } from '@angular/material/grid-list/grid-list';
 
+import { JwtService } from './app-invoice/services/jwt.localstorege.service';
+
 export interface Tile {
   color: string;
   cols: number;
@@ -66,6 +68,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
   constructor(
     public router: Router,
+    private JwtService: JwtService,
     private aktivnaRouta: ActivatedRoute,
     private observableMedia: MediaObserver
   ) {}
@@ -119,8 +122,11 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     }
   }
 
-
   onResize(event) {
     this.breakpoint = event.target.innerWidth <= 400 ? 5 : 6;
+  }
+
+  logoutInvoiceAplication() {
+    this.JwtService.destroyToken();
   }
 }

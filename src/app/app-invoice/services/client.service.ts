@@ -29,16 +29,10 @@ export class ClientService {
 
   // ***************************************
   // GET GET GET GET
-  getOneClient(id: string) {
-    return fetch(`${environment.URL_Invoice}/clients/${id}`, {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        return data;
-        console.log('Invoice obrisan.');
-      });
+  getClient(id: string): Observable<Client> {
+    return this.httpClient.get<Client>(
+      `${environment.URL_Invoice}/clients/${id}`
+    );
   }
 
   // ***************************************

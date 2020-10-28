@@ -7,37 +7,27 @@ import { AuthComponent } from './app-invoice/auth/auth.component';
 
 const routes: Routes = [
   {
-    // Početna stranica
-    path: '',
+    path: '',  // Početna stranica
     component: AboutComponent,
     pathMatch: 'full',
   },
-
   {
-    // Početna stranica
-    path: 'about',
+    path: 'about',   // Početna stranica
     component: AboutComponent,
   },
-
   {
-    // Aplikacija University
-    path: 'app-university',
+    path: 'app-university', // Aplikacija University
     loadChildren: () =>
       import('./app-universitycourse/universitycourse.module').then(
         (m) => m.UniversitycourseModule
       ),
   },
-
   {
-    // Aplikacija Invoice
-    path: 'app-invoice',
+    path: 'app-invoice',   // Aplikacija Invoice
     // loadChildren:'./app-invoice/app-invoice.module#AppInvoiceModule',
     loadChildren: () =>
-      import('./app-invoice/invoice.module').then(
-        (m) => m.InvoiceModule
-      ),
+      import('./app-invoice/invoice.module').then((m) => m.InvoiceModule),
   },
-
   {
     //  Pokusni LINK
     path: 'pokus',
@@ -54,7 +44,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
-      relativeLinkResolution:"corrected",
+      relativeLinkResolution: 'corrected',
       // useHash: true,
       // enableTracing:false
     }),
