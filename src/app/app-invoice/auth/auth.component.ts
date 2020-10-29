@@ -15,6 +15,7 @@ export class AuthComponent implements OnInit {
   isResultsLoading = false; // SPPINER
   // Inicijalno je title prazan
   title = '';
+  user;
 
   constructor(
     private fb: FormBuilder,

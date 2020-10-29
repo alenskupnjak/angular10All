@@ -28,6 +28,7 @@ import { AuthModule } from './app-invoice/auth/auth.module';
 // SERVISI
 import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
+import { AuthService } from '../app/app-invoice/services/auth.service';
 import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.component';
 // import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -54,11 +55,8 @@ import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.comp
     MatToolbarModule,
     AuthModule,
   ],
-  providers: [CoursesService, CourseResolver],
+  providers: [CoursesService, CourseResolver, AuthService],
   bootstrap: [AppComponent],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
-
-
-

@@ -11,10 +11,10 @@ export interface User {
 
 export interface LoginResponse {
   success: boolean;
-  token: string
+  token: string;
+  user: string;
 }
 export interface SignupRsp {
   success: boolean;
   message: string;
 }
-

@@ -39,10 +39,16 @@ export class ClientListingComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.spinnerLoad = true;
-    this.clientServices.fetchAllClientsAsync().then((data) => {
-      this.dataSource.data = data;
-      this.spinnerLoad = false;
-    });
+
+    this.clientServices.getClients().subscribe(
+      (data) => {
+        this.dataSource.data = data;
+        this.spinnerLoad = false;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   filterTextZaSvaPolja(filterdata) {

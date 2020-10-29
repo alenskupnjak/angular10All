@@ -1,19 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { LoginResponse, User } from '../models/user';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({providedIn: 'root'})
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
+  podatak;
+  // Pratimo promjenu korisnika
+  userAddedSource = new Subject<string>();
+  private userAddedSourceBeh = new BehaviorSubject<any>([]);
+  // userAddd$ = this.userAddedSource.asObservable();
 
 
   // prikaz definicije
   // LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
   login(body: User): Observable<LoginResponse> {
+    this.podatak = body
+    console.log('podatak=',this.podatak);
+
+    this.userAddedSource.next(this.podatak.email)
     return this.httpClient.post<LoginResponse>(
       `${environment.URL_Invoice}/login`,
       body
@@ -27,6 +34,7 @@ export class AuthService {
       body
     );
   }
+
 
   //  definicija moze biti  ANY
   // signup(body: User): Observable<any> {

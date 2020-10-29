@@ -26,6 +26,8 @@ import { AfterContentInit } from '@angular/core';
 import { MatGridList } from '@angular/material/grid-list/grid-list';
 
 import { JwtService } from './app-invoice/services/jwt.localstorege.service';
+import { AuthService } from './app-invoice/services/auth.service';
+import { Subscription } from 'rxjs';
 
 export interface Tile {
   color: string;
@@ -41,6 +43,9 @@ export interface Tile {
 })
 export class AppComponent implements OnDestroy, OnChanges, OnInit {
   breakpoint: number;
+  private postsSub: Subscription;
+
+  user: string = '';
 
   // Početna aplikacija
   title = 'alenq';
@@ -70,7 +75,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     public router: Router,
     private JwtService: JwtService,
     private aktivnaRouta: ActivatedRoute,
-    private observableMedia: MediaObserver
+    private authService: AuthService
   ) {}
 
   toggleSidenav() {
@@ -79,6 +84,13 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
   ngOnInit() {
     this.router.navigate['app-invoice'];
+
+    this.authService.userAddedSource.subscribe((user) => {
+      if (user) {
+        console.log('+++', user);
+        this.user = user;
+      }
+    });
 
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
@@ -96,6 +108,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
   ngOnDestroy() {
     console.log('ngOnDestroy()');
+    this.postsSub.unsubscribe();
   }
 
   ngOnChanges() {
@@ -127,6 +140,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   }
 
   logoutInvoiceAplication() {
+    this.user = '';
     this.JwtService.destroyToken();
   }
 }
