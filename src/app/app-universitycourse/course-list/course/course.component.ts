@@ -19,6 +19,7 @@ import {
 } from 'rxjs/operators';
 import { merge, fromEvent } from 'rxjs';
 import { LessonsDataSource } from '../../../services/lessons.datasource';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'course',
@@ -27,7 +28,10 @@ import { LessonsDataSource } from '../../../services/lessons.datasource';
 })
 export class CourseComponent implements OnInit, AfterViewInit {
   course: Course;
-  dataSource: LessonsDataSource;
+
+  dataSourceBACK = new MatTableDataSource([]);
+
+  // dataSource: LessonsDataSource;
   displayedColumns = ['seqNo', 'description', 'duration'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -42,42 +46,59 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.course = this.route.snapshot.data['course'];
-    this.dataSource = new LessonsDataSource(this.coursesService);
-    this.dataSource.loadLessons(this.course.id, '', 'asc', 0, 3);
+    console.log(this.course);
+
+
+    this.coursesService
+      .findAllCourseLessonsBACK(this.course.id)
+      .subscribe((data) => {
+        console.log(data);
+        this.dataSourceBACK.data = data.trazim;
+      });
+
+    // this.dataSource = new LessonsDataSource(this.coursesService);
+    // console.log(this.dataSource);
+
+    // this.dataSource.loadLessons(this.course.id, '', 'asc', 0, 3);
   }
 
   ngAfterViewInit() {
-    this.sort.sortChange.subscribe(() => {
-      return (this.paginator.pageIndex = 0);
-    });
+        // definiranje paginatora i sortiranja
+        this.dataSourceBACK.paginator = this.paginator;
+        this.dataSourceBACK.sort = this.sort;
+
+
+    // this.sort.sortChange.subscribe(() => {
+    //   return (this.paginator.pageIndex = 0);
+    // });
 
     // prati input iz DOM-a
-    fromEvent(this.input.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        tap(() => {
-          this.paginator.pageIndex = 0;
-          this.loadLessonsPage();
-        })
-      )
-      .subscribe();
+    // fromEvent(this.input.nativeElement, 'keyup')
+    //   .pipe(
+    //     debounceTime(200),
+    //     distinctUntilChanged(),
+    //     tap(() => {
+    //       this.paginator.pageIndex = 0;
+    //       this.loadLessonsPage();
+    //     })
+    //   )
+    //   .subscribe();
 
     // https://rxjs-dev.firebaseapp.com/api/index/function/merge
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(tap(() => this.loadLessonsPage()))
-      .subscribe();
+    // merge(this.sort.sortChange, this.paginator.page)
+    //   .pipe(tap(() => this.loadLessonsPage()))
+    //   .subscribe();
   }
 
-  loadLessonsPage() {
-    this.dataSource.loadLessons(
-      this.course.id,
-      this.input.nativeElement.value,
-      this.sort.direction,
-      this.paginator.pageIndex,
-      this.paginator.pageSize
-    );
-  }
+  // loadLessonsPage() {
+  //   this.dataSource.loadLessons(
+  //     this.course.id,
+  //     this.input.nativeElement.value,
+  //     this.sort.direction,
+  //     this.paginator.pageIndex,
+  //     this.paginator.pageSize
+  //   );
+  // }
 
   pokaziPodatke(data, lesson) {
     console.log(data);

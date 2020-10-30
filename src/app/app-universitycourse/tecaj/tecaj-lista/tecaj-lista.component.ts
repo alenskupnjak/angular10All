@@ -18,7 +18,7 @@ import { CoursesService } from '../../../services/courses.service';
   styleUrls: ['./tecaj-lista.component.css'],
 })
 export class TecajListaComponent implements OnInit, AfterViewInit {
-  course: Course;
+  course;
   spinnerKojiSeVrti: boolean;
 
   // veza sa datatable, nužno
@@ -43,15 +43,30 @@ export class TecajListaComponent implements OnInit, AfterViewInit {
     this.spinnerKojiSeVrti = true;  // spiner START
     // povlačenje id iz routera
     let id = this.route.snapshot.params['id'];
+    console.log(id);
 
-    // povlačenje podataka za Lessson
-    this.coursesService.findCourseById(id).subscribe((data) => {
+
+    // // // povlačenje podataka za Lessson Na naslov
+    // this.coursesService.findCourseById(id).subscribe((data) => {
+    //   this.course = data;
+    // });
+
+    // // povlačenje podataka za Lessson Na naslov
+    this.coursesService.findCourseByIdBACK(id).subscribe((data) => {
       this.course = data;
     });
 
+    // // povlačenje detaljnih podataka iz lesson
+    // this.coursesService.findAllCourseLessons(id).subscribe((lessons) => {
+    //   console.log(lessons);
+    //   this.dataSource.data = lessons;
+    //   this.spinnerKojiSeVrti = false; // spinner END
+    // });
+
     // povlačenje detaljnih podataka iz lesson
-    this.coursesService.findAllCourseLessons(id).subscribe((lessons) => {
-      this.dataSource.data = lessons;
+    this.coursesService.findAllCourseLessonsBACK(id).subscribe((lessons) => {
+      console.log(lessons);
+      this.dataSource.data = lessons.trazim;
       this.spinnerKojiSeVrti = false; // spinner END
     });
   }

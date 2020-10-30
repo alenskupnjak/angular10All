@@ -10,32 +10,49 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  beginnerCourses$: Observable<Course[]>;
-  advancedCourses$: Observable<Course[]>;
+  // beginnerCourses$: Observable<Course[]>;
+  beginnerCoursesBack$: Observable<any>;
   advCourses;
 
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit() {
-    const courses$ = this.coursesService.findAllCourses();
+    // subscribe metoda
 
-    this.coursesService.findAllCourses().subscribe((data) => {
-      let podatak = data.filter((tecaj) => {
+    // const courses$ = this.coursesService.findAllCourses();
+    const coursesBack$ = this.coursesService.findAllCoursesBACK();
+    // console.log(courses$, coursesBack$);
+
+    // this.beginnerCourses$ = courses$.pipe(
+    //   map((courses) =>
+    //     courses.filter((course) => course.category === 'BEGINNER')
+    //   )
+    // );
+
+    this.beginnerCoursesBack$ = coursesBack$.pipe(
+      map((courses) => {
+        return courses.payload.filter((course) => course.category === 'BEGINNER');
+      })
+    );
+
+    // console.log(this.beginnerCourses$, this.beginnerCoursesBack$);
+
+    // subscribe metoda
+    this.coursesService.findAllCoursesBACK().subscribe((data) => {
+      let podatak = data.payload.filter((tecaj) => {
         return tecaj.category === 'ADVANCED';
       });
       this.advCourses = podatak;
     });
 
-    this.beginnerCourses$ = courses$.pipe(
-      map((courses) =>
-        courses.filter((course) => course.category === 'BEGINNER')
-      )
-    );
+    // // Klasična metoda
+    // this.coursesService.findAllCourses().subscribe((data) => {
+    //   console.log(data);
 
-    this.advancedCourses$ = courses$.pipe(
-      map((courses) =>
-        courses.filter((course) => course.category === 'ADVANCED')
-      )
-    );
+    //   let podatak = data.filter((tecaj) => {
+    //     return tecaj.category === 'ADVANCED';
+    //   });
+    //   this.advCourses = podatak;
+    // });
   }
 }

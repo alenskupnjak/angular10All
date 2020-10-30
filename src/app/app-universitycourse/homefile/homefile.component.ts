@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { COURSES, LESSONS } from '../../model/db-datafile';
 import { Course } from '../../model/course';
+import { BackfileService } from '../service/backfile.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { TransformVisitor } from '@angular/compiler/src/render3/r3_ast';
+import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
 
 @Component({
   selector: 'app-homefile',
@@ -12,23 +15,27 @@ export class HomefileComponent implements OnInit {
   // Preko datoteka
   beginnerCourses: Course[];
   advancedCourses: Course[];
+  beginnerCoursesBack = [];
+  advancedCoursesBack = [];
 
-  constructor() {}
+  constructor(private serviceBack: BackfileService) {}
 
   ngOnInit(): void {
-
-
-
-
-    //  izvor podataka datoteka
-    const courses = <any>Object.values(COURSES);
-    const lessons = <any>Object.values(LESSONS);
-    // console.log(courses, lessons);
-    this.beginnerCourses = courses.filter(
-      (course) => course.category === 'BEGINNER'
-    );
-    this.advancedCourses = courses.filter(
-      (course) => course.category === 'ADVANCED'
+    this.serviceBack.findAllFileCourses().subscribe(
+      (data) => {
+        console.log(data);
+        data.jsonData.map((element) => {
+          if (element.category.toUpperCase() === 'ADVANCED') {
+            this.advancedCoursesBack.push(element);
+          } else {
+            this.beginnerCoursesBack.push(element);
+          }
+          return element;
+        });
+      },
+      (err) => {
+        console.log(err);
+      }
     );
   }
 }

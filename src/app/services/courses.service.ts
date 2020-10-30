@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { Course } from '../model/course';
 import { Lesson } from '../model/lesson';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class CoursesService {
@@ -22,24 +23,55 @@ export class CoursesService {
     );
   }
 
-  // Povuci sve podatke
-  findAllCourses(): Observable<Course[]> {
+  findCourseByIdBACK(courseId: number): Observable<Course> {
+    return this.http.get<Course>(`${environment.URL_ANGULAR10ALLBACKEND}/appcourse/api/courses/${courseId}`).pipe(
+      map((res) => {
+        console.log(res);
+        // this.footerData.next([res.id, res.description, res.longDescription]);
+        return res['podatak'];
+      })
+    );
+  }
+
+
+  findAllCoursesBACK(): Observable<any> {
     return this.http
-      .get('/api/courses')
+      .get(`${environment.URL_ANGULAR10ALLBACKEND}/appcourse/api/courses`)
       .pipe((data) => {
+        console.log('1', data);
+        return data;
+      });
+  }
+
+  // // Povuci sve podatke
+  // findAllCourses(): Observable<Course[]> {
+  //   return this.http
+  //     .get('/api/courses')
+  //     .pipe((data) => {
+  //       console.log('2',data);
+
+  //       return data;
+  //     })
+  //     .pipe(
+  //       map((res) => {
+  //         let footer = [];
+  //         res['payload'].forEach((e) => {
+  //           footer.push([e.id, e.description, e.iconUrl]);
+  //         });
+  //         this.footerData.next(footer);
+
+  //         return res['payload'];
+  //       })
+  //     );
+  // }
+
+  findAllCourseLessonsBACK(courseId): Observable<any> {
+    return this.http
+      .get(`${environment.URL_ANGULAR10ALLBACKEND}/appcourse/api/lessons/${courseId}`)
+      .pipe((data) => {
+        console.log(data);
         return data;
       })
-      .pipe(
-        map((res) => {
-          let footer = [];
-          res['payload'].forEach((e) => {
-            footer.push([e.id, e.description, e.iconUrl]);
-          });
-          this.footerData.next(footer);
-
-          return res['payload'];
-        })
-      );
   }
 
   findAllCourseLessons(courseId: number): Observable<Lesson[]> {

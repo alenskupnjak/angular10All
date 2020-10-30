@@ -4,11 +4,11 @@
 
   <mat-tab-group>
 
-    <mat-tab label="Beginners">
-      <app-card-list [courses]="beginnerCourses$ | async"></app-card-list>
+    <mat-tab label="Beginners (async)">
+      <app-card-list [courses]="beginnerCoursesBack$ | async"></app-card-list>
     </mat-tab>
 
-    <mat-tab label="Napredni">
+    <mat-tab label="Napredni (subscribe)">
       <app-tecaj [courses]="advCourses"></app-tecaj>
     </mat-tab>
 

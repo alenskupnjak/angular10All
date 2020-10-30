@@ -1,5 +1,5 @@
 <div class="course">
-  <h2>{{course?.description}}</h2>
+  <h3>{{course?.description}}</h3>
 
   <img class="course-thumbnail" [src]="course?.iconUrl">
 
@@ -8,12 +8,13 @@
   </mat-form-field>
 
 
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <!-- <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
-  </div>
+  </div> -->
 
   <!-- TABLE -->
-  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="seqNo">
+  <!-- <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSourceBACK" matSort matSortActive="seqNo"> -->
+  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSourceBACK" matSort matSortActive="seqNo">
     <ng-container matColumnDef="seqNo">
     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
     <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>

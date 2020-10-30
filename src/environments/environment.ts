@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  URL_Invoice: 'http://localhost:3001/appinvoice'
+  URL_Invoice: 'http://localhost:3001/appinvoice',
+  URL_ANGULAR10ALLBACKEND: 'http://localhost:3001'
 };
 
 /*
