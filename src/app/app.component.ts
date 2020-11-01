@@ -25,16 +25,16 @@ import { MediaObserver } from '@angular/flex-layout';
 import { AfterContentInit } from '@angular/core';
 import { MatGridList } from '@angular/material/grid-list/grid-list';
 
-import { JwtService } from './app-invoice/services/jwt.localstorege.service';
+import { JwtLocalStorageService } from './app-invoice/services/jwt.localstorege.service';
 import { AuthService } from './app-invoice/services/auth.service';
 import { Subscription } from 'rxjs';
 
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
+// export interface Tile {
+//   color: string;
+//   cols: number;
+//   rows: number;
+//   text: string;
+// }
 
 @Component({
   selector: 'app-root',
@@ -45,10 +45,11 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   breakpoint: number;
   private postsSub: Subscription;
 
+  // Korisnik ispisan na menu
   user: string = '';
 
   // Početna aplikacija
-  title = 'alenq';
+  title = 'angular10All';
   izborAplikacije = 'app-invoice';
 
   // Font Awesome Icons
@@ -73,7 +74,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
   constructor(
     public router: Router,
-    private JwtService: JwtService,
+    private JwtService: JwtLocalStorageService,
     private aktivnaRouta: ActivatedRoute,
     private authService: AuthService
   ) {}
@@ -85,9 +86,9 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   ngOnInit() {
     this.router.navigate['app-invoice'];
 
-    this.authService.userAddedSource.subscribe((user) => {
+    // Pratimo promjenu logiranih korisnika, ispisujemo ime na menu
+    this.postsSub = this.authService.userAddedSource.subscribe((user) => {
       if (user) {
-        console.log('+++', user);
         this.user = user;
       }
     });
@@ -106,10 +107,6 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     });
   }
 
-  ngOnDestroy() {
-    console.log('ngOnDestroy()');
-    this.postsSub.unsubscribe();
-  }
 
   ngOnChanges() {
     console.log('ngOnChanges()');
@@ -126,7 +123,6 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   handleScroll() {
     const windowScroll = window.pageYOffset;
     if (windowScroll >= this.elementPosition) {
-      console.log('----');
 
       this.sticky = true;
     } else {
@@ -142,5 +138,10 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   logoutInvoiceAplication() {
     this.user = '';
     this.JwtService.destroyToken();
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy()');
+    this.postsSub.unsubscribe();
   }
 }

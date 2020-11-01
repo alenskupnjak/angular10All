@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
-export class JwtService {
+
+@Injectable({ providedIn: 'root' })
+export class JwtLocalStorageService {
   constructor() {}
 
   seToken(tokenInvoice: string) {

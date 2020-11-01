@@ -21,7 +21,6 @@ const routes: Routes = [
     component: HomefileComponent,
     children: [{ path: 'pokus', component: PokusniComponent }],
   },
-  // { path: 'courses/:id', component: HomefileComponent },
   { path: 'tecaj/:id', component: TecajListaComponent },
   {
     path: 'courses/:id',

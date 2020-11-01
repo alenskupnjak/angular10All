@@ -6,11 +6,11 @@ import {
   HttpEvent,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { JwtService } from './jwt.localstorege.service';
+import { JwtLocalStorageService } from './jwt.localstorege.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TokenInvoiceInterceptorService implements HttpInterceptor {
-  constructor(private jwtService: JwtService) {}
+  constructor(private jwtService: JwtLocalStorageService) {}
 
   intercept( req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -22,6 +22,7 @@ export class TokenInvoiceInterceptorService implements HttpInterceptor {
     console.log('Prosao kroz interceptor..');
 
     const token = this.jwtService.getToken();
+
     if(!token) {
       console.log('nema tokena!');
     }

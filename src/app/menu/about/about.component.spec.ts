@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 import { AboutComponent } from './about.component';
 
@@ -8,9 +9,9 @@ describe('AboutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AboutComponent ]
-    })
-    .compileComponents();
+      imports: [MaterialModule],
+      declarations: [AboutComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

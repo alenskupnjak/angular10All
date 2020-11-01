@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 import { PageNotFoundComponent } from './page-not-found.component';
 
@@ -8,6 +9,9 @@ describe('PageNotFoundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+      MaterialModule,
+    ],
       declarations: [ PageNotFoundComponent ]
     })
     .compileComponents();

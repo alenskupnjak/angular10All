@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from '../../../shared/material.module';
 
 import { ClietDialogComponent } from './cliet-dialog.component';
 
@@ -8,7 +9,7 @@ describe('ClietDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClietDialogComponent ]
+      declarations: [ ClietDialogComponent,  MaterialModule ]
     })
     .compileComponents();
   });

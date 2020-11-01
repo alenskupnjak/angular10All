@@ -12,4 +12,11 @@ export class PokusniComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  pdf(){
+
+    window.open("Here Download PDF url", '_blank');
+    console.log('oooo');
+
+  }
+
 }

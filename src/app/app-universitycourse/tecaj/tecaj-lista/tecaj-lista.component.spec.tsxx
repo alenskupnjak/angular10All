@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TecajListaComponent } from './tecaj-lista.component';
+import { MaterialModule } from '../../../shared/material.module';
 
 describe('TecajListaComponent', () => {
   let component: TecajListaComponent;
@@ -8,9 +9,8 @@ describe('TecajListaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TecajListaComponent ]
-    })
-    .compileComponents();
+      declarations: [TecajListaComponent, MaterialModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

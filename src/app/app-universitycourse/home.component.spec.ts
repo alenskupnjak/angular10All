@@ -1,4 +1,10 @@
+import { HttpClientModule } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CoursesService } from '../services/courses.service';
+import { MaterialModule } from '../shared/material.module';
 
 import { HomeComponent } from './home.component';
 
@@ -8,9 +14,16 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
-    })
-    .compileComponents();
+      imports: [
+        RouterTestingModule,
+        MaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+      ],
+      declarations: [HomeComponent],
+      providers: [CoursesService],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {

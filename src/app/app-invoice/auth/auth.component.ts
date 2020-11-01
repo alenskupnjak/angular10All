@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { JwtService } from '../services/jwt.localstorege.service';
+import { JwtLocalStorageService } from '../services/jwt.localstorege.service';
 
 @Component({
   selector: 'app-auth',
@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private jwtService: JwtService,
+    private jwtService: JwtLocalStorageService,
     private authService: AuthService,
     private snackBar: MatSnackBar
   ) {}
@@ -41,16 +41,18 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit() {
-    // if title === Signup
-    // we need to send the request for Signup
+    // SIGNUP SIGNUP SIGNUP SIGNUP
     if (this.title === 'Signup') {
       this.isResultsLoading = true; // SPPINER
       this.authService.signup(this.authForm.value).subscribe(
         (data) => {
-          console.log(data);
+
+          // Javljam poruku da je korisik kreiran
           this.snackBar.open('Korisnik kreiran', 'Success', {
             duration: 3000,
           });
+
+          // preusmjeravam nakon kreiranja klijenta na login
           this.router.navigate(['/app-invoice', 'login']);
         },
         (err) => {

@@ -14,7 +14,7 @@ import { ClientsModule } from './clients/clients.module';
 // SERVISI
 import { InvoiceService } from './services/invoice.service';
 import { ClientService } from './services/client.service';
-import { JwtService } from './services/jwt.localstorege.service';
+import { JwtLocalStorageService } from './services/jwt.localstorege.service';
 // import { AuthService } from './services/auth.service';
 import { TokenInvoiceInterceptorService } from './services/token-interceptor.service';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -35,7 +35,7 @@ import { EditInvoiceResolverService } from './services/edit-invoice-resolver.ser
   providers: [
     InvoiceService,
     ClientService,
-    JwtService,
+    JwtLocalStorageService,
     // AuthService,
     AuthGuardService,
     EditInvoiceResolverService,

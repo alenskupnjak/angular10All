@@ -7,7 +7,7 @@ import { Course } from '../model/course';
 import { Lesson } from '../model/lesson';
 import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
@@ -73,6 +73,7 @@ export class CoursesService {
         return data;
       })
   }
+
 
   findAllCourseLessons(courseId: number): Observable<Lesson[]> {
     return this.http

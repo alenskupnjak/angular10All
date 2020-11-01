@@ -1,20 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from 'src/app/shared/material.module';
 
-import { AuthComponent } from './auth.component';
+import { TecajComponent } from './tecaj.component';
 
-describe('AuthComponent', () => {
-  let component: AuthComponent;
-  let fixture: ComponentFixture<AuthComponent>;
+describe('TecajComponent', () => {
+  let component: TecajComponent;
+  let fixture: ComponentFixture<TecajComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthComponent ]
+      declarations: [ TecajComponent,  MaterialModule ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthComponent);
+    fixture = TestBed.createComponent(TecajComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

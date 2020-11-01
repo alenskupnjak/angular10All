@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CoursesService } from 'src/app/services/courses.service';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 import { FooterComponent } from './footer.component';
 
@@ -8,9 +11,10 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
-    })
-    .compileComponents();
+      imports: [MaterialModule, HttpClientModule],
+      declarations: [FooterComponent],
+      providers: [CoursesService],
+    }).compileComponents();
   });
 
   beforeEach(() => {

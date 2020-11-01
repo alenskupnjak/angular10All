@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MaterialModule } from '../../../shared/material.module';
 import { InvoiceListingComponent } from './invoice-listing.component';
 
 describe('InvoiceListingComponent', () => {
@@ -8,9 +8,8 @@ describe('InvoiceListingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InvoiceListingComponent ]
-    })
-    .compileComponents();
+      declarations: [InvoiceListingComponent, MaterialModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
