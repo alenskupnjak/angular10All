@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Course } from 'src/app/model/course';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course-tecaj-dialog',
@@ -10,6 +11,7 @@ import * as moment from 'moment';
   styleUrls: ['./course-tecaj-dialog.component.css'],
 })
 export class CourseTecajDialogComponent implements OnInit {
+  private postsSub: Subscription;
   form: FormGroup;
   description: string;
 

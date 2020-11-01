@@ -1,4 +1,11 @@
+import { HttpClientModule } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from '../../shared/material.module';
 
 import { CourseTecajDialogComponent } from './course-tecaj-dialog.component';
 
@@ -8,9 +15,20 @@ describe('CourseTecajDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseTecajDialogComponent ]
-    })
-    .compileComponents();
+      imports: [
+        MaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        MatDialogRef,
+        MAT_DIALOG_DATA,
+        FormBuilder,
+        FormGroup,
+        Validators,
+      ],
+      declarations: [CourseTecajDialogComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +37,7 @@ describe('CourseTecajDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 });

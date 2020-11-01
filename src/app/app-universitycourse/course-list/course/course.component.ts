@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -17,7 +18,7 @@ import {
   tap,
   delay,
 } from 'rxjs/operators';
-import { merge, fromEvent } from 'rxjs';
+import { merge, fromEvent, Subscription } from 'rxjs';
 import { LessonsDataSource } from '../../../services/lessons.datasource';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -26,9 +27,12 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
 })
-export class CourseComponent implements OnInit, AfterViewInit {
+export class CourseComponent implements OnInit, AfterViewInit, OnDestroy {
+  private destroySub: Subscription;
   course: Course;
 
+
+  // podaci u tabeli
   dataSourceBACK = new MatTableDataSource([]);
 
   // dataSource: LessonsDataSource;
@@ -46,10 +50,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.course = this.route.snapshot.data['course'];
-    console.log('xx',this.course);
+    // console.log('xxx', this.course);
 
-
-    this.coursesService
+    this.destroySub = this.coursesService
       .findAllCourseLessonsBACK(this.course.id)
       .subscribe((data) => {
         console.log(data);
@@ -63,10 +66,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-        // definiranje paginatora i sortiranja
-        this.dataSourceBACK.paginator = this.paginator;
-        this.dataSourceBACK.sort = this.sort;
-
+    // definiranje paginatora i sortiranja
+    this.dataSourceBACK.paginator = this.paginator;
+    this.dataSourceBACK.sort = this.sort;
 
     // this.sort.sortChange.subscribe(() => {
     //   return (this.paginator.pageIndex = 0);
@@ -103,5 +105,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
   pokaziPodatke(data, lesson) {
     console.log(data);
     console.log(lesson);
+  }
+
+  ngOnDestroy() {
+    this.destroySub.unsubscribe();
   }
 }

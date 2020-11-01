@@ -22,10 +22,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatBadgeModule} from '@angular/material/badge';
-
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatBadgeModule } from '@angular/material/badge';
 
 //  moment.js ili ovo...
 // import { MatNativeDateModule } from '@angular/material/core';
@@ -58,7 +56,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatSnackBarModule,
     MatGridListModule,
     MatCheckboxModule,
-    MatBadgeModule
+    MatBadgeModule,
   ],
   exports: [
     MatButtonModule,
@@ -86,7 +84,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatSnackBarModule,
     MatGridListModule,
     MatCheckboxModule,
-    MatBadgeModule
+    MatBadgeModule,
   ],
 })
 export class MaterialModule {}

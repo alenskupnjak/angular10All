@@ -16,7 +16,6 @@ export class PokusniComponent implements OnInit {
 
     window.open("Here Download PDF url", '_blank');
     console.log('oooo');
-
   }
 
 }

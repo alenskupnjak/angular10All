@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/shared/material.module';
 
 import { DatafileComponent } from './datafile.component';
@@ -9,7 +12,13 @@ describe('DatafileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DatafileComponent,  MaterialModule ]
+      imports: [
+        MaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        RouterTestingModule,
+      ],
+      declarations: [ DatafileComponent ]
     })
     .compileComponents();
   });
@@ -20,7 +29,7 @@ describe('DatafileComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should createe', () => {
     expect(component).toBeTruthy();
   });
 });

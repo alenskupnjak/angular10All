@@ -10,7 +10,7 @@ import { InvoiceService } from './invoice.service';
 import { take, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EditInvoiceResolverService implements Resolve<Invoice> {
   constructor(private invoiceService: InvoiceService, private router: Router) {}
   resolve(

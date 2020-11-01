@@ -1,5 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MaterialModule } from 'src/app/shared/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from '../../shared/material.module';
 
 import { HomefileComponent } from './homefile.component';
 
@@ -9,9 +13,15 @@ describe('HomefileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomefileComponent,  MaterialModule ]
-    })
-    .compileComponents();
+      imports: [
+        MaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        RouterTestingModule,
+      ],
+      declarations: [HomefileComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {

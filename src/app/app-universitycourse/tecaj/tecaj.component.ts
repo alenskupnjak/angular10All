@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Course } from 'src/app/model/course';
 import { CourseTecajDialogComponent } from '../course-tecaj-dialog/course-tecaj-dialog.component';
@@ -8,7 +8,7 @@ import { CourseTecajDialogComponent } from '../course-tecaj-dialog/course-tecaj-
   templateUrl: './tecaj.component.html',
   styleUrls: ['./tecaj.component.css'],
 })
-export class TecajComponent implements OnInit {
+export class TecajComponent implements OnInit, OnDestroy {
   // primam podatke iz <app-card-list>
   @Input() courses: Course[];
 
@@ -31,5 +31,11 @@ export class TecajComponent implements OnInit {
       .subscribe((data) => {
         console.log('zatvorio sam dialog, za info....',data);
       });
+  }
+
+
+  
+  ngOnDestroy() {
+
   }
 }

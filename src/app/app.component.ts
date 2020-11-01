@@ -43,7 +43,7 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnDestroy, OnChanges, OnInit {
   breakpoint: number;
-  private postsSub: Subscription;
+  // private postsSub: Subscription;
 
   // Korisnik ispisan na menu
   user: string = '';
@@ -64,11 +64,11 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   // pocetna vrijednost za sidemenu, zatvoren je
   isShowing: boolean = false;
 
-  // Sticky START
-  @ViewChild('stickyMenu') menuElement: ElementRef;
-  sticky: boolean = false;
-  elementPosition: any;
-  // sticky END
+  // // Sticky START
+  // @ViewChild('stickyMenu') menuElement: ElementRef;
+  // sticky: boolean = false;
+  // elementPosition: any;
+  // // sticky END
 
   @ViewChild('menuSide') menuSide;
 
@@ -87,7 +87,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     this.router.navigate['app-invoice'];
 
     // Pratimo promjenu logiranih korisnika, ispisujemo ime na menu
-    this.postsSub = this.authService.userAddedSource.subscribe((user) => {
+    this.authService.userAddedSource.subscribe((user) => {
       if (user) {
         this.user = user;
       }
@@ -107,7 +107,6 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     });
   }
 
-
   ngOnChanges() {
     console.log('ngOnChanges()');
   }
@@ -118,18 +117,18 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     this.router.navigate([aplikacija]);
   }
 
-  // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
-  @HostListener('window:scroll', ['$event'])
-  handleScroll() {
-    const windowScroll = window.pageYOffset;
-    if (windowScroll >= this.elementPosition) {
+  // // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
+  // @HostListener('window:scroll', ['$event'])
+  // handleScroll() {
+  //   const windowScroll = window.pageYOffset;
+  //   if (windowScroll >= this.elementPosition) {
 
-      this.sticky = true;
-    } else {
-      console.log('++++');
-      this.sticky = false;
-    }
-  }
+  //     this.sticky = true;
+  //   } else {
+  //     console.log('++++');
+  //     this.sticky = false;
+  //   }
+  // }
 
   onResize(event) {
     this.breakpoint = event.target.innerWidth <= 400 ? 5 : 6;
@@ -141,7 +140,6 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   }
 
   ngOnDestroy() {
-    console.log('ngOnDestroy()');
-    this.postsSub.unsubscribe();
+    // this.postsSub.unsubscribe();
   }
 }

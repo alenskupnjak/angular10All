@@ -1,20 +1,23 @@
+import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialModule } from 'src/app/shared/material.module';
 
-import { CardListComponent } from './card-list.component';
+import { PokusniComponent } from './pokusni.component';
 
-describe('CardListComponent', () => {
-  let component: CardListComponent;
-  let fixture: ComponentFixture<CardListComponent>;
+describe('PokusniComponent', () => {
+  let component: PokusniComponent;
+  let fixture: ComponentFixture<PokusniComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CardListComponent,  MaterialModule],
+      imports: [MaterialModule],
+      declarations: [PokusniComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CardListComponent);
+    fixture = TestBed.createComponent(PokusniComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
