@@ -24,21 +24,23 @@ export class CoursesService {
   }
 
   findCourseByIdBACK(courseId: number): Observable<Course> {
-    return this.http.get<Course>(`${environment.URL_ANGULAR10ALLBACKEND}/appcourse/api/courses/${courseId}`).pipe(
-      map((res) => {
-        console.log(res);
-        // this.footerData.next([res.id, res.description, res.longDescription]);
-        return res['podatak'];
-      })
-    );
+    return this.http
+      .get<Course>(
+        `${environment.URL_ANGULAR10ALLBACKEND}/appcourse/api/courses/${courseId}`
+      )
+      .pipe(
+        map((res) => {
+          console.log(res);
+          // this.footerData.next([res.id, res.description, res.longDescription]);
+          return res['podatak'];
+        })
+      );
   }
-
 
   findAllCoursesBACK(): Observable<any> {
     return this.http
       .get(`${environment.URL_ANGULAR10ALLBACKEND}/appcourse/api/courses`)
       .pipe((data) => {
-        console.log('1', data);
         return data;
       });
   }
@@ -67,13 +69,14 @@ export class CoursesService {
 
   findAllCourseLessonsBACK(courseId): Observable<any> {
     return this.http
-      .get(`${environment.URL_ANGULAR10ALLBACKEND}/appcourse/api/lessons/${courseId}`)
+      .get(
+        `${environment.URL_ANGULAR10ALLBACKEND}/appcourse/api/lessons/${courseId}`
+      )
       .pipe((data) => {
         console.log(data);
         return data;
-      })
+      });
   }
-
 
   findAllCourseLessons(courseId: number): Observable<Lesson[]> {
     return this.http

@@ -35,9 +35,17 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.clientServices.fetchAllClientsAsync().then((e) => {
-      this.clients = e;
-    });
+
+    this.clientServices.getClients().subscribe(data=>{
+      console.log('nnnn');
+      this.clients = data;
+      console.log(data);
+
+    })
+
+    // this.clientServices.fetchAllClientsAsync().then((e) => {
+    //   this.clients = e;
+    // });
     this.createForm();
     // definiram formu ako je EDIT/New
     this.setInvoiceForm();

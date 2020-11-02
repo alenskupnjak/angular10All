@@ -135,8 +135,17 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   }
 
   logoutInvoiceAplication() {
-    this.user = '';
-    this.JwtService.destroyToken();
+    this.authService.logOut().subscribe(
+      (data) => {
+        this.user = '';
+        console.log(data);
+        this.JwtService.destroyToken();
+        this.router.navigate(['app-invoice', 'login']);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   ngOnDestroy() {

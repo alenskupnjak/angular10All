@@ -26,8 +26,21 @@
               required</mat-error>
           </mat-form-field>
 
+
           <div>
+              <div>
+                <!-- <button mat-raised-button (click)="googleAuthHandler()" type="submit"> Google</button> -->
+              <a href="http://localhost:3001/appinvoice/auth/google" class="btn btn-social btn-block btn-google" mat-button>Google</a>
+              <a href="http://localhost:3001/appinvoice/auth/github" class="btn btn-social btn-block btn-google" mat-button>Git</a>
+              </div>
+            <!-- <button mat-raised-button class="btn-block" [disabled]="!authForm.valid" type="submit" color="accent">{{title}}</button>
+            <a href="http://localhost:3001/appinvoice/auth/google" class="btn btn-social btn-block btn-google" mat-button>
+              <i class="fa fa-google"></i>
+              Login with Google
+            </a> -->
+
             <button mat-raised-button [disabled]="!authForm.valid" type="submit" color="accent">{{title}}</button>
+
           </div>
 
         </form>

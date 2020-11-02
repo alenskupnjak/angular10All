@@ -60,7 +60,7 @@
 
         <!--  ****** APLIKACIJA INVOICE  ************  -->
         <button mat-button
-          *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          *ngIf="izborAplikacije ==='app-invoice' && user !==''  ? true: false"
           routerLink="/app-invoice/invoice"
           [ngClass]="{'menu-item-active': URLroute==='/app-invoice'}"
           routerLinkActive="menu-item-active"
@@ -68,7 +68,7 @@
         </button>
 
         <button mat-button
-          *ngIf="izborAplikacije ==='app-invoice' ? true: false"
+          *ngIf="izborAplikacije ==='app-invoice'  && user !=='' ? true: false"
           routerLink="/app-invoice/clients"
           routerLinkActive="menu-item-active"
           class="btn menu-item"><span>Clients</span>
@@ -95,11 +95,10 @@
           <fa-icon [icon]="faSignInAlt"></fa-icon> Sign in
         </button>
 
+        <!-- *ngIf="izborAplikacije ==='app-invoice' && user !='' ? true: false" -->
+        <!-- routerLink="/" -->
         <button mat-button
-          *ngIf="izborAplikacije ==='app-invoice' && user !='' ? true: false"
-          (click)="logoutInvoiceAplication()"
-          routerLink="/"
-          >
+        *ngIf="user ==='' ? false: true" (click)="logoutInvoiceAplication()">
           <fa-icon [icon]="faSignOutAlt"></fa-icon> Sign out
         </button>
         <!-- **** END APLIKACIJA INVOICE *****-->

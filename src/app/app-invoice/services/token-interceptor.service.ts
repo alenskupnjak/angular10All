@@ -30,7 +30,6 @@ export class TokenInvoiceInterceptorService implements HttpInterceptor {
     if (token) {
       headersConfig['Authorization'] = `Bearer ${token}`;
     }
-
     const authRequest = req.clone({ setHeaders: headersConfig });
     return next.handle(authRequest);
   }

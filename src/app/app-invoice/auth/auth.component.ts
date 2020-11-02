@@ -1,17 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { JwtLocalStorageService } from '../services/jwt.localstorege.service';
+// import {
+//   faGoogle,
+//   faTable,
+//   faSignOutAlt,
+//   faSignInAlt,
+// } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
   authForm: FormGroup;
+  subdestroyLogin: Subscription
+  subdestroySignup: Subscription
   isResultsLoading = false; // SPPINER
   // Inicijalno je title prazan
   title = '';
@@ -44,7 +53,7 @@ export class AuthComponent implements OnInit {
     // SIGNUP SIGNUP SIGNUP SIGNUP
     if (this.title === 'Signup') {
       this.isResultsLoading = true; // SPPINER
-      this.authService.signup(this.authForm.value).subscribe(
+      this.subdestroySignup = this.authService.signup(this.authForm.value).subscribe(
         (data) => {
 
           // Javljam poruku da je korisik kreiran
@@ -53,7 +62,7 @@ export class AuthComponent implements OnInit {
           });
 
           // preusmjeravam nakon kreiranja klijenta na login
-          this.router.navigate(['/app-invoice', 'login']);
+          this.router.navigate(['/app-invoice', 'invoice']);
         },
         (err) => {
           this.errorHandler(err, 'Opps, something went wrong');
@@ -63,19 +72,30 @@ export class AuthComponent implements OnInit {
     } else {
       // LOGIN LOGIN LOGIN LOGIN LOGIN
       this.isResultsLoading = true; // SPPINER
-      this.authService.login(this.authForm.value).subscribe(
+      this.subdestroyLogin = this.authService.login(this.authForm.value).subscribe(
         (data) => {
           console.log('LOGin', data);
           this.snackBar.open('Korisnik se je ulogirao.', 'Success', {
             duration: 3000,
           });
           this.jwtService.seToken(data.token);
-          this.router.navigate(['/app-invoice']);
+          this.router.navigate(['/app-invoice','invoice']);
         },
         (err) => this.errorHandler(err, 'Opps, something went wrong'),
         () => (this.isResultsLoading = false)
       );
     }
+  }
+
+
+  googleAuthHandler() {
+    console.log('xx');
+    this.authService.googleAuth().subscribe(
+      data => {
+        console.log(data);
+      },
+      err => this.errorHandler(err, 'Opps, something went wrong')
+    );
   }
 
   // Javljanje greške na ekranu
@@ -85,5 +105,10 @@ export class AuthComponent implements OnInit {
     this.snackBar.open(message, 'Error', {
       duration: 2000,
     });
+  }
+
+  ngOnDestroy() {
+    // this.subdestroyLogin.unsubscribe();
+    // this.subdestroySignup.unsubscribe();
   }
 }
