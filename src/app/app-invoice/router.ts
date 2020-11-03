@@ -13,11 +13,12 @@ const routes: Routes = [
   {
     path: '',
     component: InvoiceComponent,
+    // canActivate: [AuthGuardService],
     children: [
       // {
       //   path: 'invoice',
       //   component: InvoiceListingComponent,
-      //   canActivateChild: [AuthGuardService],
+      //   // canActivateChild: [AuthGuardService],
       // },
       // {
       //   path: 'clients',

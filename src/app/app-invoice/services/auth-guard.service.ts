@@ -29,6 +29,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
     console.log('********************************');
 
     if (this.jwtService.getToken()) {
+      return true;
       return ObservableOf (true);
     }
 
@@ -55,23 +56,23 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
           if (authenticated.authstatus === true) {
             console.log('ajmoo');
             this.jwtService.seToken(token);
-            this.router.navigate(['/app-invoice', 'invoice']);
+            this.router.navigate(['app-invoice', 'invoice']);
             return true;
           }
-          this.router.navigate(['/app-invoice','/login']);
+          this.router.navigate(['app-invoice','login']);
           return false;
         }),
         catchError((err: any) => {
           console.log('Imamo grešku');
 
-          this.router.navigate(['/app-invoice','/login']);
+          this.router.navigate(['app-invoice','login']);
           return ObservableOf(false);
         })
       );
     } else {
       // user nije logiran, navigavamo ga na logiranje
       console.log('Nema local storage');
-      this.router.navigate(['/app-invoice', '/login']);
+      this.router.navigate(['app-invoice', 'login']);
       ObservableOf(false);
     }
   }

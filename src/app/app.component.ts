@@ -63,13 +63,6 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
   // pocetna vrijednost za sidemenu, zatvoren je
   isShowing: boolean = false;
-
-  // // Sticky START
-  // @ViewChild('stickyMenu') menuElement: ElementRef;
-  // sticky: boolean = false;
-  // elementPosition: any;
-  // // sticky END
-
   @ViewChild('menuSide') menuSide;
 
   constructor(
@@ -90,7 +83,10 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
     // Pratimo promjenu logiranih korisnika, ispisujemo ime na menu
     this.authService.userAddedSource.subscribe((user) => {
+      console.log('url',this.router.url);
+
       if (user) {
+        this.izborAplikacije = 'app-invoice'
         this.user = user;
       }
     });
@@ -115,7 +111,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
   // izbor aplikacije
   toggleAplikacija(aplikacija) {
-    this.izborAplikacije = aplikacija;
+    this.izborAplikacije = aplikacija.trim();
     this.router.navigate([aplikacija]);
   }
 
@@ -130,6 +126,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
         this.user = '';
         this.JwtService.destroyToken();
         this.router.navigate(['app-invoice', 'login']);
+        this.izborAplikacije =''
       },
       (err) => {
         console.log(err);

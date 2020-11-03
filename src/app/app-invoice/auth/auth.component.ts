@@ -62,7 +62,7 @@ export class AuthComponent implements OnInit, OnDestroy {
           });
 
           // preusmjeravam nakon kreiranja klijenta na login
-          this.router.navigate(['/app-invoice', 'invoice']);
+          this.router.navigate(['app-invoice', 'invoice']);
         },
         (err) => {
           this.errorHandler(err, 'Opps, something went wrong');
@@ -79,7 +79,7 @@ export class AuthComponent implements OnInit, OnDestroy {
             duration: 3000,
           });
           this.jwtService.seToken(data.token);
-          this.router.navigate(['/app-invoice','invoice']);
+          this.router.navigate(['app-invoice','invoice']);
         },
         (err) => this.errorHandler(err, 'Opps, something went wrong'),
         () => (this.isResultsLoading = false)
