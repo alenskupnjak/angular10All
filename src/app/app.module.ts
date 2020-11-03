@@ -30,6 +30,7 @@ import { CoursesService } from './services/courses.service';
 import { CourseResolver } from './services/course.resolver';
 import { AuthService } from '../app/app-invoice/services/auth.service';
 import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.component';
+import { TokenInvoiceInterceptorService } from './app-invoice/services/token-interceptor.service';
 // import { JwtLocalStorageService } from './app-invoice/services/jwt.localstorege.service';
 // import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -56,8 +57,18 @@ import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.comp
     MatToolbarModule,
     AuthModule,
   ],
-  providers: [CoursesService, CourseResolver, AuthService],
+  providers: [
+    CoursesService,
+    CourseResolver,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInvoiceInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
+
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

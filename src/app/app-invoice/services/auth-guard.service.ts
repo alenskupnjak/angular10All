@@ -26,7 +26,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable <boolean> | boolean {
-    console.log('********************************');
+    console.log('****** AuthGuardService *******');
 
     if (this.jwtService.getToken()) {
       return true;

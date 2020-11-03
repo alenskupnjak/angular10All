@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -26,7 +27,7 @@ import { EditInvoiceResolverService } from './services/edit-invoice-resolver.ser
   imports: [
     CommonModule,
     AppInvoiceRoutingModule,
-    HttpClientModule,
+    // HttpClientModule,
     MaterialModule,
     InvoicesModule,
     ClientsModule,
@@ -40,11 +41,11 @@ import { EditInvoiceResolverService } from './services/edit-invoice-resolver.ser
     // AuthService,
     AuthGuardService,
     EditInvoiceResolverService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInvoiceInterceptorService,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: TokenInvoiceInterceptorService,
+    //   multi: true,
+    // },
   ],
 })
 export class InvoiceModule {}

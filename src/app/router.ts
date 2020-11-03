@@ -4,12 +4,13 @@ import { AboutComponent } from './menu/about/about.component';
 import { PokusniComponent } from './app-universitycourse/pokusni/pokusni.component';
 import { PageNotFoundComponent } from './menu/page-not-found/page-not-found.component';
 import { AuthComponent } from './app-invoice/auth/auth.component';
+import { AuthGuardService } from './app-invoice/services/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',  // Početna stranica
     component: AboutComponent,
-    pathMatch: 'full',
+    canActivate: [AuthGuardService],
   },
   {
     path: 'about',   // Početna stranica
@@ -39,6 +40,7 @@ const routes: Routes = [
     component: PageNotFoundComponent,
   },
 ];
+
 
 @NgModule({
   imports: [

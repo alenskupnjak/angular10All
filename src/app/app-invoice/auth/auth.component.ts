@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { JwtLocalStorageService } from '../services/jwt.localstorege.service';
+import { environment } from '../../../environments/environment';
 // import {
 //   faGoogle,
 //   faTable,
@@ -18,6 +19,7 @@ import { JwtLocalStorageService } from '../services/jwt.localstorege.service';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit, OnDestroy {
+  URLBackend = environment.URL_ANGULAR10ALLBACKEND
   authForm: FormGroup;
   subdestroyLogin: Subscription
   subdestroySignup: Subscription
@@ -55,7 +57,6 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.isResultsLoading = true; // SPPINER
       this.subdestroySignup = this.authService.signup(this.authForm.value).subscribe(
         (data) => {
-
           // Javljam poruku da je korisik kreiran
           this.snackBar.open('Korisnik kreiran', 'Success', {
             duration: 3000,
@@ -89,7 +90,6 @@ export class AuthComponent implements OnInit, OnDestroy {
 
 
   googleAuthHandler() {
-    console.log('xx');
     this.authService.googleAuth().subscribe(
       data => {
         console.log(data);
