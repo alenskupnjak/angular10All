@@ -25,25 +25,30 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable <boolean> {
+  ): Observable <boolean> | boolean {
+    console.log('********************************');
 
     if (this.jwtService.getToken()) {
       return ObservableOf (true);
     }
 
-
-    const token = route.queryParamMap.get('token');
+    let token = this.jwtService.getToken()
     console.log('Prosao kroz auth guard, Token= ', token);
-    if (token) {
+
+
+    if ( route.queryParamMap.get('token')) {
+      token = route.queryParamMap.get('token')
       this.jwtService.seToken(token);
+      console.log(' Token dobiven iz backenda= ', token);
     }
 
-    console.log(' U prolazu-c', this.jwtService.getToken());
+    console.log(' TOKEN definiran',token);
     // ako je user logiran
     if (token) {
       // return true;
       return this.authService.isAuthenticated(token).pipe(
         map(authenticated => {
+          // debugger;
           console.log(authenticated,'tototo');
           this.authService.userAddedSource.next(authenticated.user)
 
@@ -57,6 +62,8 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
           return false;
         }),
         catchError((err: any) => {
+          console.log('Imamo grešku');
+
           this.router.navigate(['/app-invoice','/login']);
           return ObservableOf(false);
         })
@@ -72,7 +79,8 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
   canActivateChild(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> {
+  ): Observable<boolean> | boolean {
+
     return this.canActivate(route, state);
   }
 

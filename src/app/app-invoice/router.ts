@@ -19,6 +19,11 @@ const routes: Routes = [
       //   component: InvoiceListingComponent,
       //   canActivateChild: [AuthGuardService],
       // },
+      // {
+      //   path: 'clients',
+      //   component: ClientListingComponent,
+      //   canActivate: [AuthGuardService],
+      // },
     ],
   },
   {

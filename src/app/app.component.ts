@@ -50,7 +50,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
   // Početna aplikacija
   title = 'angular10All';
-  izborAplikacije = 'app-invoice';
+  izborAplikacije = '';
 
   // Font Awesome Icons
   faCoffee = faCoffee;
@@ -84,7 +84,9 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate['app-invoice'];
+    // this.router.navigate['app-invoice'];
+    // Prvo učitavanje brišemo sve podatke od logiranja
+    this.JwtService.destroyToken();
 
     // Pratimo promjenu logiranih korisnika, ispisujemo ime na menu
     this.authService.userAddedSource.subscribe((user) => {
@@ -117,18 +119,6 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     this.router.navigate([aplikacija]);
   }
 
-  // // Sticky Sticky Sticky Sticky Sticky Sticky Sticky
-  // @HostListener('window:scroll', ['$event'])
-  // handleScroll() {
-  //   const windowScroll = window.pageYOffset;
-  //   if (windowScroll >= this.elementPosition) {
-
-  //     this.sticky = true;
-  //   } else {
-  //     console.log('++++');
-  //     this.sticky = false;
-  //   }
-  // }
 
   onResize(event) {
     this.breakpoint = event.target.innerWidth <= 400 ? 5 : 6;
@@ -138,7 +128,6 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     this.authService.logOut().subscribe(
       (data) => {
         this.user = '';
-        console.log(data);
         this.JwtService.destroyToken();
         this.router.navigate(['app-invoice', 'login']);
       },

@@ -13,7 +13,6 @@ export class TokenInvoiceInterceptorService implements HttpInterceptor {
   constructor(private jwtService: JwtLocalStorageService) {}
 
   intercept( req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     const headersConfig = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -24,13 +23,16 @@ export class TokenInvoiceInterceptorService implements HttpInterceptor {
     const token = this.jwtService.getToken();
 
     if(!token) {
-      console.log('nema tokena!');
+      console.log('Nema tokena!');
     }
 
     if (token) {
       headersConfig['Authorization'] = `Bearer ${token}`;
+      headersConfig['MOJ'] = `Moj header`;
     }
     const authRequest = req.clone({ setHeaders: headersConfig });
+    console.log('--------------');
+
     return next.handle(authRequest);
   }
 }

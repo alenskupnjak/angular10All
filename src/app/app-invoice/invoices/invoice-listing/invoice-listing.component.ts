@@ -63,7 +63,11 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
       this.spinnerLoad = false;
       this.duzinaZapisa = data.length;
       return (this.dataSource.data = data);
-    });
+    }),
+      (err) => {
+
+        console.log('getInvoices()=',err);
+      };
   }
 
   ngAfterViewInit() {
@@ -88,7 +92,7 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
       },
       (err) => {
-        this.errorHandler(err,'Invoice nije obrisan')
+        this.errorHandler(err, 'Invoice nije obrisan');
         console.log(err);
       }
     );

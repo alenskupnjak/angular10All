@@ -77,7 +77,7 @@
         <span class="fill-space"></span>
 
         <button mat-button
-          *ngIf="izborAplikacije ==='app-invoice' && user !='' ? true: false">
+          *ngIf="user !='' ? true: false">
           <mat-icon>person</mat-icon>{{user}}
         </button>
         <button mat-button
@@ -89,7 +89,7 @@
 
 
         <button mat-button
-          *ngIf="izborAplikacije ==='app-invoice' && user ==='' ? true: false"
+          *ngIf="user ==='' ? true: false"
           routerLink="/app-invoice/signup"
           routerLinkActive="menu-item-active">
           <fa-icon [icon]="faSignInAlt"></fa-icon> Sign in

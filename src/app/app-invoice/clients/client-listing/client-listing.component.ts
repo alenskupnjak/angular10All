@@ -46,7 +46,12 @@ export class ClientListingComponent implements OnInit, AfterViewInit {
         this.spinnerLoad = false;
       },
       (err) => {
-        console.log(err);
+        console.log('getClients()',err);
+        this.snackBar.open('Nešto nije u redu sa logiranim podacima. Moli da se ponovo logirate', 'Fail', {
+          duration: 4000,
+          verticalPosition: this.verticalPosition,
+        });
+        this.router.navigate(['/app-invoice', 'login']);
       }
     );
   }

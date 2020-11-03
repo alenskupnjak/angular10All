@@ -35,17 +35,10 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-
-    this.clientServices.getClients().subscribe(data=>{
-      console.log('nnnn');
+    this.clientServices.getClients().subscribe((data) => {
       this.clients = data;
-      console.log(data);
+    });
 
-    })
-
-    // this.clientServices.fetchAllClientsAsync().then((e) => {
-    //   this.clients = e;
-    // });
     this.createForm();
     // definiram formu ako je EDIT/New
     this.setInvoiceForm();
@@ -69,26 +62,26 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
       const id = data['id'];
       //  Nema id u route, znaci nova je zapis
       if (!id) {
-        this.title ='Nova forma'
+        this.title = 'Nova forma';
         return;
       }
-      this.title ='Editirana forma'
+      this.title = 'Editirana forma';
 
-          // // OPCIJA BEZ sesolvera
-          // this.invoiceService.getInvoice(id).subscribe(
-          //   (sviPodaciForme) => {
-          //     console.log(sviPodaciForme);
-          //     this.invoice = sviPodaciForme;
-          //     this.invoiceForm.patchValue(this.invoice);
-          //   },
-          //   (err) => this.errorHandler(err, 'Nisam nasao zapis')
-          // );
+      // // OPCIJA BEZ sesolvera
+      // this.invoiceService.getInvoice(id).subscribe(
+      //   (sviPodaciForme) => {
+      //     console.log(sviPodaciForme);
+      //     this.invoice = sviPodaciForme;
+      //     this.invoiceForm.patchValue(this.invoice);
+      //   },
+      //   (err) => this.errorHandler(err, 'Nisam nasao zapis')
+      // );
 
       // Ovo je opsija SA!!! RESOLVEROM
       this.aktivnaRouta.data.subscribe((data: { invoice: Invoice }) => {
         this.invoice = data.invoice;
         this.invoiceForm.patchValue(this.invoice);
-      })
+      });
     });
   }
 

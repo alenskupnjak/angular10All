@@ -25,27 +25,7 @@ export class InvoiceService {
     return responseData;
   }
 
-  getInvoices(): // {
-  // page,
-  // perPage,
-  // sortField,
-  // sortDir,
-  // filter,
-  // }
-  Observable<any> {
-    // let queryString = `${BASE_URL}/invoices?page=${
-    //   page + 1
-    // }&perPage=${perPage}`;
-
-    // if (sortField && sortDir) {
-    //   queryString = `${queryString}&sortField=${sortField}&sortDir=${sortDir}`;
-    // }
-
-    // if (filter) {
-    //   queryString = `${queryString}&filter=${filter}`;
-    // }
-
-    // return this.httpClient.get<InvoicePaginationRsp>(queryString);
+  getInvoices(): Observable<any> {
     return this.httpClient.get<InvoicePaginationRsp>(
       environment.URL_Invoice + '/invoices'
     );
@@ -53,21 +33,31 @@ export class InvoiceService {
 
   // EDIT
   getInvoice(id: string): Observable<Invoice> {
-    return this.httpClient.get<Invoice>(`${environment.URL_Invoice}/invoices/${id}`);
+    return this.httpClient.get<Invoice>(
+      `${environment.URL_Invoice}/invoices/${id}`
+    );
   }
 
   // CREATE INVOICE
   createInvoice(body: Invoice): Observable<Invoice> {
-    return this.httpClient.post<Invoice>(`${environment.URL_Invoice}/invoices`,body);
+    return this.httpClient.post<Invoice>(
+      `${environment.URL_Invoice}/invoices`,
+      body
+    );
   }
 
   // DELETE DELETE DELETE DELETE
   deleteInvoice(id: string): Observable<Invoice> {
-    return this.httpClient.delete<Invoice>(`${environment.URL_Invoice}/invoices/${id}`);
+    return this.httpClient.delete<Invoice>(
+      `${environment.URL_Invoice}/invoices/${id}`
+    );
   }
 
   // UPDATE UPDATE UPDATE UPDATE
   updateInvoice(id: string, body: Invoice): Observable<Invoice> {
-    return this.httpClient.put<Invoice>(`${environment.URL_Invoice}/invoices/${id}`,body);
+    return this.httpClient.put<Invoice>(
+      `${environment.URL_Invoice}/invoices/${id}`,
+      body
+    );
   }
 }
