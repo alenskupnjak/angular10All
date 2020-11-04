@@ -68,9 +68,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
       );
     } else {
       // user nije logiran, navigavamo ga na logiranje
-      console.log('Nema local storage.');
-      // this.router.navigate(['app-invoice', 'login']);
-      this.router.navigate(['/about',]);
+      console.log('Nema local storage!');
+      this.router.navigate(['app-invoice', 'login']);
+      // this.router.navigate(['/about',]);
       ObservableOf(false);
     }
   }

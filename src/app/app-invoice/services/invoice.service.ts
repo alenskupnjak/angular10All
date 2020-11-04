@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Invoice } from '../models/invoice';
-import { InvoicePaginationRsp } from '../models/invoice';
+
 
 @Injectable({ providedIn: 'root' })
 export class InvoiceService {
@@ -26,7 +26,7 @@ export class InvoiceService {
   }
 
   getInvoices(): Observable<any> {
-    return this.httpClient.get<InvoicePaginationRsp>(
+    return this.httpClient.get<any>(
       environment.URL_Invoice + '/invoices'
     );
   }

@@ -20,7 +20,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field color="accent"  >
+          <mat-form-field color="accent" >
             <input matInput placeholder="Password" formControlName="password" type="password">
             <mat-error *ngIf="authForm.controls.password.invalid && authForm.controls.password.touched"> password is
               required</mat-error>
@@ -29,6 +29,7 @@
           <div>
 
             <button mat-raised-button class="btn-block" [disabled]="!authForm.valid" type="submit"
+
             color="accent">{{title}}</button>
             <a href="{{URLBackend}}/appinvoice/auth/google" class="btn btn-social btn-block btn-google" mat-button>
               <img src="https://www.ucim.eu/img/google.png" alt="Can't Display Image" width="25" height="25">

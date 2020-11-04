@@ -9,10 +9,4 @@ export class Invoice {
   invoiceclient: string;
 }
 
-export class InvoicePaginationRsp {
-  docs: Invoice[];
-  total: number;
-  pages: number;
-  page: number;
-  limit: number;
-}
+

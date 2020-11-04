@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { InvoiceComponent } from './invoice.component';
 import { InvoiceFormComponent } from './invoices/invoice-form/invoice-form.component';
 import { InvoiceListingComponent } from './invoices/invoice-listing/invoice-listing.component';
+import { InvoiceViewComponent } from './invoices/invoice-view/invoice-view.component';
 import { ClientListingComponent } from './clients/client-listing/client-listing.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -40,6 +41,14 @@ const routes: Routes = [
   {
     path: 'invoice/:id',
     component: InvoiceFormComponent,
+    canActivate: [AuthGuardService],
+    resolve: {
+      invoice: EditInvoiceResolverService,
+    },
+  },
+  {
+    path: 'invoice/:id/view',
+    component: InvoiceViewComponent,
     canActivate: [AuthGuardService],
     resolve: {
       invoice: EditInvoiceResolverService,

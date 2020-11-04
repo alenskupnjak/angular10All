@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from '../../models/invoice';
 
-import { InvoicePaginationRsp } from '../../models/invoice';
 import {
   MatSnackBar,
   MatSnackBarVerticalPosition,
@@ -141,5 +140,11 @@ export class InvoiceListingComponent implements OnInit, AfterViewInit {
     } else {
       this.poljezaBrisanje.splice(index, 1);
     }
+  }
+
+  view(id) {
+    console.log(id);
+    this.router.navigate(['app-invoice','invoice', id, 'view']);
+
   }
 }
