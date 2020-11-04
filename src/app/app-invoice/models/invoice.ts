@@ -1,3 +1,5 @@
+import { Client } from '../models/client';
+
 export class Invoice {
   _id: string;
   item: string;
@@ -6,7 +8,5 @@ export class Invoice {
   due: Date;
   rate: number;
   tax: number;
-  invoiceclient: string;
+  invoiceclient: Client;
 }
-
-

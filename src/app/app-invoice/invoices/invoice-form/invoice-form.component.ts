@@ -18,6 +18,7 @@ import { InvoiceService } from '../../services/invoice.service';
 })
 export class InvoiceFormComponent implements OnInit, AfterViewInit {
   clients;
+  podatak;
   title: string;
   private invoice: Invoice;
   invoiceForm: FormGroup;
@@ -67,20 +68,25 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
       }
       this.title = 'Editirana forma';
 
-      // // OPCIJA BEZ sesolvera
-      // this.invoiceService.getInvoice(id).subscribe(
-      //   (sviPodaciForme) => {
-      //     console.log(sviPodaciForme);
-      //     this.invoice = sviPodaciForme;
-      //     this.invoiceForm.patchValue(this.invoice);
-      //   },
-      //   (err) => this.errorHandler(err, 'Nisam nasao zapis')
-      // );
-
       // Ovo je opsija SA!!! RESOLVEROM
       this.aktivnaRouta.data.subscribe((data: { invoice: Invoice }) => {
         this.invoice = data.invoice;
-        this.invoiceForm.patchValue(this.invoice);
+
+        if (this.invoice.invoiceclient) {
+          this.invoiceForm.patchValue({
+            invoiceclient: this.invoice.invoiceclient._id,
+          });
+        }
+
+        this.invoiceForm.patchValue({
+          item: this.invoice.item,
+          qty: this.invoice.qty,
+          date: this.invoice.date,
+          due: this.invoice.due,
+          rate: this.invoice.rate,
+          tax: this.invoice.tax,
+        });
+        console.log('da vidimo', this.invoiceForm.value);
       });
     });
   }

@@ -21,13 +21,14 @@ import { JwtLocalStorageService } from './services/jwt.localstorege.service';
 import { TokenInvoiceInterceptorService } from './services/token-interceptor.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { EditInvoiceResolverService } from './services/edit-invoice-resolver.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [InvoiceComponent],
   imports: [
     CommonModule,
     AppInvoiceRoutingModule,
-    // HttpClientModule,
+    // HttpClientModule,  mora biti na jednom mjestu
     MaterialModule,
     InvoicesModule,
     ClientsModule,
@@ -38,6 +39,7 @@ import { EditInvoiceResolverService } from './services/edit-invoice-resolver.ser
     InvoiceService,
     ClientService,
     JwtLocalStorageService,
+
     // AuthService,
     AuthGuardService,
     EditInvoiceResolverService,

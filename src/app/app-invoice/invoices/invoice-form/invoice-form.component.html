@@ -39,11 +39,10 @@
     </mat-form-field>
 
     <mat-form-field color="accent">
-      <mat-label>Clients</mat-label>
-      <mat-select formControlName="invoiceclient">
-        <!-- <mat-option *ngFor="let klijent of clients" [value]="client.value"> -->
-        <mat-option *ngFor="let klijent of clients" [value]="klijent._id">
-          {{klijent.firstName}}
+      <!-- <mat-label>Clients</mat-label> -->
+      <mat-select placeholder="Select client" formControlName="invoiceclient">
+        <mat-option *ngFor="let c of clients" [value]="c._id">
+          {{c.firstName}}
         </mat-option>
       </mat-select>
     </mat-form-field>

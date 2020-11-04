@@ -9,6 +9,7 @@ mat-card.card {
   justify-content: center;
   align-items: center;
   text-align: center;
+  height: 800px;
   /* margin: 20px auto; */
 }
 

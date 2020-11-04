@@ -38,7 +38,7 @@
     </table>
   </mat-card-content>
   <mat-card-actions>
-    <!-- <button mat-button [routerLink]="['/dashboard','invoices',invoice._id]">Edit</button> -->
+    <a mat-button routerLink="/app-invoice/invoice/{{invoice._id}}">Edit</a>
     <button mat-raised-button color="primary">Download</button>
   </mat-card-actions>
 </mat-card>
