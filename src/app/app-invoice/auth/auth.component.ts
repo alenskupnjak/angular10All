@@ -6,12 +6,13 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { JwtLocalStorageService } from '../services/jwt.localstorege.service';
 import { environment } from '../../../environments/environment';
-// import {
-//   faGoogle,
-//   faTable,
-//   faSignOutAlt,
-//   faSignInAlt,
-// } from '@fortawesome/free-solid-svg-icons';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import {
+  faTable,
+  faSignOutAlt,
+  faSignInAlt,
+} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-auth',
@@ -19,6 +20,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit, OnDestroy {
+  googleSlika ="../../shared/img/google.png"
   URLBackend = environment.URL_ANGULAR10ALLBACKEND
   authForm: FormGroup;
   subdestroyLogin: Subscription

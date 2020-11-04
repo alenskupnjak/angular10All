@@ -1,6 +1,13 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '../../../shared/material.module';
-
 import { ClietDialogComponent } from './cliet-dialog.component';
 
 describe('ClietDialogComponent', () => {
@@ -9,9 +16,17 @@ describe('ClietDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClietDialogComponent,  MaterialModule ]
-    })
-    .compileComponents();
+      imports: [
+        MaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        MatDialogModule,
+        // MatDialog,
+        MatDialogRef,
+      ],
+      declarations: [ClietDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -2,7 +2,7 @@
   "name": "angular10-all",
   "version": "0.0.0",
   "scripts": {
-    "start3000": "ng serve --port 3000 --open",
+    "start3000": "ng serve --port 3000 --open --servePath=angularAll",
     "start3000proxy": "ng serve --port 3000 --open --proxy-config ./proxy.json",
     "serverdev3002": "ts-node-dev -P ./server/server.tsconfig.json ./server/server.ts",
     "build": "ng build --prod --aot",

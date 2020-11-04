@@ -29,12 +29,7 @@ import { JwtLocalStorageService } from './app-invoice/services/jwt.localstorege.
 import { AuthService } from './app-invoice/services/auth.service';
 import { Subscription } from 'rxjs';
 
-// export interface Tile {
-//   color: string;
-//   cols: number;
-//   rows: number;
-//   text: string;
-// }
+
 
 @Component({
   selector: 'app-root',
@@ -83,8 +78,6 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
 
     // Pratimo promjenu logiranih korisnika, ispisujemo ime na menu
     this.authService.userAddedSource.subscribe((user) => {
-      console.log('url',this.router.url);
-
       if (user) {
         this.izborAplikacije = 'app-invoice'
         this.user = user;
@@ -125,7 +118,7 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
       (data) => {
         this.user = '';
         this.JwtService.destroyToken();
-        this.router.navigate(['app-invoice', 'login']);
+        this.router.navigate(['about']);
         this.izborAplikacije =''
       },
       (err) => {

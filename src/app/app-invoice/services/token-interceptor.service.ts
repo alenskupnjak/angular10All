@@ -13,12 +13,11 @@ export class TokenInvoiceInterceptorService implements HttpInterceptor {
   constructor(private jwtService: JwtLocalStorageService) {}
 
   intercept( req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('Prosao kroz interceptor..');
     const headersConfig = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     };
-
-    console.log('Prosao kroz interceptor..');
 
     const token = this.jwtService.getToken();
 
@@ -31,8 +30,6 @@ export class TokenInvoiceInterceptorService implements HttpInterceptor {
       headersConfig['MOJ'] = `Moj header`;
     }
     const authRequest = req.clone({ setHeaders: headersConfig });
-    console.log('--------------');
-
     return next.handle(authRequest);
   }
 }

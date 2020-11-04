@@ -113,7 +113,7 @@ main > *:not(router-outlet) {
 }
 
 .aktivno {
-  box-shadow: 5px 5px blue, 10px 10px red, 14px 14px green;
+  box-shadow: 5px 5px #b0bec5, 10px 10px #607d8b, 14px 14px #455a64;
 }
 
 .pomakni {

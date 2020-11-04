@@ -49,12 +49,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
       // return true;
       return this.authService.isAuthenticated(token).pipe(
         map(authenticated => {
-          // debugger;
-          console.log(authenticated,'tototo');
           this.authService.userAddedSource.next(authenticated.user)
 
           if (authenticated.authstatus === true) {
-            console.log('ajmoo');
             this.jwtService.seToken(token);
             this.router.navigate(['app-invoice', 'invoice']);
             return true;
@@ -71,8 +68,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild, OnDestro
       );
     } else {
       // user nije logiran, navigavamo ga na logiranje
-      console.log('Nema local storage');
-      this.router.navigate(['app-invoice', 'login']);
+      console.log('Nema local storage.');
+      // this.router.navigate(['app-invoice', 'login']);
+      this.router.navigate(['/about',]);
       ObservableOf(false);
     }
   }

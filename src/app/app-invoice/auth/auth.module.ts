@@ -4,6 +4,7 @@ import { AuthComponent } from './auth.component';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    FontAwesomeModule
   ]
 })
 export class AuthModule { }
