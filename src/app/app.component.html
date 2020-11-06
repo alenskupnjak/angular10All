@@ -2,6 +2,7 @@
   <!-- MENU sa strane -->
   <mat-sidenav #menuSide class="sidenav" [opened]="isShowing">
     <h2>Aplikacija</h2>
+    <mat-divider></mat-divider>
     <mat-nav-list>
       <!-- Aplikacija Course -->
       <a mat-list-item
@@ -11,13 +12,37 @@
         <span>Course</span>
       </a>
 
-      <!-- Aplikacija Invoice -->
+      <!-- APLIKACIJA INVOICE -->
       <a mat-list-item
         (click)="toggleAplikacija('app-invoice')"
         class="matlist" (click)="toggleSidenav()">
         <fa-icon [icon]="faTable"></fa-icon>
-        <span>Invoice </span>
+        <span>Invoice</span>
       </a>
+
+      <!-- FLEX INVOICE -->
+      <a mat-list-item
+        (click)="toggleAplikacija('flexLayout')"
+        class="matlist" (click)="toggleSidenav()">
+        <mat-icon>view_compact</mat-icon>
+        <span>Flex</span>
+      </a>
+
+      <!-- SIGN OUT -->
+      <a mat-list-item
+        (click)="logoutInvoiceAplication()"
+        class="matlist" (click)="toggleSidenav()">
+        <fa-icon [icon]="faSignOutAlt"></fa-icon>Sign out
+      </a>
+
+      <!-- SIGN IN LOGIN-->
+      <a mat-list-item
+        routerLink="/app-invoice/login"
+        class="matlist" (click)="toggleSidenav()">
+        <mat-icon>account_circle</mat-icon>Login
+      </a>
+
+
 
       <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
         <mat-icon>question_answer</mat-icon>
@@ -29,10 +54,10 @@
 
   <mat-sidenav-content class="page-wrap">
 
-    <!-- MENU HEADER TOP -->
+    <!-- MENU HEADER TOP FIXED ! -->
     <div class="fixed-header">
       <mat-toolbar color="primary">
-        <!-- Ikona CLOSE/OPEN -->
+        <!-- Ikona CLOSE/OPEN menu sa lijeve strane-->
         <button mat-icon-button (click)="toggleSidenav()">
           <mat-icon>menu</mat-icon>
         </button>
@@ -73,56 +98,73 @@
           routerLinkActive="menu-item-active"
           class="btn menu-item"><span>Clients</span>
         </button>
+        <!-- **** END APLIKACIJA INVOICE *****-->
+
+        <!-- START FLEX ******************* FLEX-->
+        <button mat-button
+        *ngIf="izborAplikacije ==='flexLayout'"
+        routerLink="/flexLayout/base"
+        routerLinkActive="menu-item-active">
+        <mat-icon>grid_on</mat-icon>Base
+        </button>
+
+        <button mat-button
+        *ngIf="izborAplikacije ==='flexLayout'"
+        routerLink="/flexLayout/base"
+        routerLinkActive="menu-item-active">
+        <mat-icon>grid_off</mat-icon>Base
+        </button>
+
+        <button mat-button
+        *ngIf="izborAplikacije ==='flexLayout'"
+        routerLink="/flexLayout/base"
+        routerLinkActive="menu-item-active">
+        <mat-icon>view_comfy</mat-icon>Base
+        </button>
+        <!--  END FLEX  *******************  FLEX-->
 
         <span class="fill-space"></span>
 
-        <button mat-button
+        <button mat-button fxHide.xs
           *ngIf="user !='' ? true: false">
           <mat-icon>person</mat-icon>{{user}}
         </button>
+
+        <button mat-button fxHide.xs
+           *ngIf="user ==='' ? false: true" (click)="logoutInvoiceAplication()">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon> Sign out
+         </button>
+
         <button mat-button
-          *ngIf="izborAplikacije ==='app-invoice' && user ==='' ? true: false"
-          routerLink="/app-invoice/login"
-          routerLinkActive="menu-item-active">
-          <mat-icon>account_circle</mat-icon> Login
+        *ngIf="izborAplikacije ==='app-invoice' && user ==='' ? true: false"
+        routerLink="/app-invoice/login"
+        routerLinkActive="menu-item-active">
+        <mat-icon>account_circle</mat-icon> Login
         </button>
 
-
-        <button mat-button
+        <button mat-button  fxHide.xs
           *ngIf="user ==='' ? true: false"
           routerLink="/app-invoice/signup"
           routerLinkActive="menu-item-active">
           <fa-icon [icon]="faSignInAlt"></fa-icon> Sign in
         </button>
 
-        <!-- *ngIf="izborAplikacije ==='app-invoice' && user !='' ? true: false" -->
-        <!-- routerLink="/" -->
-        <button mat-button
-        *ngIf="user ==='' ? false: true" (click)="logoutInvoiceAplication()">
-          <fa-icon [icon]="faSignOutAlt"></fa-icon> Sign out
-        </button>
-        <!-- **** END APLIKACIJA INVOICE *****-->
-
-        <button mat-button>
-          <mat-icon>help_outline</mat-icon>
-        </button>
       </mat-toolbar>
     </div>
     <!-- END MENU HEADER TOP -->
 
+    <!-- ************************************* -->
     <!-- GLAVNI SADRŽAJ -->
-    <main class="content">
-
-      <!-- Galvni dio -->
-      <div>
-        <div style="width: 80%;">
+    <main  fxLayout="row" class="content">
+      <!-- GLAVNI MENI -->
+        <div fxFlex="80%" fxFlex.lt-sm="100%" class="glavni-menu">
           <router-outlet></router-outlet>
         </div>
 
         <!-- Menu sa desne strane -->
-        <div class="pomakni">
+        <div fxFlex="20%" fxHide.xs  class="menu-desno">
           <mat-list role="list">
-            <h3>Odaberi aplikaciju</h3>
+            <h3 class="slozi" >Odaberi aplikaciju</h3>
 
             <mat-list-item role="listitem"
             (click)="toggleAplikacija('app-university')"
@@ -135,10 +177,16 @@
             [ngClass]="{'aktivno':izborAplikacije === 'app-invoice'}"
             class="aplikacija slozi"><fa-icon [icon]="faTable"></fa-icon> Invoice
             </mat-list-item>
+
+            <mat-list-item role="listitem"
+            (click)="toggleAplikacija('flexLayout')"
+            [ngClass]="{'aktivno':izborAplikacije === 'flexLayout'}"
+            class="aplikacija slozi"><fa-icon [icon]="faTable"></fa-icon> Flex grid
+            </mat-list-item>
+
+
           </mat-list>
         </div>
-
-      </div>
     </main>
 
 

@@ -30,6 +30,12 @@ const routes: Routes = [
       import('./app-invoice/invoice.module').then((m) => m.InvoiceModule),
   },
   {
+    path: 'flexLayout',   // Flex layout module
+    // loadChildren:'./app-invoice/app-invoice.module#AppInvoiceModule',
+    loadChildren: () =>
+      import('./flex-layout-example/flex-layout-example.module').then((m) => m.FlexLayoutExampleModule),
+  },
+  {
     //  Pokusni LINK
     path: 'pokus',
     component: PokusniComponent,

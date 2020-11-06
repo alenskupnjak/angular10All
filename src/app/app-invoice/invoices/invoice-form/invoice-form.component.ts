@@ -72,6 +72,7 @@ export class InvoiceFormComponent implements OnInit, AfterViewInit {
       this.aktivnaRouta.data.subscribe((data: { invoice: Invoice }) => {
         this.invoice = data.invoice;
 
+        
         if (this.invoice.invoiceclient) {
           this.invoiceForm.patchValue({
             invoiceclient: this.invoice.invoiceclient._id,

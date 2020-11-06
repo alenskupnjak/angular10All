@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  isDevMode,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -28,6 +29,7 @@ import { MatGridList } from '@angular/material/grid-list/grid-list';
 import { JwtLocalStorageService } from './app-invoice/services/jwt.localstorege.service';
 import { AuthService } from './app-invoice/services/auth.service';
 import { Subscription } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -37,8 +39,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnDestroy, OnChanges, OnInit {
-  breakpoint: number;
-  // private postsSub: Subscription;
+  // breakpoint: number;      priprema za brisanje
+  // private postsSub: Subscription; priprema za brisanje
 
   // Korisnik ispisan na menu
   user: string = '';
@@ -64,7 +66,8 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     public router: Router,
     private JwtService: JwtLocalStorageService,
     private aktivnaRouta: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private titleService: Title
   ) {}
 
   toggleSidenav() {
@@ -72,7 +75,16 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   }
 
   ngOnInit() {
-    // this.router.navigate['app-invoice'];
+    // Detektiram u kojem mod radim
+    if (isDevMode()) {
+      console.log("Development Mode!");
+      this.titleService.setTitle( 'Radni Ang10' );
+    } else {
+      this.titleService.setTitle( 'Angular 10 all' );
+      console.log("Super. Production mode!");
+    }
+
+
     // Prvo učitavanje brišemo sve podatke od logiranja
     this.JwtService.destroyToken();
 
@@ -109,9 +121,9 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
   }
 
 
-  onResize(event) {
-    this.breakpoint = event.target.innerWidth <= 400 ? 5 : 6;
-  }
+  // onResize(event) {
+  //   this.breakpoint = event.target.innerWidth <= 400 ? 5 : 6;
+  // }
 
   logoutInvoiceAplication() {
     this.authService.logOut().subscribe(

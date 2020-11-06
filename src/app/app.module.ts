@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './shared/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // za mobile frendly
 import 'hammerjs';
@@ -24,6 +25,8 @@ import { AppRoutingModule } from './router';
 import { UniversitycourseModule } from './app-universitycourse/universitycourse.module';
 import { InvoiceModule } from './app-invoice/invoice.module';
 import { AuthModule } from './app-invoice/auth/auth.module';
+import { FlexLayoutExampleModule } from './flex-layout-example/flex-layout-example.module';
+
 
 // SERVISI
 import { CoursesService } from './services/courses.service';
@@ -56,6 +59,8 @@ import { TokenInvoiceInterceptorService } from './app-invoice/services/token-int
     FontAwesomeModule,
     MatToolbarModule,
     AuthModule,
+    FlexLayoutModule,
+    FlexLayoutExampleModule
   ],
   providers: [
     CoursesService,
