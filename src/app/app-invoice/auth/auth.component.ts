@@ -57,9 +57,9 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.isResultsLoading = true; // SPPINER
     // SIGNUP SIGNUP SIGNUP SIGNUP
     if (this.title === 'Signup') {
-      this.isResultsLoading = true; // SPPINER
       this.subdestroySignup = this.authService
         .signup(this.authForm.value)
         .subscribe(
@@ -79,7 +79,6 @@ export class AuthComponent implements OnInit, OnDestroy {
         );
     } else {
       // LOGIN LOGIN LOGIN LOGIN LOGIN
-      this.isResultsLoading = true; // SPPINER
       this.subdestroyLogin = this.authService
         .login(this.authForm.value)
         .subscribe(
@@ -113,6 +112,11 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.snackBar.open(message, 'Error', {
       duration: 2000,
     });
+  }
+
+  login() {
+    console.log('login');
+
   }
 
   ngOnDestroy() {

@@ -1,18 +1,18 @@
 <div class="limiter">
-  <div class="container-login">
+  <!-- SPINNER -->
+  <div *ngIf="isResultsLoading" class="mat-elevation-z8">
+    <div class="loading-shade">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+  </div>
+
+  <div class="container-login" *ngIf="!isResultsLoading">
     <mat-card>
 
-      <!-- SPINNER -->
-      <div *ngIf="isResultsLoading" class="mat-elevation-z8">
-        <div class="loading-shade">
-          <mat-spinner color="accent"></mat-spinner>
-        </div>
-      </div>
 
       <mat-card-title>{{title}}</mat-card-title>
-      <mat-card-content>
-
-        <form class="form-container" [formGroup]="authForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-card-content >
+        <form  class="form-container" [formGroup]="authForm" novalidate (ngSubmit)="onSubmit()">
 
           <mat-form-field color="accent"  >
             <input matInput placeholder="Email" formControlName="email">
@@ -27,17 +27,33 @@
           </mat-form-field>
 
           <div>
+            <!-- LOGIN -->
+            <button mat-raised-button class="btn-block"
+              matRipple
+              matRippleCentered="centered"
+              matRippleUnbounded="unbounded"
+              matRippleRadius="50"
+              matRippleColor="rgba(0,0,0,0.1)"
+              [disabled]="!authForm.valid" type="submit"
+              (click)="login()"
+              color="accent">{{title}}
+            </button>
 
-            <button mat-raised-button class="btn-block" [disabled]="!authForm.valid" type="submit"
-
-            color="accent">{{title}}</button>
-            <a href="{{URLBackend}}/appinvoice/auth/google" class="btn btn-social btn-block btn-google" mat-button>
+            <!-- LOGIN WITH GOOGLE -->
+            <a href="{{URLBackend}}/appinvoice/auth/google"
+              (click)="isResultsLoading=true"
+              matRipple
+              matRippleCentered="centered"
+              matRippleUnbounded="unbounded"
+              matRippleRadius="50"
+              matRippleColor="rgba(0,0,0,0.1)"
+              class="btn btn-social btn-block btn-google" mat-button>
               <img src="https://www.ucim.eu/img/google.png" alt="Can't Display Image" width="25" height="25">
               &nbsp;&nbsp;
               Login with Google
             </a>
 
-
+            <!-- LOGIN WITH FACEBOOK  -->
             <a  class="btn btn-social btn-block btn-twitter" disabled mat-button>
               <i class="fa fa-facebook"></i>
               <span class="material-icons">
@@ -46,13 +62,21 @@
                 &nbsp;&nbsp;
               Login with Facebook
             </a>
-            <a href="{{URLBackend}}/appinvoice/auth/github" class="btn btn-social btn-block btn-github" mat-button>
+
+            <!-- LOGIN WITH GITHUB -->
+            <a href="{{URLBackend}}/appinvoice/auth/github"
+            (click)="isResultsLoading=true"
+              matRipple
+              matRippleCentered="centered"
+              matRippleUnbounded="unbounded"
+              matRippleRadius="50"
+              matRippleColor="rgba(0,0,0,0.1)"
+              class="btn btn-social btn-block btn-github" mat-button>
               <img src="https://www.ucim.eu/img/github.png" class="img-thumbnail" alt="Can't Display Image" width="25" height="25">&nbsp;&nbsp;
               Login with Github
             </a>
 
           </div>
-
         </form>
       </mat-card-content>
 
@@ -61,9 +85,12 @@
         <button mat-raised-button color="accent" routerLink="/app-invoice/signup">Signup</button>
       </div>
 
+      <!-- LOGIN -->
       <div class="alternative" *ngIf="title === 'Signup'">
         <p>Have an account?</p>
-        <button mat-raised-button color="accent" routerLink="/app-invoice/login">Login</button>
+        <button mat-raised-button color="accent"
+          routerLink="/app-invoice/login">Login
+        </button>
       </div>
 
     </mat-card>

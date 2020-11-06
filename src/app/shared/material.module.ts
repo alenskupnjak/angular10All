@@ -24,6 +24,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRippleModule } from '@angular/material/core';
 
 //  moment.js ili ovo...
 // import { MatNativeDateModule } from '@angular/material/core';
@@ -57,6 +59,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatGridListModule,
     MatCheckboxModule,
     MatBadgeModule,
+    MatProgressBarModule,
+    MatRippleModule,
   ],
   exports: [
     MatButtonModule,
@@ -85,6 +89,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatGridListModule,
     MatCheckboxModule,
     MatBadgeModule,
+    MatProgressBarModule,
+    MatRippleModule,
   ],
 })
 export class MaterialModule {}

@@ -1,51 +1,51 @@
 <mat-sidenav-container fullscreen class="all-wrap">
-  <!-- MENU sa strane -->
+  <!-- TOGGLE-MENU SA LIJEVE STRANE -->
   <mat-sidenav #menuSide class="sidenav" [opened]="isShowing">
     <h2>Aplikacija</h2>
     <mat-divider></mat-divider>
     <mat-nav-list>
-      <!-- Aplikacija Course -->
+      <!-- Aplikacija Course TOGGLE-MENU SA LIJEVE STRANE -->
       <a mat-list-item
         (click)="toggleAplikacija('app-university')"
         class="matlist" (click)="toggleSidenav()">
-        <mat-icon>library_books</mat-icon>
+        <mat-icon>library_books</mat-icon>&nbsp;&nbsp;
         <span>Course</span>
       </a>
 
-      <!-- APLIKACIJA INVOICE -->
+      <!-- APLIKACIJA INVOICE TOGGLE-MENU SA LIJEVE STRANE-->
       <a mat-list-item
         (click)="toggleAplikacija('app-invoice')"
         class="matlist" (click)="toggleSidenav()">
-        <fa-icon [icon]="faTable"></fa-icon>
-        <span>Invoice</span>
+        <fa-icon [icon]="faTable"></fa-icon>&nbsp;&nbsp;
+        <span fxLayout="row" fxLayoutGap="20px" >Invoice</span>
       </a>
 
-      <!-- FLEX INVOICE -->
+      <!-- FLEX INVOICE TOGGLE-MENU SA LIJEVE STRANE -->
       <a mat-list-item
         (click)="toggleAplikacija('flexLayout')"
         class="matlist" (click)="toggleSidenav()">
-        <mat-icon>view_compact</mat-icon>
+        <mat-icon>view_compact</mat-icon>&nbsp;&nbsp;
         <span>Flex</span>
       </a>
 
-      <!-- SIGN OUT -->
+      <!-- SIGN OUT TOGGLE-MENU SA LIJEVE STRANE -->
       <a mat-list-item
         (click)="logoutInvoiceAplication()"
         class="matlist" (click)="toggleSidenav()">
-        <fa-icon [icon]="faSignOutAlt"></fa-icon>Sign out
+        <fa-icon [icon]="faSignOutAlt"></fa-icon>&nbsp;&nbsp;
+        <span>Sign out</span>
       </a>
 
-      <!-- SIGN IN LOGIN-->
+      <!-- SIGN IN TOGGLE-MENU SA LIJEVE STRANE-->
       <a mat-list-item
         routerLink="/app-invoice/login"
         class="matlist" (click)="toggleSidenav()">
-        <mat-icon>account_circle</mat-icon>Login
+        <mat-icon>account_circle</mat-icon>&nbsp;&nbsp;Login
       </a>
 
-
-
+      <!-- ABOUT TOGGLE-MENU SA LIJEVE STRANE -->
       <a mat-list-item routerLink="about" class="matlist" (click)="toggleSidenav()">
-        <mat-icon>question_answer</mat-icon>
+        <mat-icon>question_answer</mat-icon>&nbsp;&nbsp;
         <span>About</span>
       </a>
     </mat-nav-list>
@@ -157,17 +157,22 @@
     <!-- GLAVNI SADRŽAJ -->
     <main  fxLayout="row" class="content">
       <!-- GLAVNI MENI -->
-        <div fxFlex="80%" fxFlex.lt-sm="100%" class="glavni-menu">
+        <div fxFlex="85%" fxFlex.lt-sm="100%" class="glavni-menu">
           <router-outlet></router-outlet>
         </div>
 
         <!-- Menu sa desne strane -->
-        <div fxFlex="20%" fxHide.xs  class="menu-desno">
+        <div fxFlex="15%" fxHide.xs  class="menu-desno">
           <mat-list role="list">
             <h3 class="slozi" >Odaberi aplikaciju</h3>
 
             <mat-list-item role="listitem"
             (click)="toggleAplikacija('app-university')"
+            matRipple
+            matRippleCentered="centered"
+            matRippleUnbounded="unbounded"
+            matRippleRadius="50"
+            matRippleColor="rgba(0,0,0,0.1)"
             [ngClass]="{'aktivno':izborAplikacije === 'app-university'}"
             class="aplikacija slozi"><mat-icon>library_books</mat-icon> Course
             </mat-list-item>
@@ -183,7 +188,6 @@
             [ngClass]="{'aktivno':izborAplikacije === 'flexLayout'}"
             class="aplikacija slozi"><fa-icon [icon]="faTable"></fa-icon> Flex grid
             </mat-list-item>
-
 
           </mat-list>
         </div>

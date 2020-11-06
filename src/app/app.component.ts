@@ -38,10 +38,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnDestroy, OnChanges, OnInit {
-  // breakpoint: number;      priprema za brisanje
-  // private postsSub: Subscription; priprema za brisanje
-
+export class AppComponent implements OnDestroy, OnInit {
   // Korisnik ispisan na menu
   user: string = '';
 
@@ -110,20 +107,13 @@ export class AppComponent implements OnDestroy, OnChanges, OnInit {
     });
   }
 
-  ngOnChanges() {
-    console.log('ngOnChanges()');
-  }
+
 
   // izbor aplikacije
   toggleAplikacija(aplikacija) {
     this.izborAplikacije = aplikacija.trim();
     this.router.navigate([aplikacija]);
   }
-
-
-  // onResize(event) {
-  //   this.breakpoint = event.target.innerWidth <= 400 ? 5 : 6;
-  // }
 
   logoutInvoiceAplication() {
     this.authService.logOut().subscribe(
