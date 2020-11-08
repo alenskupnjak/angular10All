@@ -129,6 +129,7 @@ main > *:not(router-outlet) {
 }
 
 .menu-desno {
+  /* position: fixed; */
   /* position: absolute;
   top: 40px;
   right: 0; */
