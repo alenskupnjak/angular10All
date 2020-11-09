@@ -12,6 +12,7 @@ import {
   faSignOutAlt,
   faSignInAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-auth',
@@ -125,6 +126,13 @@ export class AuthComponent implements OnInit, OnDestroy {
   login() {
     console.log('login');
 
+  }
+
+  loginGitHUB() {
+    // console.log();
+    console.log('github',`${this.URLBackend}/appinvoice/auth/github`);
+
+    window.location.href= `${this.URLBackend}/appinvoice/auth/github`;
   }
 
   faceBook() {

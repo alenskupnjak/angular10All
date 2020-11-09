@@ -59,7 +59,7 @@
             </a>
 
             <!-- LOGIN WITH FACEBOOK  -->
-            <button  class="btn btn-social btn-block btn-twitter"
+            <!-- <button  class="btn btn-social btn-block btn-twitter"
             (click)="faceBook()"
             [ngStyle]="title === 'Login' ? {'visibility': 'visible'} : {'visibility': 'hidden'}"
               mat-button>
@@ -69,12 +69,12 @@
                 </span>
                 &nbsp;&nbsp;
               Login with Facebook
-              </button>
+              </button> -->
 
             <!-- LOGIN WITH GITHUB -->
             <a href="{{URLBackend}}/appinvoice/auth/github"
-             [ngStyle]="title === 'Login' ? {'visibility': 'visible'} : {'visibility': 'hidden'}"
-            (click)="isResultsLoading=true"
+              [ngStyle]="title === 'Login' ? {'visibility': 'visible'} : {'visibility': 'hidden'}"
+              (click)="isResultsLoading=true"
               matRipple
               matRippleCentered="centered"
               matRippleUnbounded="unbounded"
