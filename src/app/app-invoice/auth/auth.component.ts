@@ -25,8 +25,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   subdestroyLogin: Subscription;
   subdestroySignup: Subscription;
   isResultsLoading = false; // SPPINER
-  tempPass = 112233;
-  tempUsername = 't@t.com';
+  // tempPass = 112233;
+  // tempUsername = 't@t.com';
   // Inicijalno je title prazan
   title = '';
   user;
@@ -40,8 +40,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.tempPass = 112233;
-    this.tempUsername = 't@t.com';
+    // this.tempPass = 112233;
+    // this.tempUsername = 't@t.com';
     //  definiraj formu
     this.authForm = this.fb.group({
       email: ['t@t.com', Validators.required],
@@ -114,9 +114,21 @@ export class AuthComponent implements OnInit, OnDestroy {
     });
   }
 
+  // krastavac kokos
+
+  // zaboravio sam password
+  forgotPassHandler(){
+    this.router.navigate(['app-invoice','forgot-password']);
+  }
+
+
   login() {
     console.log('login');
 
+  }
+
+  faceBook() {
+    console.log( 'faceBook');
   }
 
   ngOnDestroy() {

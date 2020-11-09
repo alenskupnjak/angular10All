@@ -8,6 +8,8 @@ import { ClientListingComponent } from './clients/client-listing/client-listing.
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { EditInvoiceResolverService } from './services/edit-invoice-resolver.service';
+import { ForgotpasswordComponent } from './auth/forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
 
 // PATH: '/app-invoice',
 const routes: Routes = [
@@ -61,6 +63,8 @@ const routes: Routes = [
   },
   { path: 'login', component: AuthComponent },
   { path: 'signup', component: AuthComponent },
+  { path: 'forgot-password', component: ForgotpasswordComponent },
+  { path: 'reset-password/:token', component: ResetpasswordComponent },
 ];
 
 @NgModule({

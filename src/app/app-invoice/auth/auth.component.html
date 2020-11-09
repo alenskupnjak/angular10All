@@ -39,9 +39,14 @@
               color="accent">{{title}}
             </button>
 
+            <a class="btn btn-block forgot-password"
+            [ngStyle]="title === 'Login' ? {'visibility': 'visible'} : {'visibility': 'hidden'}"
+            (click) ="forgotPassHandler()">forgot password</a>
+
             <!-- LOGIN WITH GOOGLE -->
             <a href="{{URLBackend}}/appinvoice/auth/google"
               (click)="isResultsLoading=true"
+              [ngStyle]="title === 'Login' ? {'visibility': 'visible'} : {'visibility': 'hidden'}"
               matRipple
               matRippleCentered="centered"
               matRippleUnbounded="unbounded"
@@ -54,17 +59,21 @@
             </a>
 
             <!-- LOGIN WITH FACEBOOK  -->
-            <a  class="btn btn-social btn-block btn-twitter" disabled mat-button>
+            <button  class="btn btn-social btn-block btn-twitter"
+            (click)="faceBook()"
+            [ngStyle]="title === 'Login' ? {'visibility': 'visible'} : {'visibility': 'hidden'}"
+              mat-button>
               <i class="fa fa-facebook"></i>
               <span class="material-icons">
                 facebook
                 </span>
                 &nbsp;&nbsp;
               Login with Facebook
-            </a>
+              </button>
 
             <!-- LOGIN WITH GITHUB -->
             <a href="{{URLBackend}}/appinvoice/auth/github"
+             [ngStyle]="title === 'Login' ? {'visibility': 'visible'} : {'visibility': 'hidden'}"
             (click)="isResultsLoading=true"
               matRipple
               matRippleCentered="centered"

@@ -5,12 +5,14 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 
 
 @NgModule({
-  declarations: [AuthComponent],
+  declarations: [AuthComponent, ForgotpasswordComponent, ResetpasswordComponent],
   imports: [
     CommonModule,
     MaterialModule,

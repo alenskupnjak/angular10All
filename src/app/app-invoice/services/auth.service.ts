@@ -55,5 +55,25 @@ export class AuthService {
     return this.httpClient.get<any>(`${environment.URL_Invoice}/logout`);
   }
 
+  // Zaboravljena lozinka
+  forgotPassword(data: {email: string}) : Observable<{message: string}> {
+    console.log('--');
+    return this.httpClient.post<{message: string}>(`${environment.URL_Invoice}/forgot-password`,data);
+  }
+
+
+  // Resetiranje passworda
+  resetPassword(body) : Observable<{success: boolean}>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type' :'application/json',
+        'Authorization': `Bearer ${body.token}`
+      })
+    }
+    return this.httpClient.put<{success: boolean}>(`${environment.URL_Invoice}/reset-password`,
+    {password: body.password},
+    httpOptions)
+  }
+
 
 }
